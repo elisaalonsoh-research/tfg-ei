@@ -1,0 +1,118 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1a_Rawdata_to_dta_28May2022.txt
+  log type:  text
+ opened on:  28 May 2022, 17:43:46
+
+. 
+. 
+. ***********************************
+. **** CPS DATA
+. ***********************************
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         insheet using "${raw}/cps_`s'.csv", delim(",") clear 
+  3.         compress
+  4.         save "${raw}/cps_`s'_raw.dta", replace  // Save CPS rawdata in dta
+  5.         }
+(24 vars, 943,442 obs)
+  (0 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cps_voters_raw.dta saved
+(26 vars, 794,911 obs)
+  (0 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cps_civic_raw.dta saved
+(30 vars, 1,738,667 obs)
+  (0 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cps_volunteer_raw.dta saved
+
+.         
+. insheet using "${raw}/cps_asec.csv", delim(",") clear 
+(6 vars, 2,842,213 obs)
+
+. compress
+  (0 bytes saved)
+
+. save "${raw}/cps_asec_raw.dta", replace  // Save CPS rawdata in dta
+(note: file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cps_asec_raw.dta not found)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cps_asec_raw.dta saved
+
+. 
+. /*
+> ***********************************
+> **** PER CAP INCOME BY COUNTY: BEA
+> ***********************************
+> 
+>         insheet using "${data}/raw/CAINC1__ALL_AREAS_1969_2020.csv", delim(",") clear 
+>         
+>         compress
+>         save "${raw}/percapincome_county_raw.dta", replace 
+> */
+. 
+. 
+. 
+. ***********************************
+. **** CSPP DATA: The Correlates of State Policy
+. ***********************************
+. 
+.         insheet using "${raw}/cspp_data_2022-05-24.csv", delim(",") clear 
+(1321 vars, 663 obs)
+
+.         
+.         * Keep only relevant variables
+.         
+.         // The following variables are not available for the whole period: 
+.         // poptotal, pctlatinx, foreign_born, immig_laws_restrict, hincomemed
+.         keep year state_fips poptotal pctlatinx foreign_born ///
+>                         immig_laws_restrict ///
+>                         vep 
+
+.         rename year survey_year 
+
+.         rename state_fips statefip
+
+.         
+.         * Convert to numeric variables and 
+.         destring *, replace ignore("NA") 
+survey_year already numeric; no replace
+statefip already numeric; no replace
+poptotal already numeric; no replace
+pctlatinx: characters N A removed; replaced as double
+(459 missing values generated)
+foreign_born: characters N A removed; replaced as double
+(292 missing values generated)
+immig_laws_restrict: characters N A removed; replaced as byte
+(292 missing values generated)
+vep: characters N A removed; replaced as long
+(306 missing values generated)
+
+. 
+.         compress
+  (0 bytes saved)
+
+.         save "${raw}/cspp_data_raw.dta", replace  
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/raw/cspp_data_raw.dta saved
+
+.         
+. 
+end of do-file
+
+. do "C:\Users\elisa\AppData\Local\Temp\STD3f10_000000.tmp"
+
+. /***********************************************************************
+> 1b DATA CLEANING
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
+>                                 files. For the unbalanced, it
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

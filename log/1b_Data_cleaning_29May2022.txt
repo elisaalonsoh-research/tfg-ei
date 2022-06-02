@@ -1,0 +1,529 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1b_Data_cleaning_29May2022.txt
+  log type:  text
+ opened on:  29 May 2022, 07:57:33
+
+. 
+.         /*
+> 
+> /***************************************************************************
+>                                  CPS DATA
+> ****************************************************************************/
+> 
+> * ----- ASEC data ---------------------------------------------------------*
+>         use "${raw}/cps_asec_raw.dta", clear 
+>         
+>         *** TECHNICAL VARIABLES
+>         rename year survey_year
+>         
+>         *** GEOGRAPHICAL VARIABLES
+>         * Delete observations that do not have an identified county
+>         drop if county==0
+>         
+>         * Create variable with consistent 5-digit string FIPS code
+>         gen fips = string(county,"%05.0f") // Previously, some states missed front 0
+>         drop county
+>         
+>         * Recode missing and negative values (might be lost investments)
+>         replace ftotval = . if ftotval == 9999999999 | ftotval<0
+>         
+>         * Generate round weight
+>         gen wr = .
+>         replace wr = round(asecwt)
+>         
+>         
+>         // County-level
+>         preserve
+>                 collapse (mean) county_inc= ftotval /// 
+>                 [w=wr], by(fips survey_year)
+>                 
+>                 save "${temp}/county_income.dta", replace
+>         restore
+>         
+>         // State-level
+>          collapse (mean) state_inc= ftotval /// 
+>                 [w=wr], by(statefip survey_year)
+>                 
+>         save "${temp}/state_income.dta", replace
+> 
+> 
+> 
+> *------ Common data cleaning for all CPS supplements -----------------------*
+> 
+> local supplements voters civic volunteer
+> 
+> foreach s of local supplements {
+>         
+>         use "${raw}/cps_`s'_raw.dta", clear 
+>         
+>         *** TECHNICAL VARIABLES
+>         rename year survey_year
+>         rename month survey_month
+>         
+>         *** GEOGRAPHICAL VARIABLES
+>         * Delete observations that do not have an identified county
+>         drop if county==0
+>         
+>         * Create variable with consistent 5-digit string FIPS code
+>         gen fips = string(county,"%05.0f") // Previously, some states missed front 0
+>         drop county
+>                 
+>         *** SOCIO-ECONOMIC AND DEMOGRAPHIC VARIABLES
+>         
+>         * Recode family income and dummy for low income individuals
+>         replace faminc = . if inrange(faminc,995,998)
+>         
+>         gen below50k = 0 //Low-income
+>         replace below50k = 1 if faminc < 800
+>         
+>         * Recode sex
+>         gen female= sex-1
+>         drop sex
+>         
+>         * Dummy for single
+>         gen single = 0
+>         replace single = 1 if marst==6
+>         replace single = . if marst==9
+>         
+>         * Dummy for education: high school or less, more than high school
+>         gen lowed = 0
+>         replace lowed = 1 if (educ <= 73)
+>         replace lowed = . if (educ==000|educ==001|educ==999)
+>         
+>         gen highed = 0
+>         replace highed = 1 if educ >73
+>         replace highed = . if (educ==000|educ==001|educ==999)
+>         
+>         
+>         // Race and ethnicity
+>         
+>         * Dummy for White
+>         gen white = 0
+>         replace white = 1 if race==100
+>         
+>         * Dummy for Black
+>         gen black = 0
+>         replace black = 1 if race==200
+>         
+>         * Dummy for Hispanic
+>         gen hispanic = 1
+>         replace hispanic = 0 if (hispan==000)
+>         
+>         * Dummy for non-Hispanic white
+>         gen nonhispwhite = 0
+>         replace nonhispwhite = 1 if (hispanic==0 & white==1)
+>         
+>         * Dummy for non-Hispanic black
+>         gen nonhispblack = 0
+>         replace nonhispblack = 1 if (hispanic==0 & black==1)
+>         
+>         * Dummy for Mexican
+>         gen mexican = 0
+>         replace mexican = 1 if hispan==100
+>         
+>         // Immigration status
+>         
+>         * Dummy for non-citizens
+>         gen noncitizen = 0 
+>         replace noncitizen = 1 if citizen==5
+>                 
+>         * Dummy for naturalized citizens
+>         gen naturalized = 0
+>         replace naturalized = 1 if citizen==4
+>         
+>         * Dummy for immigrants
+>         gen immigrant = 0
+>         replace immigrant = 1 if (citizen==4 | citizen==5)
+>         
+>         * Dummy for natives
+>         gen native = 0
+>         replace native = 1 if inrange(citizen,1,3)
+>         
+>         * Years in the US: NOT REALLY TRUST WORTHY DUE TO CODING OF CPS
+>         gen yearsus = survey_year-yrimmig if native==0
+>         replace yearsus=. if yrimmig==0000
+>         replace yearsus= age if native==1
+>         
+>         
+> 
+>                 
+>         * Mixed-status Household
+>         
+>         /* Defined as different citizenship status (see Bitler and Hoynes, 2011)
+>          egen citizens_household = total(noncitizen==0), by(cpsid survey_year)
+>          egen totindv_household = total(cpsid != .), by(cpsid survey_year)
+>          egen mixedstatus = count(totindv_household > citizens_household), by(cpsid survey_year)*/
+>         
+>         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
+>         
+>         * Dummy for likely unauthorized migrant
+>         gen likely_unauthorized = 0
+>         replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
+>         
+>         egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
+>         replace likely_mixedstatus = 1 if likely_mixedstatus > 1 // 1.69%
+>         
+>         *** CONTROLS:
+>         
+>         // Round weight and rename s.t. it is the same in every supplement
+>         gen wr = .
+>         
+>         if "`s'" == "voters" {
+>                 replace wr = round(vosuppwt)
+>         }
+>         if "`s'" == "civic" {
+>                 replace wr = round(cesuppwt)
+>         }
+>         if "`s'" == "volunteer"{
+>                 replace wr = round(vlsuppwt)
+>         }
+> 
+>                 
+>         * Dummy for presidential election
+>         gen presidential = 0
+>         replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
+>         
+>          
+>         // County-level controls: likely share of MS, median household income
+>         preserve
+>                 collapse (mean) county_MS=likely_mixedstatus county_unauthorized = likely_unauthorized [w=wr], by(fips survey_year)
+>                 
+>                 tempfile countychars_cps
+>                 save `countychars_cps'
+>         restore
+>         merge m:1 fips survey_year using `countychars_cps'
+>         drop _merge
+>         
+>         
+>         // State-level controls: likely share of MS, median household income
+>         preserve
+>                 collapse (mean) state_MS=likely_mixedstatus  /// 
+>                 [w=wr], by(statefip survey_year)
+>                 
+>                 tempfile statechars_cps
+>                 save `statechars_cps'
+>         restore
+>         merge m:1 statefip survey_year using `statechars_cps'
+>         drop _merge
+>         
+> 
+>         // Reduce dataset
+>         compress        
+>         save "${temp}/cps_`s'_temp.dta", replace
+> }
+> 
+> */
+. 
+. *------- Cleaning for CPS Voters and Registered ---------------------------*
+.         use "${temp}/cps_voters_temp.dta", clear 
+
+.                 
+.         
+.         * Dummy for registering to vote:
+.         * The universe for VOREG compromises only those persons who did not vote !!
+.         * Not in universe: code 99 (I will later restrict to citizens 18+)
+.         * My dummy variable = individuals who registered (vote and no vote)
+.         
+.         gen registered = 0
+
+.         replace registered = 1 if voreg==02 | voreg == 99
+(304,379 real changes made)
+
+.         replace registered = . if inrange(voreg,96,98)
+(39,241 real changes made, 39,241 to missing)
+
+.         drop voreg
+
+.         
+.         * Dummy for voting
+.         * The universe for VOTE_CAT (voted in CPS) is eligible voters
+.         rename voted vote_cat
+
+.         gen voted = 0
+
+.         replace voted = 0 if vote_cat==02
+(0 real changes made)
+
+.         replace voted = . if inrange(vote_cat,96,99)
+(161,679 real changes made, 161,679 to missing)
+
+.         drop vote_cat
+
+.         
+.         
+.         save "${temp}/cps_voters.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_voters.dta saved
+
+. 
+. 
+. 
+. *------- Cleaning for CPS Civic Engagement --------------------------------*
+.         use "${temp}/cps_civic_temp.dta", clear 
+
+.         
+.         
+.         save "${temp}/cps_civic.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_civic.dta saved
+
+.         
+. *------- Cleaning for CPS Volunteers --------------------------------------*
+.         use "${temp}/cps_volunteer_temp.dta", clear 
+
+.         save "${temp}/cps_volunteer.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_volunteer.dta saved
+
+.         
+. 
+. 
+. ***********************************
+. **** US Governors 1775-2020: https://www.openicpsr.org/openicpsr/project/102000/version/V3/view?path=/openicpsr/102000/fcr:versions/V3/united_states_governors
+> _1775_2020.dta&type=file
+. ***********************************
+.         use "${raw}/united_states_governors_1775_2020.dta"
+
+.         keep year state party
+
+. 
+.         gen statefip=.
+(12,345 missing values generated)
+
+.         replace statefip=01 if state=="Alabama"
+(258 real changes made)
+
+.         replace statefip=02 if state=="Alaska"
+(72 real changes made)
+
+.         replace statefip=04 if state=="Arizona"
+(163 real changes made)
+
+.         replace statefip=05 if state=="Arkansas"
+(231 real changes made)
+
+.         replace statefip=06 if state=="California"
+(201 real changes made)
+
+.         replace statefip=08 if state=="Colorado"
+(207 real changes made)
+
+.         replace statefip=09 if state=="Connecticut"
+(314 real changes made)
+
+.         replace statefip=10 if state=="Delaware"
+(309 real changes made)
+
+.         replace statefip=11 if state=="District of Columbia"
+(0 real changes made)
+
+.         replace statefip=12 if state=="Florida"
+(219 real changes made)
+
+.         replace statefip=13 if state=="Georgia"
+(324 real changes made)
+
+.         replace statefip=15 if state=="Hawaii"
+(65 real changes made)
+
+.         replace statefip=16 if state=="Idaho"
+(161 real changes made)
+
+.         replace statefip=17 if state=="Illinois"
+(245 real changes made)
+
+.         replace statefip=18 if state=="Indiana"
+(251 real changes made)
+
+.         replace statefip=19 if state=="Iowa"
+(213 real changes made)
+
+.         replace statefip=20 if state=="Kansas"
+(206 real changes made)
+
+.         replace statefip=21 if state=="Kentucky"
+(284 real changes made)
+
+.         replace statefip=22 if state=="Louisiana"
+(270 real changes made)
+
+.         replace statefip=23 if state=="Maine"
+(270 real changes made)
+
+.         replace statefip=24 if state=="Maryland"
+(302 real changes made)
+
+.         replace statefip=25 if state=="Massachusetts"
+(400 real changes made)
+
+.         replace statefip=26 if state=="Michigan"
+(230 real changes made)
+
+.         replace statefip=27 if state=="Minnesota"
+(201 real changes made)
+
+.         replace statefip=28 if state=="Mississippi"
+(257 real changes made)
+
+.         replace statefip=29 if state=="Missouri"
+(254 real changes made)
+
+.         replace statefip=30 if state=="Montana"
+(147 real changes made)
+
+.         replace statefip=31 if state=="Nebraska"
+(288 real changes made)
+
+.         replace statefip=32 if state=="Nevada"
+(185 real changes made)
+
+.         replace statefip=33 if state=="New Hampshire"
+(321 real changes made)
+
+.         replace statefip=34 if state=="New Jersey"
+(302 real changes made)
+
+.         replace statefip=35 if state=="New Mexico"
+(138 real changes made)
+
+.         replace statefip=36 if state=="New York"
+(290 real changes made)
+
+.         replace statefip=37 if state=="North Carolina"
+(310 real changes made)
+
+.         replace statefip=38 if state=="North Dakota"
+(159 real changes made)
+
+.         replace statefip=39 if state=="Ohio"
+(318 real changes made)
+
+.         replace statefip=40 if state=="Oklahoma"
+(139 real changes made)
+
+.         replace statefip=41 if state=="Oregon"
+(193 real changes made)
+
+.         replace statefip=42 if state=="Pennsylvania"
+(293 real changes made)
+
+.         replace statefip=44 if state=="Rhode Island"
+(439 real changes made)
+
+.         replace statefip=45 if state=="South Carolina"
+(337 real changes made)
+
+.         replace statefip=46 if state=="South Dakota"
+(162 real changes made)
+
+.         replace statefip=47 if state=="Tennessee"
+(268 real changes made)
+
+.         replace statefip=48 if state=="Texas"
+(215 real changes made)
+
+.         replace statefip=49 if state=="Utah"
+(173 real changes made)
+
+.         replace statefip=50 if state=="Vermont"
+(315 real changes made)
+
+.         replace statefip=51 if state=="Virginia"
+(431 real changes made)
+
+.         replace statefip=53 if state=="Washington"
+(146 real changes made)
+
+.         replace statefip=54 if state=="West Virginia"
+(181 real changes made)
+
+.         replace statefip=55 if state=="Wisconsin"
+(216 real changes made)
+
+.         replace statefip=56 if state=="Wyoming"
+(154 real changes made)
+
+.         
+.         
+.         // Drop Puerto Rico
+.         drop if statefip==.
+(318 observations deleted)
+
+.         
+.         // Dummy for Republican gov at the state-level
+.         gen republican = 0
+
+.         replace republican = 1 if party == "Republican"
+(4,395 real changes made)
+
+.         drop party
+
+.         
+.         // Restrict year
+.         drop if year>2016 | year <2004
+(11,335 observations deleted)
+
+.         rename year survey_year
+
+.         
+.         // Eliminate duplicates
+.         duplicates drop statefip survey_year, force     
+
+Duplicates in terms of statefip survey_year
+
+(76 observations deleted)
+
+.         
+.         save "${temp}/party_state.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/party_state.dta saved
+
+. 
+.         /*
+> 
+> ***********************************
+> **** PER CAP INCOME BY COUNTY: BEA
+> ***********************************
+> 
+>         use "${raw}/percapincome_county_raw.dta", clear
+>         
+>         // Keep only per capital personal income
+>         drop if description == "Population (persons) 1/" | ///
+>                         description == "Personal income (thousands of dollars)"
+>                         
+>         // Drop unwanted variables
+>         drop geoname region tablename linecode industryclassification description unit
+>         keep geofips v44-v57
+>         
+>         // Reshape dataset to ong format
+>         foreach v of varlist v44-v57 {
+>                 local x : variable label `v'
+>                 rename `v' income_pc_state`x'
+>                 }
+>         reshape long income_pc_state, i(geofips) j(year)
+>         
+>         * Transform to common format as in CPS
+>         destring(income_pc_state), replace ignore("(NA)")
+>         rename geofips fips
+>         drop if fips == "00000"
+>         rename year survey_year
+>         
+>         save "${temp}/percapincome_county.dta", replace 
+
+end of do-file
+
+. do "C:\Users\elisa\Documents\5. Research\TFG EI\code\1c_Final_dataset.do"
+
+. /***********************************************************************
+> 1c FINAL DATASET
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes merges each of the CPS Supplements data
+>                                 with the activation dates per county, and the institutinal
+>                                 data for our control variables
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

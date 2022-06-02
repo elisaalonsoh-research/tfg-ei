@@ -1,0 +1,53 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1a_Rawdata_to_dta_19May2022.txt
+  log type:  text
+ opened on:  19 May 2022, 15:51:16
+
+. 
+. 
+. ***********************************
+. **** CPS DATA
+. ***********************************
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         insheet using "${data}/raw/cps_`s'.csv", delim(",") clear 
+  3.         compress
+  4.         save "${temp}/cps_`s'_raw.dta", replace  // Save CPS rawdata in dta
+  5.         }
+(26 vars, 943,442 obs)
+  (0 bytes saved)
+(note: file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_voters_raw.dta not found)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_voters_raw.dta saved
+(23 vars, 794,911 obs)
+  (0 bytes saved)
+(note: file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_civic_raw.dta not found)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_civic_raw.dta saved
+(24 vars, 1,738,667 obs)
+  (0 bytes saved)
+(note: file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_volunteer_raw.dta not found)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_volunteer_raw.dta saved
+
+. 
+end of do-file
+
+.   do "${do}/1b_Data_cleaning.do" 
+
+. /***********************************************************************
+> 1b DATA CLEANING
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
+>                                 files. For the unbalanced, it
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

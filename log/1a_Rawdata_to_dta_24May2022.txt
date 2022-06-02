@@ -1,0 +1,80 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1a_Rawdata_to_dta_24May2022.txt
+  log type:  text
+ opened on:  24 May 2022, 11:06:30
+
+. 
+. 
+. ***********************************
+. **** CPS DATA
+. ***********************************
+. /*
+> local supplement voters civic volunteer
+> 
+> foreach s of local supplement {
+>         insheet using "${data}/raw/cps_`s'.csv", delim(",") clear 
+>         compress
+>         save "${temp}/cps_`s'_raw.dta", replace  // Save CPS rawdata in dta
+>         }
+> */      
+. 
+. ***********************************
+. **** PER CAP INCOME BY COUNTY: BEA
+. ***********************************
+. 
+.         insheet using "${data}/raw/CAINC1__ALL_AREAS_1969_2020.csv", delim(",") clear 
+(60 vars, 9,604 obs)
+
+.         
+.         compress
+  (0 bytes saved)
+
+.         save "${temp}/percapincome_county_raw.dta", replace  
+(note: file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/percapincome_county_raw.dta not found)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/percapincome_county_raw.dta saved
+
+. 
+. 
+. /*      
+> ***********************************
+> **** CSPP DATA: The Correlates of State Policy
+> ***********************************
+> 
+>         insheet using "${data}/raw/cspp_data_2022-05-24.csv", delim(",") clear 
+>         
+>         * Keep only relevant variables
+>         
+>         // The following variables are not available for the whole period: 
+>         // poptotal, pctlatinx, foreign_born, immig_laws_restrict, hincomemed
+>         keep year state_fips poptotal pctlatinx foreign_born ///
+>                         immig_laws_restrict hincomemed pc_inc_ann ///
+>                         prez_election_year govparty_a govparty_b vep 
+>         
+>         * Convert to numeric variables and 
+>         destring *, replace ignore("NA") 
+> 
+>         compress
+>         save "${temp}/state_controls.dta", replace  
+>         
+> */
+. 
+end of do-file
+
+. do "C:\Users\elisa\Documents\5. Research\TFG EI\code\1b_Data_cleaning.do"
+
+. /***********************************************************************
+> 1b DATA CLEANING
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
+>                                 files. For the unbalanced, it
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

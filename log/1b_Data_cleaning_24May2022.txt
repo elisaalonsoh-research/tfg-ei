@@ -1,0 +1,645 @@
+----------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TF
+> G EI/log/1b_Data_cleaning_24May2022.txt
+  log type:  text
+ opened on:  24 May 2022, 13:47:16
+
+. 
+. 
+. ***********************************
+. **** CPS DATA
+. ***********************************
+. 
+. *------ Common data cleaning for all CPS supplemen
+> ts -----------------------*
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         
+.         use "${temp}/cps_`s'_raw.dta", clear 
+  3.         
+.         *** Technical variables
+.         rename year survey_year
+  4.         rename month survey_month
+  5.         
+.         *** Geographical variables
+.         * Delete observations that do not have an 
+> identified county
+.         drop if county==0
+  6.         
+.         * Create variable with consistent 5-digit 
+> string FIPS code
+.         gen fips = string(county,"%05.0f") // Prev
+> iously, some states missed front 0
+  7.         drop county
+  8.                 
+.         *** Socio-economic and demographic variabl
+> es
+.         * Recode sex
+.         gen female= sex-1
+  9.         drop sex
+ 10.         
+.         * Dummy for single
+.         gen single = 0
+ 11.         replace single = 1 if marst==6
+ 12.         replace single = . if marst==9
+ 13.         
+.         * Dummy for low education
+.         gen lowed = 0
+ 14.         replace lowed = 1 if (educ <= 73)
+ 15.         replace lowed = . if (educ==000|educ==0
+> 01|educ==999)
+ 16.         
+.         // Race and ethnicity
+.         
+.         * Dummy for White
+.         gen white = 0
+ 17.         replace white = 1 if race==100
+ 18.         
+.         * Dummy for Black
+.         gen black = 0
+ 19.         replace black = 1 if race==200
+ 20.         
+.         * Dummy for Hispanic
+.         gen hispanic = 1
+ 21.         replace hispanic = 0 if (hispan==000)
+ 22.         
+.         * Dummy for non-Hispanic white
+.         gen nonhispwhite = 0
+ 23.         replace nonhispwhite = 1 if (hispanic==
+> 0 & white==1)
+ 24.         
+.         * Dummy for non-Hispanic black
+.         gen nonhispblack = 0
+ 25.         replace nonhispblack = 1 if (hispanic==
+> 0 & black==1)
+ 26.         
+.         * Dummy for Mexican
+.         gen mexican = 0
+ 27.         replace mexican = 1 if hispan==100
+ 28.         
+.         // Immigration status
+.         
+.         * Dummy for non-citizens
+.         gen noncitizen = 0 
+ 29.         replace noncitizen = 1 if citizen==5
+ 30.                 
+.         * Dummy for naturalized citizens
+.         gen natcitizen = 0
+ 31.         replace natcitizen = 1 if citizen==4
+ 32.         
+.         * Dummy for immigrants
+.         gen immigrant = 0
+ 33.         replace immigrant =1 if (citizen==4 | c
+> itizen==5)
+ 34.         
+.         * Dummy for natives
+.         gen native = 0
+ 35.         replace native = 1 if (citizen==1 | cit
+> izen==2 | citizen==3)
+ 36.         
+.         * Years in the US: NOT REALLY TRUST WORTHY
+>  DUE TO CODING OF CPS
+.         gen yearsus = survey_year-yrimmig if nativ
+> e==0
+ 37.         replace yearsus=. if yrimmig==0000
+ 38.         replace yearsus= age if native==1
+ 39. 
+.         
+.         
+.         *** Mixed-status Household
+.         // Defined as different citizenship status
+>  (see Bitler and Hoynes, 2011)
+.          egen citizens_household = total(noncitize
+> n==0), by(cpsid survey_year)
+ 40.          egen citizens_household2 = total(nonci
+> tizen==0), by(serial survey_year)
+ 41.          egen totindv_household = total(cpsid !
+> = .), by(cpsid survey_year)
+ 42.          egen totindv_household2 = total(serial
+>  != .), by(serial survey_year)
+ 43. 
+.          egen mixedstatus = count(totindv_househol
+> d > citizens_household), by(cpsid survey_year)
+ 44.         egen mixedstatus2 = count(totindv_house
+> hold > citizens_household), by(serial survey_year)
+ 45.         // egen mixedstatus = count(totindv_hou
+> sehold > citizens_household), by(serial survey_yea
+> r)
+. 
+.         
+.         // Defined as at least one likely undocume
+> nted migrant (see Amuedo-Dorantes and Lopez) --> t
+> his is a proxy (less reliable)
+.         * Dummy for likely unauthorized migrant
+.         gen likely_unauthorized = 0
+ 46.         replace likely_unauthorized = 1 if (non
+> citizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
+ 47.         
+.         egen likely_mixedstatus = total(likely_una
+> uthorized==1), by(cpsid survey_year)
+ 48.         replace likely_mixedstatus = 1 if likel
+> y_mixedstatus > 1 // 1.69%
+ 49. 
+.         *** Sample restriction: universe of possib
+> le voters (citizens and 18>=)
+.         drop if noncitizen==1
+ 50.         drop if age<18
+ 51.         
+.         // Reduce dataset
+.         compress
+ 52.         
+.         
+.         save "${temp}/cps_`s'.dta", replace
+ 53. }
+(557,452 observations deleted)
+(96,004 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(212,403 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(294,343 real changes made)
+(49,555 real changes made)
+(312,927 real changes made)
+(227,255 real changes made)
+(47,135 real changes made)
+(44,717 real changes made)
+(33,292 real changes made)
+(27,884 real changes made)
+(61,176 real changes made)
+(324,814 real changes made)
+(324,814 missing values generated)
+(4 real changes made, 4 to missing)
+(324,814 real changes made)
+(11,089 real changes made)
+(14,501 real changes made)
+(33,292 observations deleted)
+(89,304 observations deleted)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable citizens_household2 was float now byte
+  variable totindv_household was float now byte
+  variable totindv_household2 was float now byte
+  variable mixedstatus was float now byte
+  variable mixedstatus2 was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  (17,384,004 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/dat
+> a/temp/cps_voters.dta saved
+(466,404 observations deleted)
+(83,000 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(178,522 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(249,437 real changes made)
+(42,554 real changes made)
+(265,432 real changes made)
+(191,651 real changes made)
+(40,405 real changes made)
+(38,923 real changes made)
+(27,281 real changes made)
+(24,857 real changes made)
+(52,138 real changes made)
+(276,369 real changes made)
+(276,369 missing values generated)
+(3 real changes made, 3 to missing)
+(276,369 real changes made)
+(9,658 real changes made)
+(12,507 real changes made)
+(27,281 observations deleted)
+(75,010 observations deleted)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable citizens_household2 was float now byte
+  variable totindv_household was float now byte
+  variable totindv_household2 was float now byte
+  variable mixedstatus was float now byte
+  variable mixedstatus2 was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  (14,930,256 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/dat
+> a/temp/cps_civic.dta saved
+(1,025,752 observations deleted)
+(177,426 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(395,000 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(543,818 real changes made)
+(91,207 real changes made)
+(577,923 real changes made)
+(420,203 real changes made)
+(86,620 real changes made)
+(83,037 real changes made)
+(60,030 real changes made)
+(51,606 real changes made)
+(111,636 real changes made)
+(601,279 real changes made)
+(601,279 missing values generated)
+(9 real changes made, 9 to missing)
+(601,279 real changes made)
+(20,853 real changes made)
+(26,875 real changes made)
+(60,030 observations deleted)
+(165,695 observations deleted)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable citizens_household2 was float now byte
+  variable totindv_household was float now byte
+  variable totindv_household2 was float now byte
+  variable mixedstatus was float now byte
+  variable mixedstatus2 was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  (32,154,540 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/dat
+> a/temp/cps_volunteer.dta saved
+
+. 
+. /*
+> 
+> *------- Cleaning for CPS Voters and Registered --
+> -------------------------*
+>         use "${temp}/cps_voters.dta", clear 
+>         
+> 
+>         
+>         * Dummy for presidential election
+>         gen presidential = 0
+>         replace presidential = 1 if (survey_year==
+> 2004|survey_year==2008|survey_year==2012|survey_ye
+> ar==2016)
+>         
+>         * Dummy for registering to vote
+>         gen registered = 1
+>         replace registered = 0 if voreg==01
+>         replace registered = . if (voreg==96|voreg
+> ==97|voreg==98|voreg==99)
+>         drop voreg
+>         
+>         * Dummy for voting
+>         rename voted vote_cat
+>         gen voted = 1
+>         replace voted = 0 if vote_cat==01
+>         replace voted = . if (vote_cat==96|vote_ca
+> t==97|vote_cat==98|vote_cat==99)
+>         drop vote_cat
+>         
+>         save "${temp}/cps_voters.dta", replace
+> 
+> 
+> *------- Cleaning for CPS Civic Engagement -------
+> -------------------------*
+>         use "${temp}/cps_civic.dta", clear 
+>         save "${temp}/cps_civic.dta", replace
+>         
+> *------- Cleaning for CPS Volunteers -------------
+> -------------------------*
+>         use "${temp}/cps_volunteer.dta", clear 
+>         save "${temp}/cps_volunteer.dta", replace
+>         
+> 
+> 
+> ***********************************
+> **** US Governors 1775-2020: https://www.openicpsr
+> .org/openicpsr/project/102000/version/V3/view?path
+> =/openicpsr/102000/fcr:versions/V3/united_states_g
+> overnors_1775_2020.dta&type=file
+> ***********************************
+>         use "${data}/raw/united_states_governors_1
+> 775_2020.dta"
+>         keep year state party
+> 
+>         gen statefip=.
+>         replace statefip=01 if state=="Alabama"
+>         replace statefip=02 if state=="Alaska"
+>         replace statefip=04 if state=="Arizona"
+>         replace statefip=05 if state=="Arkansas"
+>         replace statefip=06 if state=="California"
+>         replace statefip=08 if state=="Colorado"
+>         replace statefip=09 if state=="Connecticut
+> "
+>         replace statefip=10 if state=="Delaware"
+>         replace statefip=11 if state=="District of
+>  Columbia"
+>         replace statefip=12 if state=="Florida"
+>         replace statefip=13 if state=="Georgia"
+>         replace statefip=15 if state=="Hawaii"
+>         replace statefip=16 if state=="Idaho"
+>         replace statefip=17 if state=="Illinois"
+>         replace statefip=18 if state=="Indiana"
+>         replace statefip=19 if state=="Iowa"
+>         replace statefip=20 if state=="Kansas"
+>         replace statefip=21 if state=="Kentucky"
+>         replace statefip=22 if state=="Louisiana"
+>         replace statefip=23 if state=="Maine"
+>         replace statefip=24 if state=="Maryland"
+>         replace statefip=25 if state=="Massachuset
+> ts"
+>         replace statefip=26 if state=="Michigan"
+>         replace statefip=27 if state=="Minnesota"
+>         replace statefip=28 if state=="Mississippi
+> "
+>         replace statefip=29 if state=="Missouri"
+>         replace statefip=30 if state=="Montana"
+>         replace statefip=31 if state=="Nebraska"
+>         replace statefip=32 if state=="Nevada"
+>         replace statefip=33 if state=="New Hampshi
+> re"
+>         replace statefip=34 if state=="New Jersey"
+>         replace statefip=35 if state=="New Mexico"
+>         replace statefip=36 if state=="New York"
+>         replace statefip=37 if state=="North Carol
+> ina"
+>         replace statefip=38 if state=="North Dakot
+> a"
+>         replace statefip=39 if state=="Ohio"
+>         replace statefip=40 if state=="Oklahoma"
+>         replace statefip=41 if state=="Oregon"
+>         replace statefip=42 if state=="Pennsylvani
+> a"
+>         replace statefip=44 if state=="Rhode Islan
+> d"
+>         replace statefip=45 if state=="South Carol
+> ina"
+>         replace statefip=46 if state=="South Dakot
+> a"
+>         replace statefip=47 if state=="Tennessee"
+>         replace statefip=48 if state=="Texas"
+>         replace statefip=49 if state=="Utah"
+>         replace statefip=50 if state=="Vermont"
+>         replace statefip=51 if state=="Virginia"
+>         replace statefip=53 if state=="Washington"
+>         replace statefip=54 if state=="West Virgin
+> ia"
+>         replace statefip=55 if state=="Wisconsin"
+>         replace statefip=56 if state=="Wyoming"
+>         
+>         
+>         // Drop Puerto Rico
+>         drop if statefip==.
+>         
+>         // Dummy for Republican gov at the state-l
+> evel
+>         gen rep_state = 0
+>         replace rep_state = 1 if party == "Republi
+> can"
+>         drop party
+>         
+>         // Restrict year
+>         drop if year>2016 | year <2004
+>         rename year survey_year
+>         
+>         // Eliminate duplicates
+>         duplicates drop statefip survey_year, forc
+> e     
+>         
+>         save "${temp}/state_level_party.dta", repl
+> ace
+> 
+> 
+> ***********************************
+> **** PER CAP INCOME BY COUNTY: BEA
+> ***********************************
+> 
+>         use "${temp}/percapincome_county_raw.dta",
+>  clear
+>         
+>         // Keep only per capital personal income
+>         drop if description == "Population (person
+> s) 1/" | ///
+>                         description == "Personal i
+> ncome (thousands of dollars)"
+>                         
+>         // Drop unwanted variables
+>         drop geoname region tablename linecode ind
+> ustryclassification description unit
+>         keep geofips v44-v57
+>         
+>         // Reshape dataset to ong format
+>         foreach v of varlist v44-v57 {
+>                 local x : variable label `v'
+>                 rename `v' income_pc_state`x'
+>                 }
+>         reshape long income_pc_state, i(geofips) j
+> (year)
+>         
+>         * Transform to common format as in CPS
+>         destring(income_pc_state), replace ignore(
+> "(NA)")
+>         rename geofips fips
+>         drop if fips == "00000"
+>         rename year survey_year
+>         
+>         save "${temp}/percapincome_county.dta", re
+> place
+
+end of do-file
+
+. tab citizens_household
+
+citizens_ho |
+    usehold |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,616       16.75       16.75
+          2 |    170,668       35.03       51.78
+          3 |     92,056       18.90       70.68
+          4 |     80,875       16.60       87.28
+          5 |     37,375        7.67       94.95
+          6 |     14,452        2.97       97.92
+          7 |      5,566        1.14       99.06
+          8 |      2,406        0.49       99.55
+          9 |      1,136        0.23       99.79
+         10 |        519        0.11       99.89
+         11 |        243        0.05       99.94
+         12 |         87        0.02       99.96
+         13 |         72        0.01       99.98
+         14 |         99        0.02      100.00
+         15 |         10        0.00      100.00
+         16 |         10        0.00      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. tab citizens_household2
+
+citizens_ho |
+   usehold2 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,616       16.75       16.75
+          2 |    170,668       35.03       51.78
+          3 |     92,056       18.90       70.68
+          4 |     80,875       16.60       87.28
+          5 |     37,375        7.67       94.95
+          6 |     14,452        2.97       97.92
+          7 |      5,566        1.14       99.06
+          8 |      2,406        0.49       99.55
+          9 |      1,136        0.23       99.79
+         10 |        519        0.11       99.89
+         11 |        243        0.05       99.94
+         12 |         87        0.02       99.96
+         13 |         72        0.01       99.98
+         14 |         99        0.02      100.00
+         15 |         10        0.00      100.00
+         16 |         10        0.00      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. tab totindv_household
+
+totindv_hou |
+     sehold |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     76,212       15.64       15.64
+          2 |    169,619       34.82       50.46
+          3 |     91,331       18.75       69.21
+          4 |     82,617       16.96       86.16
+          5 |     39,586        8.13       94.29
+          6 |     15,903        3.26       97.55
+          7 |      6,472        1.33       98.88
+          8 |      2,665        0.55       99.43
+          9 |      1,373        0.28       99.71
+         10 |        653        0.13       99.84
+         11 |        344        0.07       99.91
+         12 |        165        0.03       99.95
+         13 |        100        0.02       99.97
+         14 |        109        0.02       99.99
+         15 |         14        0.00       99.99
+         16 |         27        0.01      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. totindiv_household2
+command totindiv_household2 is unrecognized
+r(199);
+
+. tab totindv_household2
+
+totindv_hou |
+    sehold2 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     76,212       15.64       15.64
+          2 |    169,619       34.82       50.46
+          3 |     91,331       18.75       69.21
+          4 |     82,617       16.96       86.16
+          5 |     39,586        8.13       94.29
+          6 |     15,903        3.26       97.55
+          7 |      6,472        1.33       98.88
+          8 |      2,665        0.55       99.43
+          9 |      1,373        0.28       99.71
+         10 |        653        0.13       99.84
+         11 |        344        0.07       99.91
+         12 |        165        0.03       99.95
+         13 |        100        0.02       99.97
+         14 |        109        0.02       99.99
+         15 |         14        0.00       99.99
+         16 |         27        0.01      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. tab mixedstatus
+
+mixedstatus |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     76,212       15.64       15.64
+          2 |    169,619       34.82       50.46
+          3 |     91,331       18.75       69.21
+          4 |     82,617       16.96       86.16
+          5 |     39,586        8.13       94.29
+          6 |     15,903        3.26       97.55
+          7 |      6,472        1.33       98.88
+          8 |      2,665        0.55       99.43
+          9 |      1,373        0.28       99.71
+         10 |        653        0.13       99.84
+         11 |        344        0.07       99.91
+         12 |        165        0.03       99.95
+         13 |        100        0.02       99.97
+         14 |        109        0.02       99.99
+         15 |         14        0.00       99.99
+         16 |         27        0.01      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. tab mixedstatus2
+
+mixedstatus |
+          2 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     76,212       15.64       15.64
+          2 |    169,619       34.82       50.46
+          3 |     91,331       18.75       69.21
+          4 |     82,617       16.96       86.16
+          5 |     39,586        8.13       94.29
+          6 |     15,903        3.26       97.55
+          7 |      6,472        1.33       98.88
+          8 |      2,665        0.55       99.43
+          9 |      1,373        0.28       99.71
+         10 |        653        0.13       99.84
+         11 |        344        0.07       99.91
+         12 |        165        0.03       99.95
+         13 |        100        0.02       99.97
+         14 |        109        0.02       99.99
+         15 |         14        0.00       99.99
+         16 |         27        0.01      100.00
+------------+-----------------------------------
+      Total |    487,190      100.00
+
+. do "C:\Users\elisa\AppData\Local\Temp\STD4100_000000.tmp"
+
+. /***********************************************************************
+> 1c FINAL DATASET
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes merges each of the CPS Supplements data
+>                                 with the activation dates per county, and the institutinal
+>                                 data for our control variables
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

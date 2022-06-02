@@ -1,0 +1,335 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1b_Data_cleaning_19May2022.txt
+  log type:  text
+ opened on:  19 May 2022, 16:28:26
+
+. 
+. 
+. ***********************************
+. **** CPS DATA
+. ***********************************
+. 
+. *------ Common data cleaning for all CPS supplements -----------------------*
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         
+.         use "${temp}/cps_`s'_raw.dta", clear 
+  3.         
+.         *** Technical variables
+.         rename year survey_year
+  4.         rename month survey_month
+  5.         
+.         *** Geographical variables
+.         * Delete observations that do not have an identified county
+.         drop if county==0
+  6.         
+.         * Create variable with consistent 5-digit string FIPS code
+.         gen fips = string(county,"%05.0f") // Previously, some states missed front 0
+  7.         drop county
+  8.                 
+.         *** Socio-economic and demographic variables
+.         * Recode sex
+.         gen female= sex-1
+  9.         drop sex
+ 10.         
+.         * Dummy for single
+.         gen single = 0
+ 11.         replace single = 1 if marst==6
+ 12.         replace single = . if marst==9
+ 13.         
+.         * Dummy for low education
+.         gen lowed = 0
+ 14.         replace lowed = 1 if (educ <= 73)
+ 15.         replace lowed = . if (educ==000|educ==001|educ==999)
+ 16.         
+.         // Race and ethnicity
+.         
+.         * Dummy for White
+.         gen white = 0
+ 17.         replace white = 1 if race==100
+ 18.         
+.         * Dummy for Black
+.         gen black = 0
+ 19.         replace black = 1 if race==200
+ 20.         
+.         * Dummy for Hispanic
+.         gen hispanic = 1
+ 21.         replace hispanic = 0 if (hispan==000)
+ 22.         
+.         * Dummy for non-Hispanic white
+.         gen nonhispwhite = 0
+ 23.         replace nonhispwhite = 1 if (hispanic==0 & white==1)
+ 24.         
+.         * Dummy for non-Hispanic black
+.         gen nonhispblack = 0
+ 25.         replace nonhispwhite = 1 if (hispanic==0 & black==1)
+ 26.         
+.         * Dummy for Mexican
+.         gen mexican = 0
+ 27.         replace mexican = 1 if hispan==100
+ 28.         
+.         // Immigration status
+.         
+.         * Dummy for non-citizens
+.         gen noncitizen = 0 
+ 29.         replace noncitizen = 1 if citizen==5
+ 30.                 
+.         * Dummy for naturalized citizens
+.         gen natcitizen = 0
+ 31.         replace natcitizen = 1 if citizen==4
+ 32.         
+.         * Dummy for immigrants
+.         gen immigrant = 0
+ 33.         replace immigrant =1 if (citizen==4 | citizen==5)
+ 34.         
+.         * Dummy for natives
+.         gen native = 0
+ 35.         replace native = 1 if (citizen==1 | citizen==2 | citizen==3)
+ 36.         
+.         * Years in the US: NOT REALLY TRUST WORTHY DUE TO CODING OF CPS
+.         gen yearsus = age if native==1
+ 37.         replace yearsus= survey_year-yrimmig if native==0
+ 38.         replace yearsus=. if yrimmig==0000
+ 39.         
+.         
+.         *** Mixed-status Household
+.         // Defined as different citizenship status (see Bitler and Hoynes, 2011)
+.         gen mixedstatus = 0
+ 40. 
+.         
+. 
+.         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez)
+.         * Dummy for likely unauthorized migrant
+.         gen unauthorized = 0
+ 41.         replace unauthorized = 1 if (hispanic==1 & lowed==1 & yearsus>5 )
+ 42.         
+.         egen likelymixedstatus = total(unauthorized==1), by(serial)
+ 43.         *replace likelymixedstatus = 1 if likelymixedstatus > 1
+. 
+.         *** Sample restriction: universe of possible voters (citizens and 18>=)
+.         *drop if noncitizen==1
+.         *drop if age<18
+.         
+.         // Reduce dataset
+.         compress
+ 44.         
+.         save "${temp}/cps_`s'_temp.dta", replace
+ 45. }
+(557,452 observations deleted)
+(96,004 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(212,403 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(294,343 real changes made)
+(49,555 real changes made)
+(312,927 real changes made)
+(227,255 real changes made)
+(47,135 real changes made)
+(44,717 real changes made)
+(33,292 real changes made)
+(27,884 real changes made)
+(61,176 real changes made)
+(324,814 real changes made)
+(61,176 missing values generated)
+(61,176 real changes made)
+(318,689 real changes made, 318,689 to missing)
+(30,943 real changes made)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable mixedstatus was float now byte
+  variable unauthorized was float now byte
+  variable likelymixedstatus was float now byte
+  (19,685,490 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_voters_temp.dta saved
+(466,404 observations deleted)
+(83,000 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(178,522 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(249,437 real changes made)
+(42,554 real changes made)
+(265,432 real changes made)
+(191,651 real changes made)
+(40,405 real changes made)
+(38,923 real changes made)
+(27,281 real changes made)
+(24,857 real changes made)
+(52,138 real changes made)
+(276,369 real changes made)
+(52,138 missing values generated)
+(52,138 real changes made)
+(271,173 real changes made, 271,173 to missing)
+(27,486 real changes made)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable mixedstatus was float now byte
+  variable unauthorized was float now byte
+  variable likelymixedstatus was float now byte
+  (16,753,857 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_civic_temp.dta saved
+(1,025,752 observations deleted)
+(177,426 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(395,000 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(543,818 real changes made)
+(91,207 real changes made)
+(577,923 real changes made)
+(420,203 real changes made)
+(86,620 real changes made)
+(83,037 real changes made)
+(60,030 real changes made)
+(51,606 real changes made)
+(111,636 real changes made)
+(601,279 real changes made)
+(111,636 missing values generated)
+(111,636 real changes made)
+(590,328 real changes made, 590,328 to missing)
+(58,503 real changes made)
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable natcitizen was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable mixedstatus was float now byte
+  variable unauthorized was float now byte
+  variable likelymixedstatus was float now byte
+  (36,358,665 bytes saved)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_volunteer_temp.dta saved
+
+. 
+. 
+. *------- Cleaning for CPS Voters and Registered ---------------------------*
+.         use "${temp}/cps_voters_temp.dta", clear 
+
+.         
+. 
+.         
+.         * Dummy for presidential election
+.         gen preselection = 0
+
+.         replace preselection = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
+(218,981 real changes made)
+
+.         
+.         * Dummy for registering to vote
+.         gen registered = 1
+
+.         replace registered = 0 if voreg==01
+(42,370 real changes made)
+
+.         replace registered = . if (voreg==96|voreg==97|voreg==98|voreg==99)
+(310,408 real changes made, 310,408 to missing)
+
+.         drop voreg
+
+.         
+.         * Dummy for voting
+.         rename voted vote_cat
+
+.         gen voted = 1
+
+.         replace voted = 0 if vote_cat==01
+(77,076 real changes made)
+
+.         replace voted = . if (vote_cat==96|vote_cat==97|vote_cat==98|vote_cat==99)
+(161,679 real changes made, 161,679 to missing)
+
+.         drop vote_cat
+
+.         
+.         save "${temp}/cps_voters.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_voters.dta saved
+
+. 
+. 
+. *------- Cleaning for CPS Civic Engagement --------------------------------*
+.         use "${temp}/cps_civic_temp.dta", clear 
+
+.         save "${temp}/cps_civic.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_civic.dta saved
+
+.         
+. *------- Cleaning for CPS Volunteers --------------------------------------*
+.         use "${temp}/cps_volunteer_temp.dta", clear 
+
+.         save "${temp}/cps_volunteer.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/cps_volunteer.dta saved
+
+. 
+end of do-file
+
+. tab unauthorized
+
+unauthorize |
+          d |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |    654,412       91.79       91.79
+          1 |     58,503        8.21      100.00
+------------+-----------------------------------
+      Total |    712,915      100.00
+
+. tab likelymixedstatus
+
+likelymixed |
+     status |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |    390,517       54.78       54.78
+          1 |     96,998       13.61       68.38
+          2 |     88,265       12.38       80.76
+          3 |     54,486        7.64       88.41
+          4 |     34,843        4.89       93.29
+          5 |     20,876        2.93       96.22
+          6 |     11,792        1.65       97.88
+          7 |      6,565        0.92       98.80
+          8 |      3,939        0.55       99.35
+          9 |      1,755        0.25       99.60
+         10 |      1,274        0.18       99.77
+         11 |        656        0.09       99.87
+         12 |        512        0.07       99.94
+         13 |        234        0.03       99.97
+         14 |        114        0.02       99.99
+         15 |         34        0.00       99.99
+         16 |         30        0.00      100.00
+         17 |         25        0.00      100.00
+------------+-----------------------------------
+      Total |    712,915      100.00
+
+. exit, clear

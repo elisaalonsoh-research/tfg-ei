@@ -1,0 +1,425 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/1c_Final_dataset_24May2022.txt
+  log type:  text
+ opened on:  24 May 2022, 13:52:50
+
+. 
+. **********************************************
+. **** MERGE COUNTY-LEVEL CONTROLS
+. **********************************************
+.         use "${temp}/percapincome_county.dta", clear
+
+.         save "${temp}/controls_county.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/controls_county.dta saved
+
+.         
+. **********************************************
+. **** MERGE STATE-LEVEL CONTROLS
+. **********************************************
+.         use "${temp}/state_level_party.dta", clear
+
+.         save "${temp}/controls_state.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/controls_state.dta saved
+
+. 
+. **********************************************
+. **** MERGE CPS DATA W/ ACTIVATION DATES AND CONTROLS
+. **********************************************
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         * Load CPS data:
+.         use "${temp}/cps_`s'.dta" , clear
+  3.         
+.         tempfile cps_`s'
+  4.         save `cps_`s''
+  5.         
+.         * Load activation dates
+.         use "${data}/raw/activation_dates.dta"
+  6.         
+.         gen statefip=.
+  7.         replace statefip=01 if ST=="AL"
+  8.         replace statefip=02 if ST=="AK"
+  9.         replace statefip=04 if ST=="AZ"
+ 10.         replace statefip=05 if ST=="AR"
+ 11.         replace statefip=06 if ST=="CA"
+ 12.         replace statefip=08 if ST=="CO"
+ 13.         replace statefip=09 if ST=="CT"
+ 14.         replace statefip=10 if ST=="DE"
+ 15.         replace statefip=11 if ST=="DC"
+ 16.         replace statefip=12 if ST=="FL"
+ 17.         replace statefip=13 if ST=="GA"
+ 18.         replace statefip=15 if ST=="HI"
+ 19.         replace statefip=16 if ST=="ID"
+ 20.         replace statefip=17 if ST=="IL"
+ 21.         replace statefip=18 if ST=="IN"
+ 22.         replace statefip=19 if ST=="IA"
+ 23.         replace statefip=20 if ST=="KS"
+ 24.         replace statefip=21 if ST=="KY"
+ 25.         replace statefip=22 if ST=="LA"
+ 26.         replace statefip=23 if ST=="ME"
+ 27.         replace statefip=24 if ST=="MD"
+ 28.         replace statefip=25 if ST=="MA"
+ 29.         replace statefip=26 if ST=="MI"
+ 30.         replace statefip=27 if ST=="MN"
+ 31.         replace statefip=28 if ST=="MS"
+ 32.         replace statefip=29 if ST=="MO"
+ 33.         replace statefip=30 if ST=="MT"
+ 34.         replace statefip=31 if ST=="NE"
+ 35.         replace statefip=32 if ST=="NV"
+ 36.         replace statefip=33 if ST=="NH"
+ 37.         replace statefip=34 if ST=="NJ"
+ 38.         replace statefip=35 if ST=="NM"
+ 39.         replace statefip=36 if ST=="NY"
+ 40.         replace statefip=37 if ST=="NC"
+ 41.         replace statefip=38 if ST=="ND"
+ 42.         replace statefip=39 if ST=="OH"
+ 43.         replace statefip=40 if ST=="OK"
+ 44.         replace statefip=41 if ST=="OR"
+ 45.         replace statefip=42 if ST=="PA"
+ 46.         replace statefip=44 if ST=="RI"
+ 47.         replace statefip=45 if ST=="SC"
+ 48.         replace statefip=46 if ST=="SD"
+ 49.         replace statefip=47 if ST=="TN"
+ 50.         replace statefip=48 if ST=="TX"
+ 51.         replace statefip=49 if ST=="UT"
+ 52.         replace statefip=50 if ST=="VT"
+ 53.         replace statefip=51 if ST=="VA"
+ 54.         replace statefip=53 if ST=="WA"
+ 55.         replace statefip=54 if ST=="WV"
+ 56.         replace statefip=55 if ST=="WI"
+ 57.         replace statefip=56 if ST=="WY"
+ 58. 
+.         drop if statefip ==.
+ 59.         rename ST statecode
+ 60.         
+.         *** Merge CPS and activation dates
+.         // Is the statefip necessary?
+.         merge 1:m fips statefip using `cps_`s''
+ 61.         keep if _merge==3
+ 62.         drop _merge
+ 63.         
+.         * Create dates (activation and survey)
+.         gen activation_date = ym(activation_year, activation_month)
+ 64.         gen survey_date = ym(survey_year, survey_month)
+ 65.         
+.         * Create Post Activation Dummy
+.         gen post_activation = 0
+ 66.         replace post_activation = 1 if (survey_date > activation_date)
+ 67.         replace post_activation = (survey_month - activation_month)/12 if (survey_year == activation_year & survey_date > activation_date)
+ 68.         
+.         tempfile main_vars_`s'
+ 69.         save `main_vars_`s''
+ 70.         
+.         *** Merge with county controls:
+.         use "${temp}/controls_county.dta", clear
+ 71.         merge 1:m fips survey_year using `main_vars_`s''
+ 72.         drop if _merge==1
+ 73.         drop _merge
+ 74.         
+.         tempfile main_vars_`s'2
+ 75.         save `main_vars_`s'2'
+ 76.         
+.         *** Merge with state controls
+.         use "${temp}/controls_state.dta", clear
+ 77.         merge 1:m statefip survey_year using `main_vars_`s''
+ 78.         drop if _merge==1
+ 79.         drop _merge
+ 80.         
+.         save "${temp}/merged_data_`s'.dta", replace
+ 81. 
+.         }
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000001.tmp saved
+(ICE Secure Communities Activation Dates)
+(3,102 missing values generated)
+(67 real changes made)
+(0 real changes made)
+(15 real changes made)
+(75 real changes made)
+(58 real changes made)
+(64 real changes made)
+(8 real changes made)
+(3 real changes made)
+(1 real change made)
+(67 real changes made)
+(159 real changes made)
+(0 real changes made)
+(44 real changes made)
+(102 real changes made)
+(92 real changes made)
+(99 real changes made)
+(105 real changes made)
+(120 real changes made)
+(64 real changes made)
+(16 real changes made)
+(24 real changes made)
+(14 real changes made)
+(83 real changes made)
+(87 real changes made)
+(82 real changes made)
+(115 real changes made)
+(56 real changes made)
+(93 real changes made)
+(17 real changes made)
+(10 real changes made)
+(21 real changes made)
+(33 real changes made)
+(62 real changes made)
+(100 real changes made)
+(53 real changes made)
+(88 real changes made)
+(77 real changes made)
+(36 real changes made)
+(67 real changes made)
+(5 real changes made)
+(46 real changes made)
+(65 real changes made)
+(95 real changes made)
+(254 real changes made)
+(29 real changes made)
+(14 real changes made)
+(129 real changes made)
+(39 real changes made)
+(54 real changes made)
+(72 real changes made)
+(23 real changes made)
+(0 observations deleted)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        11,451
+        from master                     2,697  (_merge==1)
+        from using                      8,754  (_merge==2)
+
+    matched                           254,640  (_merge==3)
+    -----------------------------------------
+(11,451 observations deleted)
+(131,304 real changes made)
+(21,185 real changes made)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000002.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        44,827
+        from master                    42,801  (_merge==1)
+        from using                      2,026  (_merge==2)
+
+    matched                           252,614  (_merge==3)
+    -----------------------------------------
+(42,801 observations deleted)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000003.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        26,896
+        from master                       358  (_merge==1)
+        from using                     26,538  (_merge==2)
+
+    matched                           228,102  (_merge==3)
+    -----------------------------------------
+(358 observations deleted)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/merged_data_voters.dta saved
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000004.tmp saved
+(ICE Secure Communities Activation Dates)
+(3,102 missing values generated)
+(67 real changes made)
+(0 real changes made)
+(15 real changes made)
+(75 real changes made)
+(58 real changes made)
+(64 real changes made)
+(8 real changes made)
+(3 real changes made)
+(1 real change made)
+(67 real changes made)
+(159 real changes made)
+(0 real changes made)
+(44 real changes made)
+(102 real changes made)
+(92 real changes made)
+(99 real changes made)
+(105 real changes made)
+(120 real changes made)
+(64 real changes made)
+(16 real changes made)
+(24 real changes made)
+(14 real changes made)
+(83 real changes made)
+(87 real changes made)
+(82 real changes made)
+(115 real changes made)
+(56 real changes made)
+(93 real changes made)
+(17 real changes made)
+(10 real changes made)
+(21 real changes made)
+(33 real changes made)
+(62 real changes made)
+(100 real changes made)
+(53 real changes made)
+(88 real changes made)
+(77 real changes made)
+(36 real changes made)
+(67 real changes made)
+(5 real changes made)
+(46 real changes made)
+(65 real changes made)
+(95 real changes made)
+(254 real changes made)
+(29 real changes made)
+(14 real changes made)
+(129 real changes made)
+(39 real changes made)
+(54 real changes made)
+(72 real changes made)
+(23 real changes made)
+(0 observations deleted)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                         9,948
+        from master                     2,736  (_merge==1)
+        from using                      7,212  (_merge==2)
+
+    matched                           219,004  (_merge==3)
+    -----------------------------------------
+(9,948 observations deleted)
+(128,738 real changes made)
+(25,182 real changes made)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000005.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        45,034
+        from master                    43,180  (_merge==1)
+        from using                      1,854  (_merge==2)
+
+    matched                           217,150  (_merge==3)
+    -----------------------------------------
+(43,180 observations deleted)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000006.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        46,011
+        from master                       425  (_merge==1)
+        from using                     45,586  (_merge==2)
+
+    matched                           173,418  (_merge==3)
+    -----------------------------------------
+(425 observations deleted)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/merged_data_civic.dta saved
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000007.tmp saved
+(ICE Secure Communities Activation Dates)
+(3,102 missing values generated)
+(67 real changes made)
+(0 real changes made)
+(15 real changes made)
+(75 real changes made)
+(58 real changes made)
+(64 real changes made)
+(8 real changes made)
+(3 real changes made)
+(1 real change made)
+(67 real changes made)
+(159 real changes made)
+(0 real changes made)
+(44 real changes made)
+(102 real changes made)
+(92 real changes made)
+(99 real changes made)
+(105 real changes made)
+(120 real changes made)
+(64 real changes made)
+(16 real changes made)
+(24 real changes made)
+(14 real changes made)
+(83 real changes made)
+(87 real changes made)
+(82 real changes made)
+(115 real changes made)
+(56 real changes made)
+(93 real changes made)
+(17 real changes made)
+(10 real changes made)
+(21 real changes made)
+(33 real changes made)
+(62 real changes made)
+(100 real changes made)
+(53 real changes made)
+(88 real changes made)
+(77 real changes made)
+(36 real changes made)
+(67 real changes made)
+(5 real changes made)
+(46 real changes made)
+(65 real changes made)
+(95 real changes made)
+(254 real changes made)
+(29 real changes made)
+(14 real changes made)
+(129 real changes made)
+(39 real changes made)
+(54 real changes made)
+(72 real changes made)
+(23 real changes made)
+(0 observations deleted)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        18,876
+        from master                     2,695  (_merge==1)
+        from using                     16,181  (_merge==2)
+
+    matched                           471,009  (_merge==3)
+    -----------------------------------------
+(18,876 observations deleted)
+(235,092 real changes made)
+(31,238 real changes made)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000008.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        44,872
+        from master                    41,109  (_merge==1)
+        from using                      3,763  (_merge==2)
+
+    matched                           467,246  (_merge==3)
+    -----------------------------------------
+(41,109 observations deleted)
+file C:\Users\elisa\AppData\Local\Temp\ST_4100_000009.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        66,073
+        from master                       159  (_merge==1)
+        from using                     65,914  (_merge==2)
+
+    matched                           405,095  (_merge==3)
+    -----------------------------------------
+(159 observations deleted)
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/merged_data_volunteer.dta saved
+
+.         
+. **********************************************
+. **** FURTHER CLEAN MERGED DATA TO BUILD FINAL DATASET
+. **********************************************
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         use "${temp}/merged_data_`s'.dta", clear
+  3.         
+.         order state statecode statefip county fips activation_year activation_month ///
+>                 survey_year survey_month post_activation serial cpsid cpsidp
+  4.         
+.         // Geographical variables
+.         }
+
+. 
+end of do-file
+
+. exit, clear
