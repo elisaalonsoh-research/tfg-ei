@@ -1,0 +1,343 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2b_Data_cleaning_dates_30Jun2022.txt
+  log type:  text
+ opened on:  30 Jun 2022, 09:21:15
+
+.         
+.         * Load activation dates
+.         use "${raw}/activation_dates.dta", clear
+(ICE Secure Communities Activation Dates)
+
+.         
+.         // Create activation date:
+.         gen activation_date = ym(activation_year, activation_month)
+
+.         
+.         // Common format for statefip
+.         gen statefip=.
+(3,102 missing values generated)
+
+.         replace statefip=01 if ST=="AL"
+(67 real changes made)
+
+.         replace statefip=02 if ST=="AK"
+(0 real changes made)
+
+.         replace statefip=04 if ST=="AZ"
+(15 real changes made)
+
+.         replace statefip=05 if ST=="AR"
+(75 real changes made)
+
+.         replace statefip=06 if ST=="CA"
+(58 real changes made)
+
+.         replace statefip=08 if ST=="CO"
+(64 real changes made)
+
+.         replace statefip=09 if ST=="CT"
+(8 real changes made)
+
+.         replace statefip=10 if ST=="DE"
+(3 real changes made)
+
+.         replace statefip=11 if ST=="DC"
+(1 real change made)
+
+.         replace statefip=12 if ST=="FL"
+(67 real changes made)
+
+.         replace statefip=13 if ST=="GA"
+(159 real changes made)
+
+.         replace statefip=15 if ST=="HI"
+(0 real changes made)
+
+.         replace statefip=16 if ST=="ID"
+(44 real changes made)
+
+.         replace statefip=17 if ST=="IL"
+(102 real changes made)
+
+.         replace statefip=18 if ST=="IN"
+(92 real changes made)
+
+.         replace statefip=19 if ST=="IA"
+(99 real changes made)
+
+.         replace statefip=20 if ST=="KS"
+(105 real changes made)
+
+.         replace statefip=21 if ST=="KY"
+(120 real changes made)
+
+.         replace statefip=22 if ST=="LA"
+(64 real changes made)
+
+.         replace statefip=23 if ST=="ME"
+(16 real changes made)
+
+.         replace statefip=24 if ST=="MD"
+(24 real changes made)
+
+.         replace statefip=25 if ST=="MA"
+(14 real changes made)
+
+.         replace statefip=26 if ST=="MI"
+(83 real changes made)
+
+.         replace statefip=27 if ST=="MN"
+(87 real changes made)
+
+.         replace statefip=28 if ST=="MS"
+(82 real changes made)
+
+.         replace statefip=29 if ST=="MO"
+(115 real changes made)
+
+.         replace statefip=30 if ST=="MT"
+(56 real changes made)
+
+.         replace statefip=31 if ST=="NE"
+(93 real changes made)
+
+.         replace statefip=32 if ST=="NV"
+(17 real changes made)
+
+.         replace statefip=33 if ST=="NH"
+(10 real changes made)
+
+.         replace statefip=34 if ST=="NJ"
+(21 real changes made)
+
+.         replace statefip=35 if ST=="NM"
+(33 real changes made)
+
+.         replace statefip=36 if ST=="NY"
+(62 real changes made)
+
+.         replace statefip=37 if ST=="NC"
+(100 real changes made)
+
+.         replace statefip=38 if ST=="ND"
+(53 real changes made)
+
+.         replace statefip=39 if ST=="OH"
+(88 real changes made)
+
+.         replace statefip=40 if ST=="OK"
+(77 real changes made)
+
+.         replace statefip=41 if ST=="OR"
+(36 real changes made)
+
+.         replace statefip=42 if ST=="PA"
+(67 real changes made)
+
+.         replace statefip=44 if ST=="RI"
+(5 real changes made)
+
+.         replace statefip=45 if ST=="SC"
+(46 real changes made)
+
+.         replace statefip=46 if ST=="SD"
+(65 real changes made)
+
+.         replace statefip=47 if ST=="TN"
+(95 real changes made)
+
+.         replace statefip=48 if ST=="TX"
+(254 real changes made)
+
+.         replace statefip=49 if ST=="UT"
+(29 real changes made)
+
+.         replace statefip=50 if ST=="VT"
+(14 real changes made)
+
+.         replace statefip=51 if ST=="VA"
+(129 real changes made)
+
+.         replace statefip=53 if ST=="WA"
+(39 real changes made)
+
+.         replace statefip=54 if ST=="WV"
+(54 real changes made)
+
+.         replace statefip=55 if ST=="WI"
+(72 real changes made)
+
+.         replace statefip=56 if ST=="WY"
+(23 real changes made)
+
+.         
+.         drop if statefip ==.
+(0 observations deleted)
+
+.         rename ST statecode
+
+.         
+.         
+.         save "${temp}/activation_dates_clean.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/activation_dates_clean.dta saved
+
+.         
+. * ------------- MAP CREATION ---------------------------------------------*
+.         // Translate map shapefiles into stata format
+.         shp2dta using "${raw}/shapefiles/cb_2013_us_county_20m.shp", replace ///
+>                         database("${temp}/usdb.dta") coordinates("${temp}/uscoord.dta") genid(id)
+type: 5
+
+.         
+.         // Rename county fips
+.         
+.         use "${temp}/usdb.dta", clear   
+
+.         rename GEOID fips
+
+.         keep fips id
+
+.         
+.         // Merge with activation dates
+.         merge 1:1 fips using "${temp}/activation_dates_clean.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           119
+        from master                       119  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                             3,102  (_merge==3)
+    -----------------------------------------
+
+.         drop if _merge==1
+(119 observations deleted)
+
+.         drop _merge
+
+.         
+.         save "${temp}/activation_dates_clean.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/activation_dates_clean.dta saved
+
+. 
+.         
+.         
+. 
+end of do-file
+
+.   *do "${do}/2c_Data_cleaning_other.do" //
+.   
+.    global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
+
+.    global controls_county county_unauthorized county_MS county_inc
+
+.    global controls_state republican presidential
+
+.   
+.   
+.   
+.   *do "${do}/3_Final_dataset.do" //Done
+. 
+. *-------- FIGURES -------------------------------------------------------*
+.         * County-level implementations maps using R-file
+.         do "${do}/map_implementation.do"
+
+. /* This file creates creates 6 figures (2008-2013) showing the implementation
+>  of the SC program at county-level */
+. 
+. clear all
+
+. 
+. ** Install dependencies
+. *ssc install spmap    // For map creation
+. *ssc install shp2dta  // For translating shapefile into stata
+. 
+.         use "${temp}/activation_dates_clean.dta", clear
+
+.         
+.         // Create already implemented
+.         gen implemented = 0
+
+. 
+.         // Maps 2008-2012
+.         forv y=2008/2012 {
+  2.                 replace implemented = 1 if  activation_year <= `y'      
+  3.         
+.                 spmap implemented using "${temp}/uscoord.dta", id(id) clm(u) ///
+>                                 fcolor(gs15 eltblue) ocolor(gs13 ltblue) osize(vthin) legenda(off) ///
+>                                 title("{bf:`y'}", size(11))
+  4.                                 
+.                 graph export "${figs}/map_implementation_`y'.png", replace
+  5.         }
+(14 real changes made)
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2008.png written in PNG format)
+(88 real changes made)
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2009.png written in PNG format)
+(780 real changes made)
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2010.png written in PNG format)
+(1,098 real changes made)
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2011.png written in PNG format)
+(1,016 real changes made)
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2012.png written in PNG format)
+
+.         
+.         // Map 2013 (all implemented)
+.         replace implemented = 1 if  activation_year <= 2013
+(106 real changes made)
+
+.         spmap implemented using "${temp}/uscoord.dta", id(id) clm(u) ///
+>                                 fcolor(eltblue) ocolor(ltblue) osize(vthin) legenda(off) ///
+>                                 title("{bf:2013}", size(BBB11)) 
+(note:  named style BBB11 not found in class gsize, default attributes used)
+
+.         graph export "${figs}/map_implementation_2013.png", replace
+(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2013.png written in PNG format)
+
+.         
+. 
+end of do-file
+
+.         
+. *-------- TABLES  -------------------------------------------------------*
+. /*
+>         use "${final}/final_voters.dta"
+> 
+>         global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
+>         global controls_county county_unauthorized county_MS county_inc
+>         global controls_state republican presidential
+>         
+>         /*
+> 
+> ** TABLE 1: Summary statistics
+> 
+>         *do "${do}/T1_summary_stats.do"
+> 
+> 
+> ** TABLE 2: Triple differences for voting and registration
+> 
+> 
+>         
+> 
+>         *do "${do}/T2_Triple_differences_voters.do"
+> 
+
+end of do-file
+
+. do "C:\Users\Windows\AppData\Local\Temp\STD22ac_000000.tmp"
+
+. /***********************************************************************
+> 1b DATA CLEANING
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
+>                                 files. For the unbalanced, it
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

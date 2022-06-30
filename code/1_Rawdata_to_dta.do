@@ -63,21 +63,9 @@ compress
 save "${raw}/cps_asec_raw.dta", replace  // Save CPS rawdata in dta
 
 
-/*
-***********************************
-**** PER CAP INCOME BY COUNTY: BEA
-***********************************
-
-	insheet using "${data}/raw/CAINC1__ALL_AREAS_1969_2020.csv", delim(",") clear 
-	
-	compress
-	save "${raw}/percapincome_county_raw.dta", replace 
-*/
-
-
 
 ***********************************
-**** CSPP DATA: The Correlates of State Policy
+**** CSPP DATA: The Correlates of State Policy (used to check)
 ***********************************
 
 	insheet using "${raw}/cspp_data_2022-05-24.csv", delim(",") clear 
@@ -97,4 +85,17 @@ save "${raw}/cps_asec_raw.dta", replace  // Save CPS rawdata in dta
 
 	compress
 	save "${raw}/cspp_data_raw.dta", replace  
+	
+	
+/*
+***********************************
+**** PER CAP INCOME BY COUNTY: BEA
+***********************************
+
+	insheet using "${data}/raw/CAINC1__ALL_AREAS_1969_2020.csv", delim(",") clear 
+	
+	compress
+	save "${raw}/percapincome_county_raw.dta", replace 
+*/
+
 	

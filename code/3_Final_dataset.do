@@ -120,15 +120,19 @@ foreach s of local supplement {
 	use "${temp}/merged_data_`s'.dta", clear
 	
 	order state statecode statefip county fips activation_year activation_month ///
-		survey_year survey_month post_activation serial cpsid cpsidp
+		survey_year survey_month post_activation serial cpsid cpsidp ///
+		${controls_indv} ${controls_county} ${controls_state}
+		
+	// Technical variables
+	drop pernum  serial// To identify households:CPSID, for persons: CPSIDP
 	
 	// Geographical variables
 	destring fips, replace
 	
 	*** LABELLING:
 	* Particular to one dataset
-	cap label variable registered "Registered"
-	cap label variable voted "Voted"
+	cap label variable registered "Registered" // CPS voters
+	cap label variable voted "Voted"           // CPS voters
 	
 	* Present in all
 	label variable hispanic "Hispanic"

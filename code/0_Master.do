@@ -6,18 +6,17 @@ cap log close
 ****************************************************************
 *To run this dofile, change the file paths in these "globals":
 
-
-
-** Set up directory path and stata version
-	if c(os)=="Windows" {
-		version 16 // If I need to use MP --> 14
-		global dir "C:/Users/elisa/Documents/5. Research/TFG EI"
-	}
+	* New PC
+	*global dir "C:/Users/elisa/Documents/5. Research/TFG EI"
 	
-	if c(os) == "Unix" {
-		version 17
-		global dir "/home/users/ealonsoh.AD3/TFG EI"
-	}
+	* Old PC
+	global dir "C:/Users/Windows/Documents/5. Research/TFG EI"
+
+
+****************************************************************
+* Dependencies
+*ssc install shp2dta
+*ssc install spmap
 
 ****************************************************************
 
@@ -51,12 +50,12 @@ cap log close
   *do "${do}/2a_Data_cleaning_cps.do" // 
   *do "${do}/2b_Data_cleaning_dates.do" //
   *do "${do}/2c_Data_cleaning_other.do" //
-  
+       
   *do "${do}/3_Final_dataset.do" //Done
 
 *-------- FIGURES -------------------------------------------------------*
-	* County-level implementations maps using R-file
-	do "${do}/map_implementation.do"
+	// County-level timing of implementation map
+	*do "${do}/map_implementation.do"
 	
 *-------- TABLES  -------------------------------------------------------*
 /*
@@ -74,9 +73,6 @@ cap log close
 
 
 ** TABLE 2: Triple differences for voting and registration
-
-
-	
 
 	*do "${do}/T2_Triple_differences_voters.do"
 

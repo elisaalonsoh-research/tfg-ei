@@ -79,12 +79,13 @@ global temp 		"${data}/temp"
 		save "${temp}/county_income.dta", replace
 	restore
 	
+	/*
 	// State-level
 	 collapse (mean) state_inc= ftotval /// 
 		[w=wr], by(statefip survey_year)
 		
 	save "${temp}/state_income.dta", replace
-
+	*/
 
 
 *------ Common data cleaning for all CPS supplements -----------------------*
@@ -98,6 +99,7 @@ foreach s of local supplements {
 	*** TECHNICAL VARIABLES
 	rename year survey_year
 	rename month survey_month
+	
 	
 	gen survey_date = ym(survey_year, survey_month)
 
@@ -115,8 +117,8 @@ foreach s of local supplements {
 	* Recode family income and dummy for low income individuals
 	replace faminc = . if inrange(faminc,995,998)
 	
-	gen below50k = 0 //Low-income
-	replace below50k = 1 if faminc < 800
+	gen below50k = 0 
+	replace below50k = 1 if faminc < 800 // Low income
 	
 	* Recode sex
 	gen female= sex-1
@@ -191,11 +193,12 @@ foreach s of local supplements {
 		
 	* Mixed-status Household
 	
-	/* Defined as different citizenship status (see Bitler and Hoynes, 2011)
+	// Defined as different citizenship status (see Bitler and Hoynes, 2011)
 	 egen citizens_household = total(noncitizen==0), by(cpsid survey_year)
 	 egen totindv_household = total(cpsid != .), by(cpsid survey_year)
-	 egen mixedstatus = count(totindv_household > citizens_household), by(cpsid survey_year)*/
+	 egen mixedstatus = count(totindv_household > citizens_household), by(cpsid survey_year)
 	
+	/*
 	// Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
 	
 	* Dummy for likely unauthorized migrant
@@ -205,7 +208,9 @@ foreach s of local supplements {
 	egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
 	replace likely_mixedstatus = 1 if likely_mixedstatus > 1 // 1.69%
 	
-	*** CONTROLS:
+	
+	
+	*** COUNTY AND STATE CONTROLS:
 	
 	// Round weight and rename s.t. it is the same in every supplement
 	gen wr = .
@@ -252,9 +257,11 @@ foreach s of local supplements {
 	// Reduce dataset
 	compress	
 	save "${temp}/cps_`s'_temp.dta", replace
+	
+	*/
 }
 
-*/
+/*
 
 *------- Cleaning for CPS Voters and Registered ---------------------------*
 	use "${temp}/cps_voters_temp.dta", clear 

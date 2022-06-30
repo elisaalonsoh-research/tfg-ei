@@ -1,10 +1,10 @@
 /***********************************************************************
 2b DATA CLEANING DATES
 AUTHOR: Elisa Alonso Herrero 
-DATE: 15/05/2022
-DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
-				files. For the unbalanced, it
-OUTPUT: 
+DATE: 30/06/2022
+DESCRIPTION: This script takes raw activation dates, puts common names to the
+				variables and merges it with the map database
+OUTPUT: "${temp}/activation_dates_clean.dta"
 	
 ***********************************************************************/
 
@@ -106,7 +106,26 @@ global temp 		"${data}/temp"
 	drop if statefip ==.
 	rename ST statecode
 	
-	// Merge with B
+	
 	save "${temp}/activation_dates_clean.dta", replace
+	
+* ------------- MAP CREATION ---------------------------------------------*
+	// Translate map shapefiles into stata format
+	shp2dta using "${raw}/shapefiles/cb_2013_us_county_20m.shp", replace ///
+			database("${temp}/usdb.dta") coordinates("${temp}/uscoord.dta") genid(id)
+	
+	// Rename county fips
+	
+	use "${temp}/usdb.dta", clear	
+	rename GEOID fips
+	keep fips id
+	
+ 	// Merge with activation dates
+	merge 1:1 fips using "${temp}/activation_dates_clean.dta"
+	drop if _merge==1
+	drop _merge
+	
+	save "${temp}/activation_dates_clean.dta", replace
+
 	
 	

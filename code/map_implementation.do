@@ -1,27 +1,10 @@
-/* This file creates creates 6 figures (2008-2013) showing the implementation
- of the SC program at county-level */
+/* This file creates creates 6 figures (2008-2013) showing the timing 
+of implementation of the SC program at county-level */
 
-clear all
+	clear all
 
-** Install dependencies
-*ssc install spmap    // For map creation
-*ssc install shp2dta  // For translating shapefile into stata
 
-* ------------- MAP CREATION ---------------------------------------------*
-	// Translate map shapefiles into stata format
-	shp2dta using "${raw}/shapefiles/cb_2013_us_county_20m.shp", replace ///
-			database("${temp}/usdb.dta") coordinates("${temp}/uscoord.dta") genid(id)
-	
-	// Rename county fips
-	
-	use "${temp}/usdb.dta", clear	
-	rename GEOID fips
-	keep fips id
-	
- 	// Merge with activation dates
-	merge 1:1 fips using "${temp}/activation_dates_clean.dta"
-	drop if _merge==1
-	drop _merge
+	use "${temp}/activation_dates_clean.dta", clear
  	
 	// Create already implemented
 	gen implemented = 0
