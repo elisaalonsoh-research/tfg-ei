@@ -2,3 +2,16 @@
 .Rhistory
 .RData
 .Ruserdata
+data/raw/CSES_data/cses_imd.csv
+data/raw/CSES_data/cses5.csv
+data/final/final_volunteer.dta
+data/raw/cps_volunteer_raw.dta
+data/raw/cps_voters.csv
+data/raw/cps_voters_raw.dta
+data/raw/CVAP_2011-2015_ACS_csv_files/Tract.csv
+data/raw/CVAP_2011-2015_ACS_csv_files/BlockGr.csv
+data/raw/CVAP_2006-2010_ACS_csv_files/Tract.csv
+data/raw/CVAP_2006-2010_ACS_csv_files/BlockGr.csv
+replication_data/White(2016)/cces_2010_common_validated.dta
+data/temp/merged_data_volunteer.dta
+data/raw/cps_volunteer.csv
