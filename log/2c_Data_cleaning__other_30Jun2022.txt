@@ -1,0 +1,267 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2c_Data_cleaning__other_30Jun2022.txt
+  log type:  text
+ opened on:  30 Jun 2022, 12:19:23
+
+.         
+.         
+. ***********************************
+. **** US Governors 1775-2020: https://www.openicpsr.org/openicpsr/project/102000/version/V3/view?path=/openicpsr/102000/fcr:versions/V3/united
+> _states_governors_1775_2020.dta&type=file
+. ***********************************
+.         use "${raw}/united_states_governors_1775_2020.dta"
+
+.         keep year state party
+
+. 
+.         gen statefip=.
+(12,345 missing values generated)
+
+.         replace statefip=01 if state=="Alabama"
+(258 real changes made)
+
+.         replace statefip=02 if state=="Alaska"
+(72 real changes made)
+
+.         replace statefip=04 if state=="Arizona"
+(163 real changes made)
+
+.         replace statefip=05 if state=="Arkansas"
+(231 real changes made)
+
+.         replace statefip=06 if state=="California"
+(201 real changes made)
+
+.         replace statefip=08 if state=="Colorado"
+(207 real changes made)
+
+.         replace statefip=09 if state=="Connecticut"
+(314 real changes made)
+
+.         replace statefip=10 if state=="Delaware"
+(309 real changes made)
+
+.         replace statefip=11 if state=="District of Columbia"
+(0 real changes made)
+
+.         replace statefip=12 if state=="Florida"
+(219 real changes made)
+
+.         replace statefip=13 if state=="Georgia"
+(324 real changes made)
+
+.         replace statefip=15 if state=="Hawaii"
+(65 real changes made)
+
+.         replace statefip=16 if state=="Idaho"
+(161 real changes made)
+
+.         replace statefip=17 if state=="Illinois"
+(245 real changes made)
+
+.         replace statefip=18 if state=="Indiana"
+(251 real changes made)
+
+.         replace statefip=19 if state=="Iowa"
+(213 real changes made)
+
+.         replace statefip=20 if state=="Kansas"
+(206 real changes made)
+
+.         replace statefip=21 if state=="Kentucky"
+(284 real changes made)
+
+.         replace statefip=22 if state=="Louisiana"
+(270 real changes made)
+
+.         replace statefip=23 if state=="Maine"
+(270 real changes made)
+
+.         replace statefip=24 if state=="Maryland"
+(302 real changes made)
+
+.         replace statefip=25 if state=="Massachusetts"
+(400 real changes made)
+
+.         replace statefip=26 if state=="Michigan"
+(230 real changes made)
+
+.         replace statefip=27 if state=="Minnesota"
+(201 real changes made)
+
+.         replace statefip=28 if state=="Mississippi"
+(257 real changes made)
+
+.         replace statefip=29 if state=="Missouri"
+(254 real changes made)
+
+.         replace statefip=30 if state=="Montana"
+(147 real changes made)
+
+.         replace statefip=31 if state=="Nebraska"
+(288 real changes made)
+
+.         replace statefip=32 if state=="Nevada"
+(185 real changes made)
+
+.         replace statefip=33 if state=="New Hampshire"
+(321 real changes made)
+
+.         replace statefip=34 if state=="New Jersey"
+(302 real changes made)
+
+.         replace statefip=35 if state=="New Mexico"
+(138 real changes made)
+
+.         replace statefip=36 if state=="New York"
+(290 real changes made)
+
+.         replace statefip=37 if state=="North Carolina"
+(310 real changes made)
+
+.         replace statefip=38 if state=="North Dakota"
+(159 real changes made)
+
+.         replace statefip=39 if state=="Ohio"
+(318 real changes made)
+
+.         replace statefip=40 if state=="Oklahoma"
+(139 real changes made)
+
+.         replace statefip=41 if state=="Oregon"
+(193 real changes made)
+
+.         replace statefip=42 if state=="Pennsylvania"
+(293 real changes made)
+
+.         replace statefip=44 if state=="Rhode Island"
+(439 real changes made)
+
+.         replace statefip=45 if state=="South Carolina"
+(337 real changes made)
+
+.         replace statefip=46 if state=="South Dakota"
+(162 real changes made)
+
+.         replace statefip=47 if state=="Tennessee"
+(268 real changes made)
+
+.         replace statefip=48 if state=="Texas"
+(215 real changes made)
+
+.         replace statefip=49 if state=="Utah"
+(173 real changes made)
+
+.         replace statefip=50 if state=="Vermont"
+(315 real changes made)
+
+.         replace statefip=51 if state=="Virginia"
+(431 real changes made)
+
+.         replace statefip=53 if state=="Washington"
+(146 real changes made)
+
+.         replace statefip=54 if state=="West Virginia"
+(181 real changes made)
+
+.         replace statefip=55 if state=="Wisconsin"
+(216 real changes made)
+
+.         replace statefip=56 if state=="Wyoming"
+(154 real changes made)
+
+.         
+.         
+.         // Drop Puerto Rico
+.         drop if statefip==.
+(318 observations deleted)
+
+.         
+.         // Dummy for Republican gov at the state-level
+.         gen republican = 0
+
+.         replace republican = 1 if party == "Republican"
+(4,395 real changes made)
+
+.         drop party
+
+.         
+.         // Restrict year
+.         drop if year>2016 | year <2004
+(11,335 observations deleted)
+
+.         rename year survey_year
+
+.         
+.         // Eliminate duplicates
+.         duplicates drop statefip survey_year, force     
+
+Duplicates in terms of statefip survey_year
+
+(76 observations deleted)
+
+.         
+.         save "${temp}/party_state.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/party_state.dta saved
+
+. 
+.         /*
+> 
+> ***********************************
+> **** PER CAP INCOME BY COUNTY: BEA
+> ***********************************
+> 
+>         use "${raw}/percapincome_county_raw.dta", clear
+>         
+>         // Keep only per capital personal income
+>         drop if description == "Population (persons) 1/" | ///
+>                         description == "Personal income (thousands of dollars)"
+>                         
+>         // Drop unwanted variables
+>         drop geoname region tablename linecode industryclassification description unit
+>         keep geofips v44-v57
+>         
+>         // Reshape dataset to ong format
+>         foreach v of varlist v44-v57 {
+>                 local x : variable label `v'
+>                 rename `v' income_pc_state`x'
+>                 }
+>         reshape long income_pc_state, i(geofips) j(year)
+>         
+>         * Transform to common format as in CPS
+>         destring(income_pc_state), replace ignore("(NA)")
+>         rename geofips fips
+>         drop if fips == "00000"
+>         rename year survey_year
+>         
+>         save "${temp}/percapincome_county.dta", replace 
+
+end of do-file
+
+.    
+.         global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
+
+.     global controls_county county_unauthorized county_LMS county_MS county_inc county_hisp
+
+.     global controls_state republican presidential
+
+.       
+.          do "${do}/3_Final_dataset.do" //Done
+
+. /***********************************************************************
+> 1c FINAL DATASET
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes merges each of the CPS Supplements data
+>                                 with the activation dates per county, and the institutinal
+>                                 data for our control variables
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close

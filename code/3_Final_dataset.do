@@ -48,10 +48,9 @@ global temp 		"${data}/temp"
 **********************************************
 **** MERGE STATE-LEVEL CONTROLS
 **********************************************
+	
 	use "${temp}/party_state.dta", clear
 	merge 1:1 statefip survey_year using "${raw}/cspp_data_raw.dta"
-	drop _merge
-	merge 1:1 statefip survey_year using "${temp}/state_income.dta"
 	drop _merge
 	
 	save "${temp}/controls_state.dta", replace
@@ -124,7 +123,7 @@ foreach s of local supplement {
 		${controls_indv} ${controls_county} ${controls_state}
 		
 	// Technical variables
-	drop pernum  serial// To identify households:CPSID, for persons: CPSIDP
+	drop pernum serial // To identify households:CPSID, for persons: CPSIDP
 	
 	// Geographical variables
 	destring fips, replace

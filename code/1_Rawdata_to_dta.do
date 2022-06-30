@@ -75,8 +75,7 @@ save "${raw}/cps_asec_raw.dta", replace  // Save CPS rawdata in dta
 	// The following variables are not available for the whole period: 
 	// poptotal, pctlatinx, foreign_born, immig_laws_restrict, hincomemed
 	keep year state_fips poptotal pctlatinx foreign_born ///
-			immig_laws_restrict ///
-			vep 
+			immig_laws_restrict vep 
 	rename year survey_year 
 	rename state_fips statefip
 	

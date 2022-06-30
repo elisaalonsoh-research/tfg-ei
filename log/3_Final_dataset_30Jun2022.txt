@@ -1,0 +1,265 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/3_Final_dataset_30Jun2022.txt
+  log type:  text
+ opened on:  30 Jun 2022, 12:21:04
+
+. 
+. 
+.         
+. **********************************************
+. **** MERGE STATE-LEVEL CONTROLS
+. **********************************************
+.         
+.         use "${temp}/party_state.dta", clear
+
+.         merge 1:1 statefip survey_year using "${raw}/cspp_data_raw.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            47
+        from master                         0  (_merge==1)
+        from using                         47  (_merge==2)
+
+    matched                               616  (_merge==3)
+    -----------------------------------------
+
+.         drop _merge
+
+.         
+.         save "${temp}/controls_state.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/controls_state.dta saved
+
+. 
+.         
+. **********************************************
+. **** MERGE CPS DATA W/ ACTIVATION DATES AND CONTROLS
+. **********************************************
+. 
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         * Load CPS data:
+.         use "${temp}/cps_`s'.dta" , clear
+  3.         
+.         tempfile cps_`s'
+  4.         save `cps_`s''
+  5.         
+.         * Load activation dates
+.         use "${temp}/activation_dates_clean.dta"
+  6.         
+.                 
+.         *** MERGE CPS AND ACTIVATION DATES
+.         
+.         // Is the statefip necessary?
+.         merge 1:m fips statefip using `cps_`s''
+  7.         keep if _merge==3
+  8.         drop _merge
+  9.         
+.                 
+.         * Create Post Activation Dummy
+.         gen post_activation = 0
+ 10.         replace post_activation = 1 if (survey_date > activation_date)
+ 11.         replace post_activation = (survey_month - activation_month)/12 if (survey_year == activation_year & survey_date > activation_date)
+ 12.         
+.         tempfile main_vars_`s'
+ 13.         save `main_vars_`s''
+ 14.         
+.         *** MERGE COUNTY LEVEL CONTROLS
+.         
+.         use "${temp}/county_income.dta", clear
+ 15.         merge 1:m fips survey_year using `main_vars_`s''
+ 16.         drop if _merge==1
+ 17.         drop _merge
+ 18.         
+.         tempfile main_vars_`s'2
+ 19.         save `main_vars_`s'2'
+ 20.         
+.         *** MERGE STATE LEVEL CONTROLS
+.         use "${temp}/controls_state.dta", clear
+ 21.         merge 1:m statefip survey_year using `main_vars_`s'2'
+ 22.         drop if _merge==1
+ 23.         drop _merge
+ 24.         
+.         save "${temp}/merged_data_`s'.dta", replace
+ 25. 
+.         } 
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000001.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        15,211
+        from master                     2,697  (_merge==1)
+        from using                     12,514  (_merge==2)
+
+    matched                           373,476  (_merge==3)
+    -----------------------------------------
+(15,211 observations deleted)
+(190,207 real changes made)
+(30,681 real changes made)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000002.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        17,162
+        from master                     2,145  (_merge==1)
+        from using                     15,017  (_merge==2)
+
+    matched                           358,459  (_merge==3)
+    -----------------------------------------
+(2,145 observations deleted)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000003.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           379
+        from master                       379  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                           373,476  (_merge==3)
+    -----------------------------------------
+(379 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/merged_data_voters.dta saved
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000004.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        12,852
+        from master                     2,736  (_merge==1)
+        from using                     10,116  (_merge==2)
+
+    matched                           318,391  (_merge==3)
+    -----------------------------------------
+(12,852 observations deleted)
+(187,525 real changes made)
+(37,352 real changes made)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000005.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                         2,328
+        from master                     2,328  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                           318,391  (_merge==3)
+    -----------------------------------------
+(2,328 observations deleted)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000006.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        51,449
+        from master                       463  (_merge==1)
+        from using                     50,986  (_merge==2)
+
+    matched                           267,405  (_merge==3)
+    -----------------------------------------
+(463 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/merged_data_civic.dta saved
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000007.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        25,784
+        from master                     2,695  (_merge==1)
+        from using                     23,089  (_merge==2)
+
+    matched                           689,826  (_merge==3)
+    -----------------------------------------
+(25,784 observations deleted)
+(340,673 real changes made)
+(45,819 real changes made)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000008.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        14,226
+        from master                       442  (_merge==1)
+        from using                     13,784  (_merge==2)
+
+    matched                           676,042  (_merge==3)
+    -----------------------------------------
+(442 observations deleted)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000009.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        51,164
+        from master                       178  (_merge==1)
+        from using                     50,986  (_merge==2)
+
+    matched                           638,840  (_merge==3)
+    -----------------------------------------
+(178 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/merged_data_volunteer.dta saved
+
+. 
+.         
+. **********************************************
+. **** CLEAN FINAL DATASET
+. **********************************************
+. local supplement voters civic volunteer
+
+. 
+. foreach s of local supplement {
+  2.         use "${temp}/merged_data_`s'.dta", clear
+  3.         
+.         order state statecode statefip county fips activation_year activation_month ///
+>                 survey_year survey_month post_activation serial cpsid cpsidp ///
+>                 ${controls_indv} ${controls_county} ${controls_state}
+  4.                 
+.         // Technical variables
+.         drop pernum serial // To identify households:CPSID, for persons: CPSIDP
+  5.         
+.         // Geographical variables
+.         destring fips, replace
+  6.         
+.         *** LABELLING:
+.         * Particular to one dataset
+.         cap label variable registered "Registered" // CPS voters
+  7.         cap label variable voted "Voted"           // CPS voters
+  8.         
+.         * Present in all
+.         label variable hispanic "Hispanic"
+  9.         label variable black "Black"
+ 10.         label variable likely_mixedstatus "Mixed-Status Household"
+ 11.         label variable naturalized "Naturalized"
+ 12.         label variable mexican "Mexican"
+ 13.         label variable age "Age"
+ 14.         label variable female "Gender (female)" 
+ 15.         label variable single "Single"
+ 16.         label variable lowed "Completed High School"
+ 17.         label variable highed "Completed more than High School"
+ 18.         label variable below50k "Income below 50k"
+ 19.         label variable county_MS "Share of Mixed-Status Households by County"
+ 20.         label variable county_unauthorized "Share of Likely Unauthorized by County"
+ 21.         label variable county_inc "Family Income by County"
+ 22.         label variable republican "State had a Republican Governor"
+ 23.         label variable presidential "Presidential Election Year"
+ 24.         
+.         
+.         *** SAMPLE RESTRICTION: universe of possible voters (citizens and 18>=)
+.         drop if noncitizen==1
+ 25.         drop if age<18
+ 26.         
+.         save "${final}/final_`s'.dta", replace
+ 27.         
+.         
+.         }
+fips: all characters numeric; replaced as long
+(32,372 observations deleted)
+(86,464 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters.dta saved
+fips: all characters numeric; replaced as long
+(26,513 observations deleted)
+(72,874 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic.dta saved
+fips: all characters numeric; replaced as long
+(58,323 observations deleted)
+(160,494 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer.dta saved
+
+. 
+end of do-file
+

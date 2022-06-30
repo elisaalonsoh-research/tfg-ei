@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2b_Data_cleaning_dates_30Jun2022.txt
   log type:  text
- opened on:  30 Jun 2022, 09:21:15
+ opened on:  30 Jun 2022, 12:19:22
 
 .         
 .         * Load activation dates
@@ -226,108 +226,10 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/activation_dates_cl
 . 
 end of do-file
 
-.   *do "${do}/2c_Data_cleaning_other.do" //
-.   
-.    global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
-
-.    global controls_county county_unauthorized county_MS county_inc
-
-.    global controls_state republican presidential
-
-.   
-.   
-.   
-.   *do "${do}/3_Final_dataset.do" //Done
-. 
-. *-------- FIGURES -------------------------------------------------------*
-.         * County-level implementations maps using R-file
-.         do "${do}/map_implementation.do"
-
-. /* This file creates creates 6 figures (2008-2013) showing the implementation
->  of the SC program at county-level */
-. 
-. clear all
-
-. 
-. ** Install dependencies
-. *ssc install spmap    // For map creation
-. *ssc install shp2dta  // For translating shapefile into stata
-. 
-.         use "${temp}/activation_dates_clean.dta", clear
-
-.         
-.         // Create already implemented
-.         gen implemented = 0
-
-. 
-.         // Maps 2008-2012
-.         forv y=2008/2012 {
-  2.                 replace implemented = 1 if  activation_year <= `y'      
-  3.         
-.                 spmap implemented using "${temp}/uscoord.dta", id(id) clm(u) ///
->                                 fcolor(gs15 eltblue) ocolor(gs13 ltblue) osize(vthin) legenda(off) ///
->                                 title("{bf:`y'}", size(11))
-  4.                                 
-.                 graph export "${figs}/map_implementation_`y'.png", replace
-  5.         }
-(14 real changes made)
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2008.png written in PNG format)
-(88 real changes made)
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2009.png written in PNG format)
-(780 real changes made)
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2010.png written in PNG format)
-(1,098 real changes made)
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2011.png written in PNG format)
-(1,016 real changes made)
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2012.png written in PNG format)
-
-.         
-.         // Map 2013 (all implemented)
-.         replace implemented = 1 if  activation_year <= 2013
-(106 real changes made)
-
-.         spmap implemented using "${temp}/uscoord.dta", id(id) clm(u) ///
->                                 fcolor(eltblue) ocolor(ltblue) osize(vthin) legenda(off) ///
->                                 title("{bf:2013}", size(BBB11)) 
-(note:  named style BBB11 not found in class gsize, default attributes used)
-
-.         graph export "${figs}/map_implementation_2013.png", replace
-(file C:/Users/Windows/Documents/5. Research/TFG EI/results/figures/map_implementation_2013.png written in PNG format)
-
-.         
-. 
-end of do-file
-
-.         
-. *-------- TABLES  -------------------------------------------------------*
-. /*
->         use "${final}/final_voters.dta"
-> 
->         global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
->         global controls_county county_unauthorized county_MS county_inc
->         global controls_state republican presidential
->         
->         /*
-> 
-> ** TABLE 1: Summary statistics
-> 
->         *do "${do}/T1_summary_stats.do"
-> 
-> 
-> ** TABLE 2: Triple differences for voting and registration
-> 
-> 
->         
-> 
->         *do "${do}/T2_Triple_differences_voters.do"
-> 
-
-end of do-file
-
-. do "C:\Users\Windows\AppData\Local\Temp\STD22ac_000000.tmp"
+.         do "${do}/2c_Data_cleaning_other.do" //
 
 . /***********************************************************************
-> 1b DATA CLEANING
+> 2c Data cleaning: other datasets
 > AUTHOR: Elisa Alonso Herrero 
 > DATE: 15/05/2022
 > DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta

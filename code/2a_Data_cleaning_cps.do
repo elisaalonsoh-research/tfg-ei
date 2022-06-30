@@ -2,9 +2,10 @@
 1b DATA CLEANING
 AUTHOR: Elisa Alonso Herrero 
 DATE: 15/05/2022
-DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
-				files. For the unbalanced, it
-OUTPUT: 
+DESCRIPTION: This script cleans the CPS dataset to create our dependent 
+				variables, individual and county-level controls, and
+				standardize names.
+OUTPUT: "${temp}/cps_`s'.dta
 	
 ***********************************************************************/
 
@@ -188,17 +189,18 @@ foreach s of local supplements {
 	replace yearsus=. if yrimmig==0000
 	replace yearsus= age if native==1
 	
-	
-
-		
+			
 	* Mixed-status Household
 	
 	// Defined as different citizenship status (see Bitler and Hoynes, 2011)
 	 egen citizens_household = total(noncitizen==0), by(cpsid survey_year)
+	 egen noncitizens_household = total(noncitizen==1), by(cpsid survey_year)
 	 egen totindv_household = total(cpsid != .), by(cpsid survey_year)
-	 egen mixedstatus = count(totindv_household > citizens_household), by(cpsid survey_year)
+	 gen mixedstatus = 0
+	 replace mixedstatus = 1 if (totindv_household > citizens_household)
+	 replace mixedstatus = 0 if (totindv_household == noncitizens_household)
 	
-	/*
+	
 	// Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
 	
 	* Dummy for likely unauthorized migrant
@@ -206,7 +208,7 @@ foreach s of local supplements {
 	replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
 	
 	egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
-	replace likely_mixedstatus = 1 if likely_mixedstatus > 1 // 1.69%
+	replace likely_mixedstatus = 1 if likely_mixedstatus > 1 
 	
 	
 	
@@ -231,9 +233,9 @@ foreach s of local supplements {
 	replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
 	
 	 
-	// County-level controls: likely share of MS, median household income
+	// County-level controls: mixedstatus (real and likely) 
 	preserve
-		collapse (mean) county_MS=likely_mixedstatus county_unauthorized = likely_unauthorized [w=wr], by(fips survey_year)
+		collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_unauthorized county_MS=mixedstatus county_hisp=hispanic [w=wr], by(fips survey_year)
 		
 		tempfile countychars_cps
 		save `countychars_cps'
@@ -241,11 +243,9 @@ foreach s of local supplements {
 	merge m:1 fips survey_year using `countychars_cps'
 	drop _merge
 	
-	
-	// State-level controls: likely share of MS, median household income
-	preserve
-		collapse (mean) state_MS=likely_mixedstatus  /// 
-		[w=wr], by(statefip survey_year)
+	// State-level controls: hispanic (to compare with real data)
+		preserve
+		collapse (mean) state_hisp=hispanic [w=wr], by(statefip survey_year)
 		
 		tempfile statechars_cps
 		save `statechars_cps'
@@ -253,15 +253,15 @@ foreach s of local supplements {
 	merge m:1 statefip survey_year using `statechars_cps'
 	drop _merge
 	
-
+	
 	// Reduce dataset
 	compress	
 	save "${temp}/cps_`s'_temp.dta", replace
 	
-	*/
+
 }
 
-/*
+
 
 *------- Cleaning for CPS Voters and Registered ---------------------------*
 	use "${temp}/cps_voters_temp.dta", clear 

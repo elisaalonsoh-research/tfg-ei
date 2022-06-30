@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2a_Data_cleaning_cps_30Jun2022.txt
   log type:  text
- opened on:  30 Jun 2022, 10:25:31
+ opened on:  30 Jun 2022, 12:18:15
 
 . 
 .         
@@ -169,82 +169,370 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
  44.         replace yearsus=. if yrimmig==0000
  45.         replace yearsus= age if native==1
  46.         
-.         
-. 
-.                 
+.                         
 .         * Mixed-status Household
 .         
 .         // Defined as different citizenship status (see Bitler and Hoynes, 2011)
 .          egen citizens_household = total(noncitizen==0), by(cpsid survey_year)
- 47.          egen totindv_household = total(cpsid != .), by(cpsid survey_year)
- 48.          egen mixedstatus = count(totindv_household > citizens_household), by(cpsid survey_year)
- 49.         
-.         /*
->         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
->         
->         * Dummy for likely unauthorized migrant
->         gen likely_unauthorized = 0
->         replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
->         
->         egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
->         replace likely_mixedstatus = 1 if likely_mixedstatus > 1 // 1.69%
->         
->         
->         
->         *** COUNTY AND STATE CONTROLS:
->         
->         // Round weight and rename s.t. it is the same in every supplement
->         gen wr = .
->         
->         if "`s'" == "voters" {
->                 replace wr = round(vosuppwt)
->         }
->         if "`s'" == "civic" {
->                 replace wr = round(cesuppwt)
->         }
->         if "`s'" == "volunteer"{
->                 replace wr = round(vlsuppwt)
->         }
-> 
->                 
->         * Dummy for presidential election
->         gen presidential = 0
->         replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
->         
->          
->         // County-level controls: likely share of MS, median household income
->         preserve
->                 collapse (mean) county_MS=likely_mixedstatus county_unauthorized = likely_unauthorized [w=wr], by(fips survey_year)
->                 
->                 tempfile countychars_cps
->                 save `countychars_cps'
->         restore
->         merge m:1 fips survey_year using `countychars_cps'
->         drop _merge
->         
->         
->         // State-level controls: likely share of MS, median household income
->         preserve
->                 collapse (mean) state_MS=likely_mixedstatus  /// 
->                 [w=wr], by(statefip survey_year)
->                 
->                 tempfile statechars_cps
->                 save `statechars_cps'
->         restore
->         merge m:1 statefip survey_year using `statechars_cps'
->         drop _merge
->         
-> 
->         // Reduce dataset
->         compress        
->         save "${temp}/cps_`s'_temp.dta", replace
->         
->         */
+ 47.          egen noncitizens_household = total(noncitizen==1), by(cpsid survey_year)
+ 48.          egen totindv_household = total(cpsid != .), by(cpsid survey_year)
+ 49.          gen mixedstatus = 0
+ 50.          replace mixedstatus = 1 if (totindv_household > citizens_household)
+ 51.          replace mixedstatus = 0 if (totindv_household == noncitizens_household)
+ 52.         
+.         
+.         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
+.         
+.         * Dummy for likely unauthorized migrant
+.         gen likely_unauthorized = 0
+ 53.         replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
+ 54.         
+.         egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
+ 55.         replace likely_mixedstatus = 1 if likely_mixedstatus > 1 
+ 56.         
+.         
+.         
+.         *** COUNTY AND STATE CONTROLS:
+.         
+.         // Round weight and rename s.t. it is the same in every supplement
+.         gen wr = .
+ 57.         
+.         if "`s'" == "voters" {
+ 58.                 replace wr = round(vosuppwt)
+ 59.         }
+ 60.         if "`s'" == "civic" {
+ 61.                 replace wr = round(cesuppwt)
+ 62.         }
+ 63.         if "`s'" == "volunteer"{
+ 64.                 replace wr = round(vlsuppwt)
+ 65.         }
+ 66. 
+.                 
+.         * Dummy for presidential election
+.         gen presidential = 0
+ 67.         replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
+ 68.         
+.          
+.         // County-level controls: mixedstatus (real and likely) 
+.         preserve
+ 69.                 collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_unauthorized county_MS=mixedstatus county_hisp=
+> hispanic [w=wr], by(fips survey_year)
+ 70.                 
+.                 tempfile countychars_cps
+ 71.                 save `countychars_cps'
+ 72.         restore
+ 73.         merge m:1 fips survey_year using `countychars_cps'
+ 74.         drop _merge
+ 75.         
+.         // State-level controls: hispanic (to compare with real data)
+.                 preserve
+ 76.                 collapse (mean) state_hisp=hispanic [w=wr], by(statefip survey_year)
+ 77.                 
+.                 tempfile statechars_cps
+ 78.                 save `statechars_cps'
+ 79.         restore
+ 80.         merge m:1 statefip survey_year using `statechars_cps'
+ 81.         drop _merge
+ 82.         
+.         
+.         // Reduce dataset
+.         compress        
+ 83.         save "${temp}/cps_`s'_temp.dta", replace
+ 84.         
+. 
 . }
-file C:/Users/Windows/Documents/5. Research/TFG EI/data/raw/cps_voters_raw.dta not found
-r(601);
+(557,452 observations deleted)
+(31,425 real changes made, 31,425 to missing)
+(163,593 real changes made)
+(96,004 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(212,403 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(173,587 real changes made)
+(76,574 real changes made, 76,574 to missing)
+(294,343 real changes made)
+(49,555 real changes made)
+(312,927 real changes made)
+(227,255 real changes made)
+(47,135 real changes made)
+(44,717 real changes made)
+(33,292 real changes made)
+(27,884 real changes made)
+(61,176 real changes made)
+(324,814 real changes made)
+(324,814 missing values generated)
+(4 real changes made, 4 to missing)
+(324,814 real changes made)
+(62,214 real changes made)
+(12,011 real changes made)
+(11,089 real changes made)
+(14,501 real changes made)
+(385,990 missing values generated)
+(385,990 real changes made)
+(218,981 real changes made)
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000003.tmp saved
 
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           385,990  (_merge==3)
+    -----------------------------------------
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000005.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           385,990  (_merge==3)
+    -----------------------------------------
+  variable survey_date was float now int
+  variable below50k was float now byte
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable highed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable naturalized was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable noncitizens_household was float now byte
+  variable totindv_household was float now byte
+  variable mixedstatus was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  variable wr was float now int
+  variable presidential was float now byte
+  (28,177,270 bytes saved)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters_temp.dta saved
+(466,404 observations deleted)
+(21,480 real changes made, 21,480 to missing)
+(140,305 real changes made)
+(83,000 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(178,522 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(149,985 real changes made)
+(64,181 real changes made, 64,181 to missing)
+(249,437 real changes made)
+(42,554 real changes made)
+(265,432 real changes made)
+(191,651 real changes made)
+(40,405 real changes made)
+(38,923 real changes made)
+(27,281 real changes made)
+(24,857 real changes made)
+(52,138 real changes made)
+(276,369 real changes made)
+(276,369 missing values generated)
+(3 real changes made, 3 to missing)
+(276,369 real changes made)
+(51,926 real changes made)
+(9,415 real changes made)
+(9,658 real changes made)
+(12,507 real changes made)
+(328,507 missing values generated)
+(328,507 real changes made)
+(54,711 real changes made)
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000007.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           136
+        from master                       136  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                           328,371  (_merge==3)
+    -----------------------------------------
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000009.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           328,507  (_merge==3)
+    -----------------------------------------
+  variable survey_date was float now int
+  variable below50k was float now byte
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable highed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable naturalized was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable noncitizens_household was float now byte
+  variable totindv_household was float now byte
+  variable mixedstatus was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  variable presidential was float now byte
+  (23,323,997 bytes saved)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_civic_temp.dta saved
+(1,025,752 observations deleted)
+(63,536 real changes made, 63,536 to missing)
+(298,531 real changes made)
+(177,426 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(395,000 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(317,915 real changes made)
+(141,842 real changes made, 141,842 to missing)
+(543,818 real changes made)
+(91,207 real changes made)
+(577,923 real changes made)
+(420,203 real changes made)
+(86,620 real changes made)
+(83,037 real changes made)
+(60,030 real changes made)
+(51,606 real changes made)
+(111,636 real changes made)
+(601,279 real changes made)
+(601,279 missing values generated)
+(9 real changes made, 9 to missing)
+(601,279 real changes made)
+(112,103 real changes made)
+(21,818 real changes made)
+(20,853 real changes made)
+(26,875 real changes made)
+(712,915 missing values generated)
+(712,915 real changes made)
+(164,812 real changes made)
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_00000b.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           712,915  (_merge==3)
+    -----------------------------------------
+(analytic weights assumed)
+file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_00000d.tmp saved
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           712,915  (_merge==3)
+    -----------------------------------------
+  variable survey_date was float now int
+  variable below50k was float now byte
+  variable female was float now byte
+  variable single was float now byte
+  variable lowed was float now byte
+  variable highed was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable nonhispwhite was float now byte
+  variable nonhispblack was float now byte
+  variable mexican was float now byte
+  variable noncitizen was float now byte
+  variable naturalized was float now byte
+  variable immigrant was float now byte
+  variable native was float now byte
+  variable yearsus was float now byte
+  variable citizens_household was float now byte
+  variable noncitizens_household was float now byte
+  variable totindv_household was float now byte
+  variable mixedstatus was float now byte
+  variable likely_unauthorized was float now byte
+  variable likely_mixedstatus was float now byte
+  variable wr was float now int
+  variable presidential was float now byte
+  (52,042,795 bytes saved)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer_temp.dta saved
+
+. 
+. 
+. 
+. *------- Cleaning for CPS Voters and Registered ---------------------------*
+.         use "${temp}/cps_voters_temp.dta", clear 
+
+.                 
+.         
+.         * Dummy for registering to vote:
+.         * The universe for VOREG compromises only those persons who did not vote !!
+.         * Not in universe: code 99 (I will later restrict to citizens 18+)
+.         * My dummy variable = individuals who registered (vote and no vote)
+.         
+.         gen registered = 0
+
+.         replace registered = 1 if voreg==02 | voreg == 99
+(304,379 real changes made)
+
+.         replace registered = . if inrange(voreg,96,98)
+(39,241 real changes made, 39,241 to missing)
+
+.         drop voreg
+
+.         
+.         * Dummy for voting
+.         * The universe for VOTE_CAT (voted in CPS) is eligible voters
+.         rename voted vote_cat
+
+.         gen voted = 0
+
+.         replace voted = 0 if vote_cat==02
+(0 real changes made)
+
+.         replace voted = . if inrange(vote_cat,96,99)
+(161,679 real changes made, 161,679 to missing)
+
+.         drop vote_cat
+
+.         
+.         
+.         save "${temp}/cps_voters.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters.dta saved
+
+. 
+. 
+. 
+. *------- Cleaning for CPS Civic Engagement --------------------------------*
+.         use "${temp}/cps_civic_temp.dta", clear 
+
+.         
+.         
+.         save "${temp}/cps_civic.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_civic.dta saved
+
+.         
+. *------- Cleaning for CPS Volunteers --------------------------------------*
+.         use "${temp}/cps_volunteer_temp.dta", clear 
+
+.         save "${temp}/cps_volunteer.dta", replace
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer.dta saved
+
+.         
+. 
+. 
 end of do-file
 
-r(601);
+. do "C:\Users\Windows\AppData\Local\Temp\STD2fb0_000000.tmp"
 
+. clear all
+
+. macro drop _all
+
+. set more off, perm
+(set more preference recorded)
+
+. cap log close

@@ -17,6 +17,7 @@ cap log close
 * Dependencies
 *ssc install shp2dta
 *ssc install spmap
+*ssc inst unique
 
 ****************************************************************
 
@@ -45,27 +46,23 @@ cap log close
   
 *-------- DATASET CONSTRUCTION ------------------------------------------*
 
-  *do "${do}/1_Rawdata_to_dta.do" // Done
+	*do "${do}/1_Rawdata_to_dta.do" // Done
   
-  *do "${do}/2a_Data_cleaning_cps.do" // 
-  *do "${do}/2b_Data_cleaning_dates.do" //
-  *do "${do}/2c_Data_cleaning_other.do" //
-       
-  *do "${do}/3_Final_dataset.do" //Done
+	do "${do}/2a_Data_cleaning_cps.do" // 
+	do "${do}/2b_Data_cleaning_dates.do" //
+	do "${do}/2c_Data_cleaning_other.do" //
+   
+	global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
+    global controls_county county_unauthorized county_LMS county_MS county_inc county_hisp
+    global controls_state republican presidential
+      
+	 do "${do}/3_Final_dataset.do" //Done
 
 *-------- FIGURES -------------------------------------------------------*
 	// County-level timing of implementation map
 	*do "${do}/map_implementation.do"
 	
 *-------- TABLES  -------------------------------------------------------*
-/*
-	use "${final}/final_voters.dta"
-
-	global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
-	global controls_county county_unauthorized county_MS county_inc
-	global controls_state republican presidential
-	
-	/*
 
 ** TABLE 1: Summary statistics
 
