@@ -3,7 +3,7 @@
 AUTHOR: Elisa Alonso Herrero 
 DATE: 15/05/2022
 DESCRIPTION: This script takes the CPS Supplements raw, and saves them as dta
-				files. For the unbalanced, it
+				files. 
 OUTPUT: 
 	
 ***********************************************************************/
@@ -46,7 +46,7 @@ global temp 		"${data}/temp"
 ***********************************
 **** CPS DATA
 ***********************************
-
+// CPS supplements
 local supplement voters civic volunteer
 
 foreach s of local supplement {
@@ -55,9 +55,13 @@ foreach s of local supplement {
 	save "${raw}/cps_`s'_raw.dta", replace  // Save CPS rawdata in dta
 	}
 	
+
+
+// CPS Annual Economic and Social supplement
 insheet using "${raw}/cps_asec.csv", delim(",") clear 
 compress
 save "${raw}/cps_asec_raw.dta", replace  // Save CPS rawdata in dta
+
 
 /*
 ***********************************

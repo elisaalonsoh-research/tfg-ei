@@ -21,7 +21,7 @@ cap log close
 
 ****************************************************************
 
-* Filepaths:
+* Folder paths:
 	global do 			"${dir}/code"
 	global log			"${dir}/log"
 	
@@ -44,26 +44,33 @@ cap log close
 *** Structure of dofiles:
 ****************************************************************
   
-*-------- CONSTRUCTING DATASET ------------------------------------------*
+*-------- DATASET CONSTRUCTION ------------------------------------------*
 
-  *do "${do}/1a_Rawdata_to_dta.do" // Done
+  *do "${do}/1_Rawdata_to_dta.do" // Done
   
-  *do "${do}/1b_Data_cleaning.do" // Done
+  *do "${do}/2a_Data_cleaning_cps.do" // 
+  *do "${do}/2b_Data_cleaning_dates.do" //
+  *do "${do}/2c_Data_cleaning_other.do" //
   
-  *do "${do}/1c_Final_dataset.do" //Done
+  *do "${do}/3_Final_dataset.do" //Done
 
-
+*-------- FIGURES -------------------------------------------------------*
+	* County-level implementations maps using R-file
+	do "${do}/map_implementation.do"
+	
 *-------- TABLES  -------------------------------------------------------*
-
+/*
 	use "${final}/final_voters.dta"
 
 	global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
 	global controls_county county_unauthorized county_MS county_inc
 	global controls_state republican presidential
+	
+	/*
 
 ** TABLE 1: Summary statistics
 
-	do "${do}/T1_summary_stats.do"
+	*do "${do}/T1_summary_stats.do"
 
 
 ** TABLE 2: Triple differences for voting and registration

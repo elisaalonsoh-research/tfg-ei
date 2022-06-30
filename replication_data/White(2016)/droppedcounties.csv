@@ -1,0 +1,569 @@
+"","state","abbrev","county","WHITE_Mail10"
+"96","Arizona","AZ","Gila",1
+"97","Arizona","AZ","La Paz",0
+"98","Arizona","AZ","Maricopa",0
+"99","Arizona","AZ","Mohave",0
+"100","Arizona","AZ","Pima",1
+"101","Arizona","AZ","Santa Cruz",0
+"102","Arizona","AZ","Pinal",0
+"103","Arizona","AZ","Yuma",0
+"104","Arizona","AZ","Graham",0
+"105","Arizona","AZ","Greenlee",0
+"106","Arizona","AZ","Coconino",6
+"107","Arizona","AZ","Apache",1
+"108","Arizona","AZ","Navajo",0
+"109","Arizona","AZ","Cochise",1
+"110","Arizona","AZ","Yavapai",4
+"141","Arkansas","AR","Benton",1
+"170","Arkansas","AR","Pulaski",2
+"182","Arkansas","AR","Washington",0
+"190","California","CA","Yuba",389
+"191","California","CA","Shasta",37496
+"192","California","CA","Ventura",7052
+"193","California","CA","Yolo",303
+"195","California","CA","Solano",574
+"196","California","CA","Lake",10937
+"197","California","CA","Butte",39154
+"198","California","CA","San Diego",1971
+"199","California","CA","San Francisco",2133
+"201","California","CA","Tulare",5022
+"203","California","CA","Santa Clara",24015
+"204","California","CA","Kings",55
+"205","California","CA","Santa Cruz",40090
+"209","California","CA","Sonoma",110067
+"210","California","CA","Stanislaus",305
+"211","California","CA","El Dorado",401
+"212","California","CA","Fresno",8400
+"213","California","CA","San Joaquin",5240
+"214","California","CA","San Luis Obispo",781
+"215","California","CA","San Mateo",85625
+"216","California","CA","Kern",9202
+"217","California","CA","Alameda",1254
+"218","California","CA","Placer",7630
+"220","California","CA","Riverside",186309
+"221","California","CA","Los Angeles",2211
+"222","California","CA","Contra Costa",10321
+"224","California","CA","San Bernardino",1377
+"225","California","CA","Marin",1942
+"227","California","CA","Humboldt",23036
+"228","California","CA","Imperial",32
+"230","California","CA","Santa Barbara",63609
+"237","California","CA","Madera",816
+"238","California","CA","Merced",141
+"239","California","CA","Napa",21532
+"240","California","CA","Mendocino",284
+"241","California","CA","Orange",7314
+"242","California","CA","Monterey",393
+"243","California","CA","Sacramento",6762
+"314","Connecticut","CT","Fairfield",0
+"319","Florida","FL","Leon",0
+"321","Florida","FL","Highlands",0
+"325","Florida","FL","Hillsborough",0
+"327","Florida","FL","Monroe",0
+"328","Florida","FL","Orange",0
+"329","Florida","FL","Osceola",0
+"330","Florida","FL","Miami-Dade",0
+"333","Florida","FL","Manatee",0
+"334","Florida","FL","Marion",0
+"339","Florida","FL","Brevard",0
+"354","Florida","FL","Lake",0
+"355","Florida","FL","Broward",0
+"357","Florida","FL","Palm Beach",0
+"359","Florida","FL","Pinellas",0
+"360","Florida","FL","Polk",0
+"361","Florida","FL","Clay",0
+"362","Florida","FL","Collier",0
+"365","Florida","FL","Sarasota",0
+"371","Florida","FL","Volusia",0
+"376","Florida","FL","St. Johns",0
+"377","Florida","FL","St. Lucie",0
+"380","Florida","FL","Charlotte",0
+"383","Florida","FL","Duval",0
+"384","Florida","FL","Escambia",0
+"449","Georgia","GA","Fulton",0
+"454","Georgia","GA","Muscogee",0
+"474","Georgia","GA","DeKalb",0
+"487","Georgia","GA","Clayton",0
+"504","Georgia","GA","Whitfield",0
+"527","Georgia","GA","Gwinnett",0
+"543","Georgia","GA","Cobb",0
+"544","Georgia","GA","Hall",0
+"545","Hawaii","HI","Honolulu",0
+"546","Hawaii","HI","Hawaii",0
+"547","Hawaii","HI","Maui",0
+"565","Idaho","ID","Canyon",0
+"581","Idaho","ID","Ada",0
+"600","Illinois","IL","Kane",0
+"601","Illinois","IL","Clinton",0
+"604","Illinois","IL","Champaign",0
+"605","Illinois","IL","Christian",0
+"619","Illinois","IL","Jackson",0
+"623","Illinois","IL","Alexander",0
+"624","Illinois","IL","Franklin",0
+"631","Illinois","IL","Lake",0
+"634","Illinois","IL","Vermilion",0
+"651","Illinois","IL","Washington",0
+"653","Illinois","IL","Madison",0
+"656","Illinois","IL","St. Clair",0
+"658","Illinois","IL","Stephenson",0
+"663","Illinois","IL","Pulaski",0
+"671","Illinois","IL","Massac",0
+"673","Illinois","IL","DuPage",1
+"676","Illinois","IL","Effingham",0
+"681","Illinois","IL","Marion",0
+"684","Illinois","IL","Will",0
+"685","Illinois","IL","Williamson",0
+"686","Illinois","IL","McHenry",0
+"687","Illinois","IL","Winnebago",0
+"881","Iowa","IA","Polk",0
+"1106","Kentucky","KY","Fayette",0
+"1116","Louisiana","LA","East Baton Rouge Parish",1
+"1142","Louisiana","LA","Terrebonne Parish",0
+"1159","Louisiana","LA","Lafourche Parish",0
+"1168","Louisiana","LA","Jefferson Parish",0
+"1174","Louisiana","LA","Orleans Parish",1
+"1199","Maryland","MD","Prince George's",0
+"1207","Maryland","MD","Frederick",0
+"1209","Maryland","MD","Queen Anne's",0
+"1214","Maryland","MD","St. Mary's",0
+"1226","Massachusetts","MA","Suffolk",0
+"1228","Michigan","MI","Wayne",0
+"1271","Michigan","MI","Macomb",0
+"1283","Michigan","MI","Oakland",2
+"1302","Michigan","MI","Kent",0
+"1398","Mississippi","MS","Rankin",0
+"1414","Mississippi","MS","DeSoto",0
+"1438","Mississippi","MS","Lowndes",0
+"1462","Mississippi","MS","Harrison",0
+"1469","Mississippi","MS","Warren",0
+"1496","Missouri","MO","St. Louis",0
+"1497","Missouri","MO","St. Louis City",0
+"1618","Montana","MT","Lewis and Clark",0
+"1637","Montana","MT","Yellowstone",0
+"1639","Montana","MT","Missoula",0
+"1675","Nebraska","NE","Douglas",0
+"1703","Nebraska","NE","Lancaster",0
+"1746","Nevada","NV","Carson City",1335
+"1748","Nevada","NV","Washoe",11726
+"1753","Nevada","NV","Lyon",939
+"1755","Nevada","NV","Douglas",2182
+"1757","Nevada","NV","Churchill",471
+"1758","Nevada","NV","Clark",25692
+"1802","New Mexico","NM","Grant",0
+"1805","New Mexico","NM","Hidalgo",0
+"1808","New Mexico","NM","Bernalillo",2
+"1823","New Mexico","NM","Luna",0
+"1824","New Mexico","NM","Doña Ana",0
+"1883","North Carolina","NC","Hoke",0
+"1884","North Carolina","NC","Mitchell",0
+"1887","North Carolina","NC","Mecklenburg",0
+"1888","North Carolina","NC","Surry",0
+"1889","North Carolina","NC","Swain",0
+"1890","North Carolina","NC","Yancey",0
+"1891","North Carolina","NC","McDowell",0
+"1893","North Carolina","NC","Iredell",0
+"1894","North Carolina","NC","Jackson",0
+"1897","North Carolina","NC","Lee",0
+"1899","North Carolina","NC","Lincoln",0
+"1900","North Carolina","NC","Macon",0
+"1901","North Carolina","NC","Madison",0
+"1902","North Carolina","NC","Yadkin",0
+"1903","North Carolina","NC","Durham",0
+"1904","North Carolina","NC","Edgecombe",0
+"1905","North Carolina","NC","Moore",0
+"1906","North Carolina","NC","Nash",0
+"1907","North Carolina","NC","New Hanover",0
+"1908","North Carolina","NC","Johnston",0
+"1910","North Carolina","NC","Rutherford",0
+"1914","North Carolina","NC","Stokes",0
+"1915","North Carolina","NC","Haywood",0
+"1916","North Carolina","NC","Henderson",0
+"1917","North Carolina","NC","Ashe",0
+"1918","North Carolina","NC","Transylvania",0
+"1920","North Carolina","NC","Union",0
+"1922","North Carolina","NC","Wake",1
+"1925","North Carolina","NC","Watauga",0
+"1927","North Carolina","NC","Wilkes",0
+"1930","North Carolina","NC","Catawba",0
+"1931","North Carolina","NC","Chatham",0
+"1932","North Carolina","NC","Cherokee",0
+"1934","North Carolina","NC","Clay",0
+"1935","North Carolina","NC","Cleveland",0
+"1938","North Carolina","NC","Orange",0
+"1945","North Carolina","NC","Forsyth",0
+"1947","North Carolina","NC","Gaston",0
+"1949","North Carolina","NC","Graham",0
+"1950","North Carolina","NC","Granville",0
+"1953","North Carolina","NC","Halifax",0
+"1954","North Carolina","NC","Harnett",0
+"1955","North Carolina","NC","Alamance",0
+"1956","North Carolina","NC","Alexander",0
+"1957","North Carolina","NC","Alleghany",0
+"1958","North Carolina","NC","Avery",0
+"1961","North Carolina","NC","Bladen",0
+"1962","North Carolina","NC","Brunswick",0
+"1963","North Carolina","NC","Buncombe",0
+"1964","North Carolina","NC","Burke",0
+"1965","North Carolina","NC","Cabarrus",0
+"1966","North Carolina","NC","Caldwell",0
+"1970","North Carolina","NC","Duplin",0
+"1972","North Carolina","NC","Polk",0
+"1976","North Carolina","NC","Columbus",0
+"1978","North Carolina","NC","Cumberland",0
+"1979","North Carolina","NC","Dare",0
+"1980","North Carolina","NC","Davidson",0
+"1982","North Carolina","NC","Rockingham",0
+"2040","Ohio","OH","Hamilton",0
+"2054","Ohio","OH","Cuyahoga",0
+"2061","Ohio","OH","Franklin",0
+"2085","Ohio","OH","Butler",0
+"2093","Ohio","OH","Montgomery",1
+"2113","Ohio","OH","Summit",0
+"2179","Oklahoma","OK","Oklahoma",1
+"2196","Oklahoma","OK","Tulsa",0
+"2212","Oregon","OR","Marion",94574
+"2214","Oregon","OR","Multnomah",251043
+"2231","Oregon","OR","Clackamas",150951
+"2235","Oregon","OR","Washington",171583
+"2245","Pennsylvania","PA","Bucks",1
+"2256","Pennsylvania","PA","Philadelphia",1
+"2271","Pennsylvania","PA","Montgomery",0
+"2308","South Carolina","SC","Horry",0
+"2317","South Carolina","SC","Greenville",1
+"2342","South Carolina","SC","Beaufort",0
+"2343","South Carolina","SC","Berkeley",0
+"2345","South Carolina","SC","Charleston",0
+"2351","South Carolina","SC","York",0
+"2353","South Carolina","SC","Dorchester",0
+"2363","South Dakota","SD","Fall River",0
+"2375","South Dakota","SD","Jackson",0
+"2389","South Dakota","SD","Minnehaha",0
+"2391","South Dakota","SD","Pennington",1
+"2397","South Dakota","SD","Custer",0
+"2438","Tennessee","TN","Hamilton",0
+"2444","Tennessee","TN","Shelby",0
+"2466","Tennessee","TN","Davidson",0
+"2493","Tennessee","TN","Knox",0
+"2514","Texas","TX","Brewster",0
+"2515","Texas","TX","Anderson",0
+"2516","Texas","TX","Blanco",0
+"2517","Texas","TX","Borden",0
+"2518","Texas","TX","Bosque",0
+"2519","Texas","TX","Bowie",0
+"2520","Texas","TX","Brazoria",0
+"2521","Texas","TX","Brazos",2
+"2522","Texas","TX","Denton",10
+"2523","Texas","TX","Briscoe",0
+"2524","Texas","TX","Brooks",0
+"2525","Texas","TX","Brown",0
+"2526","Texas","TX","Burleson",0
+"2527","Texas","TX","Burnet",0
+"2528","Texas","TX","Caldwell",1
+"2529","Texas","TX","Calhoun",0
+"2530","Texas","TX","Callahan",0
+"2531","Texas","TX","Cameron",0
+"2532","Texas","TX","Camp",1
+"2534","Texas","TX","Cass",1
+"2536","Texas","TX","Chambers",1
+"2537","Texas","TX","Cherokee",3
+"2539","Texas","TX","Clay",0
+"2540","Texas","TX","Cochran",0
+"2541","Texas","TX","Coke",0
+"2542","Texas","TX","Andrews",0
+"2543","Texas","TX","Angelina",1
+"2544","Texas","TX","Aransas",0
+"2545","Texas","TX","Archer",0
+"2547","Texas","TX","Atascosa",0
+"2548","Texas","TX","Austin",0
+"2550","Texas","TX","Bandera",0
+"2551","Texas","TX","Bastrop",0
+"2552","Texas","TX","Baylor",0
+"2553","Texas","TX","Bee",0
+"2554","Texas","TX","Bell",1
+"2555","Texas","TX","Bexar",1
+"2557","Texas","TX","Dallas",28
+"2558","Texas","TX","Dawson",0
+"2559","Texas","TX","DeWitt",0
+"2561","Texas","TX","Delta",0
+"2562","Texas","TX","Harrison",258
+"2564","Texas","TX","Haskell",0
+"2565","Texas","TX","Hays",3
+"2566","Texas","TX","Hemphill",0
+"2567","Texas","TX","Henderson",5
+"2568","Texas","TX","Hidalgo",0
+"2569","Texas","TX","Hill",0
+"2570","Texas","TX","Hockley",0
+"2571","Texas","TX","Hood",0
+"2572","Texas","TX","Hopkins",0
+"2573","Texas","TX","Houston",0
+"2574","Texas","TX","Howard",0
+"2575","Texas","TX","Hudspeth",0
+"2576","Texas","TX","Hunt",0
+"2578","Texas","TX","Irion",0
+"2579","Texas","TX","Jack",0
+"2580","Texas","TX","Jackson",0
+"2581","Texas","TX","Jasper",0
+"2582","Texas","TX","Jeff Davis",0
+"2583","Texas","TX","Jefferson",1
+"2584","Texas","TX","Jim Hogg",0
+"2585","Texas","TX","Jim Wells",0
+"2586","Texas","TX","Johnson",0
+"2587","Texas","TX","Jones",0
+"2588","Texas","TX","Karnes",0
+"2589","Texas","TX","Kaufman",1
+"2590","Texas","TX","Kendall",0
+"2591","Texas","TX","Kenedy",0
+"2592","Texas","TX","Kent",0
+"2593","Texas","TX","Kerr",0
+"2594","Texas","TX","Kimble",0
+"2595","Texas","TX","King",0
+"2596","Texas","TX","Kinney",0
+"2597","Texas","TX","Kleberg",0
+"2598","Texas","TX","Knox",0
+"2599","Texas","TX","La Salle",0
+"2600","Texas","TX","Lamar",0
+"2602","Texas","TX","Lampasas",0
+"2603","Texas","TX","Lavaca",0
+"2604","Texas","TX","Lee",0
+"2605","Texas","TX","Leon",0
+"2606","Texas","TX","Liberty",0
+"2607","Texas","TX","Limestone",0
+"2609","Texas","TX","Live Oak",0
+"2610","Texas","TX","Llano",0
+"2611","Texas","TX","Loving",0
+"2612","Texas","TX","Lubbock",1
+"2613","Texas","TX","Lynn",0
+"2614","Texas","TX","Madison",0
+"2615","Texas","TX","Marion",3
+"2616","Texas","TX","Martin",0
+"2617","Texas","TX","Mason",0
+"2618","Texas","TX","Matagorda",2
+"2619","Texas","TX","Maverick",0
+"2620","Texas","TX","McCulloch",0
+"2621","Texas","TX","McLennan",2
+"2622","Texas","TX","McMullen",0
+"2623","Texas","TX","Coleman",0
+"2624","Texas","TX","Collin",489
+"2626","Texas","TX","Colorado",0
+"2627","Texas","TX","Comal",2
+"2628","Texas","TX","Comanche",0
+"2629","Texas","TX","Concho",0
+"2630","Texas","TX","Cooke",1
+"2631","Texas","TX","Coryell",0
+"2632","Texas","TX","Cottle",0
+"2633","Texas","TX","Crane",0
+"2634","Texas","TX","Crockett",0
+"2635","Texas","TX","Crosby",0
+"2636","Texas","TX","Culberson",0
+"2637","Texas","TX","Nolan",0
+"2638","Texas","TX","Nueces",3
+"2641","Texas","TX","Orange",0
+"2642","Texas","TX","Palo Pinto",0
+"2643","Texas","TX","Panola",28
+"2644","Texas","TX","Parker",0
+"2646","Texas","TX","Pecos",0
+"2647","Texas","TX","Polk",1
+"2648","Texas","TX","Potter",0
+"2649","Texas","TX","Presidio",0
+"2650","Texas","TX","Rains",0
+"2651","Texas","TX","Randall",0
+"2652","Texas","TX","Reagan",0
+"2653","Texas","TX","Real",0
+"2654","Texas","TX","Red River",0
+"2655","Texas","TX","Reeves",0
+"2656","Texas","TX","Refugio",0
+"2658","Texas","TX","Robertson",1
+"2659","Texas","TX","Rockwall",1
+"2660","Texas","TX","Runnels",0
+"2661","Texas","TX","Rusk",0
+"2662","Texas","TX","Sabine",0
+"2663","Texas","TX","San Augustine",0
+"2664","Texas","TX","San Jacinto",0
+"2665","Texas","TX","San Patricio",1
+"2666","Texas","TX","San Saba",0
+"2667","Texas","TX","Schleicher",0
+"2668","Texas","TX","Scurry",0
+"2669","Texas","TX","Shackelford",0
+"2670","Texas","TX","Shelby",0
+"2672","Texas","TX","Smith",641
+"2673","Texas","TX","Somervell",0
+"2674","Texas","TX","Starr",0
+"2675","Texas","TX","Stephens",0
+"2676","Texas","TX","Sterling",0
+"2677","Texas","TX","Stonewall",0
+"2678","Texas","TX","Sutton",0
+"2680","Texas","TX","Tarrant",11
+"2681","Texas","TX","Taylor",2
+"2682","Texas","TX","Terrell",0
+"2683","Texas","TX","Terry",0
+"2684","Texas","TX","Throckmorton",0
+"2685","Texas","TX","Titus",0
+"2686","Texas","TX","Tom Green",0
+"2687","Texas","TX","Travis",60
+"2688","Texas","TX","Trinity",0
+"2689","Texas","TX","Tyler",0
+"2690","Texas","TX","Upshur",2
+"2691","Texas","TX","Upton",0
+"2692","Texas","TX","Uvalde",0
+"2693","Texas","TX","Val Verde",0
+"2694","Texas","TX","Van Zandt",1
+"2695","Texas","TX","Victoria",2
+"2696","Texas","TX","Walker",0
+"2697","Texas","TX","Waller",0
+"2698","Texas","TX","Ward",0
+"2699","Texas","TX","Washington",0
+"2700","Texas","TX","Webb",0
+"2701","Texas","TX","Wharton",0
+"2703","Texas","TX","Wichita",0
+"2704","Texas","TX","Wilbarger",0
+"2705","Texas","TX","Willacy",0
+"2706","Texas","TX","Williamson",4
+"2707","Texas","TX","Wilson",0
+"2708","Texas","TX","Winkler",0
+"2709","Texas","TX","Wise",0
+"2710","Texas","TX","Wood",1
+"2711","Texas","TX","Yoakum",0
+"2712","Texas","TX","Young",0
+"2713","Texas","TX","Zapata",0
+"2714","Texas","TX","Zavala",0
+"2715","Texas","TX","Nacogdoches",0
+"2716","Texas","TX","Navarro",0
+"2717","Texas","TX","Newton",0
+"2720","Texas","TX","Hamilton",0
+"2722","Texas","TX","Hardeman",0
+"2723","Texas","TX","Hardin",0
+"2724","Texas","TX","Harris",169
+"2725","Texas","TX","Fayette",0
+"2726","Texas","TX","Dickens",0
+"2727","Texas","TX","Dimmit",0
+"2729","Texas","TX","Duval",0
+"2730","Texas","TX","Eastland",0
+"2731","Texas","TX","Ector",0
+"2732","Texas","TX","Edwards",0
+"2733","Texas","TX","El Paso",0
+"2734","Texas","TX","Ellis",0
+"2735","Texas","TX","Erath",0
+"2736","Texas","TX","Falls",0
+"2737","Texas","TX","Fannin",0
+"2738","Texas","TX","Montgomery",6
+"2739","Texas","TX","Fisher",0
+"2740","Texas","TX","Floyd",0
+"2741","Texas","TX","Foard",0
+"2742","Texas","TX","Fort Bend",7
+"2743","Texas","TX","Franklin",0
+"2744","Texas","TX","Medina",0
+"2745","Texas","TX","Menard",0
+"2746","Texas","TX","Midland",0
+"2747","Texas","TX","Milam",1
+"2748","Texas","TX","Mills",0
+"2749","Texas","TX","Mitchell",0
+"2750","Texas","TX","Montague",0
+"2751","Texas","TX","Glasscock",0
+"2753","Texas","TX","Morris",0
+"2754","Texas","TX","Motley",0
+"2755","Texas","TX","Gregg",5
+"2756","Texas","TX","Grimes",0
+"2757","Texas","TX","Guadalupe",0
+"2758","Texas","TX","Freestone",0
+"2759","Texas","TX","Frio",1
+"2760","Texas","TX","Gaines",0
+"2761","Texas","TX","Galveston",3
+"2762","Texas","TX","Garza",0
+"2763","Texas","TX","Gillespie",0
+"2764","Texas","TX","Grayson",0
+"2765","Texas","TX","Goliad",0
+"2766","Texas","TX","Gonzales",0
+"2768","Utah","UT","Iron",95
+"2773","Utah","UT","Davis",3
+"2781","Utah","UT","Millard",12
+"2783","Utah","UT","Weber",20
+"2785","Utah","UT","Salt Lake",10
+"2788","Utah","UT","Sevier",19
+"2791","Utah","UT","Beaver",2
+"2792","Utah","UT","Utah",7
+"2794","Utah","UT","Washington",561
+"2795","Utah","UT","Box Elder",610
+"2796","Utah","UT","Cache",16
+"2811","Virginia","VA","Arlington",0
+"2812","Virginia","VA","Accomack",0
+"2813","Virginia","VA","Albemarle",0
+"2814","Virginia","VA","Alexandria City",0
+"2816","Virginia","VA","Amelia",0
+"2820","Virginia","VA","Gloucester",0
+"2821","Virginia","VA","Goochland",0
+"2823","Virginia","VA","Greene",0
+"2824","Virginia","VA","Greensville",0
+"2826","Virginia","VA","Hampton City",0
+"2827","Virginia","VA","Hanover",0
+"2828","Virginia","VA","Harrisonburg City",0
+"2829","Virginia","VA","Henrico",0
+"2831","Virginia","VA","Highland",0
+"2832","Virginia","VA","Hopewell City",0
+"2833","Virginia","VA","Isle of Wight",0
+"2834","Virginia","VA","James City",1
+"2835","Virginia","VA","King George",0
+"2836","Virginia","VA","King William",0
+"2837","Virginia","VA","King and Queen",0
+"2838","Virginia","VA","Lancaster",0
+"2841","Virginia","VA","Loudoun",0
+"2842","Virginia","VA","Louisa",0
+"2843","Virginia","VA","Lunenburg",0
+"2845","Virginia","VA","Madison",0
+"2847","Virginia","VA","Mathews",0
+"2848","Virginia","VA","Mecklenburg",0
+"2849","Virginia","VA","Middlesex",0
+"2851","Virginia","VA","Nelson",0
+"2852","Virginia","VA","New Kent",0
+"2853","Virginia","VA","Newport News City",0
+"2854","Virginia","VA","Norfolk City",0
+"2855","Virginia","VA","Northampton",0
+"2856","Virginia","VA","Northumberland",0
+"2858","Virginia","VA","Nottoway",0
+"2859","Virginia","VA","Orange",0
+"2860","Virginia","VA","Page",0
+"2862","Virginia","VA","Petersburg City",0
+"2864","Virginia","VA","Portsmouth City",0
+"2865","Virginia","VA","Powhatan",0
+"2866","Virginia","VA","Prince Edward",0
+"2867","Virginia","VA","Prince George",0
+"2868","Virginia","VA","Prince William",0
+"2871","Virginia","VA","Rappahannock",0
+"2872","Virginia","VA","Richmond",0
+"2873","Virginia","VA","Richmond City",0
+"2877","Virginia","VA","Rockingham",0
+"2881","Virginia","VA","Shenandoah",0
+"2883","Virginia","VA","Southampton",0
+"2884","Virginia","VA","Spotsylvania",0
+"2885","Virginia","VA","Stafford",0
+"2886","Virginia","VA","Staunton City",0
+"2887","Virginia","VA","Suffolk City",0
+"2888","Virginia","VA","Surry",0
+"2889","Virginia","VA","Sussex",0
+"2891","Virginia","VA","Virginia Beach City",0
+"2892","Virginia","VA","Warren",0
+"2894","Virginia","VA","Waynesboro City",0
+"2895","Virginia","VA","Westmoreland",0
+"2896","Virginia","VA","Williamsburg City",0
+"2897","Virginia","VA","Winchester City",0
+"2900","Virginia","VA","York",0
+"2901","Virginia","VA","Augusta",0
+"2908","Virginia","VA","Brunswick",0
+"2910","Virginia","VA","Buckingham",0
+"2913","Virginia","VA","Caroline",0
+"2915","Virginia","VA","Charles City",0
+"2917","Virginia","VA","Charlottesville City",0
+"2918","Virginia","VA","Chesapeake City",0
+"2919","Virginia","VA","Chesterfield",0
+"2920","Virginia","VA","Clarke",0
+"2921","Virginia","VA","Colonial Heights City",0
+"2924","Virginia","VA","Culpeper",0
+"2925","Virginia","VA","Cumberland",0
+"2928","Virginia","VA","Dinwiddie",0
+"2929","Virginia","VA","Essex",0
+"2930","Virginia","VA","Fairfax",1
+"2931","Virginia","VA","Falls Church City",0
+"2932","Virginia","VA","Fauquier",0
+"2934","Virginia","VA","Fluvanna",0
+"2935","Virginia","VA","Franklin",0
+"2937","Virginia","VA","Frederick",0
+"2938","Virginia","VA","Fredericksburg City",0

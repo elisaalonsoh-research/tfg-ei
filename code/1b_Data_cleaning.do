@@ -43,7 +43,7 @@ global temp 		"${data}/temp"
 	* Log file:
 	log using "${log}/1b_Data_cleaning_${dt}.txt", text replace
 
-	/*
+	
 
 /***************************************************************************
                                  CPS DATA

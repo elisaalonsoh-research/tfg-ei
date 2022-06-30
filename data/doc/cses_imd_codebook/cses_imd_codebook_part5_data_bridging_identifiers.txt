@@ -1,0 +1,2665 @@
+===========================================================================
+
+                COMPARATIVE STUDY OF ELECTORAL SYSTEMS (CSES)
+                      INTEGRATED MODULE DATASET (IMD)
+
+             CODEBOOK PART 5: CSES IMD - DATA BRIDGING IDENTIFIERS 
+           FOR PARTIES/COALTIIONS ASSIGNED ALPHABETICAL CODES IN CSES
+
+                       PHASE 3 RELEASE - DECEMBER 8, 2020
+
+                             CSES Secretariat
+                               www.cses.org
+
+===========================================================================
+
+HOW TO CITE THE STUDY:
+
+The Comparative Study of Electoral Systems (www.cses.org). CSES INTEGRATED 
+MODULE DATASET PHASE 3 RELEASE [dataset and documentation]. 
+December 8, 2020 version. doi:10.7804/cses.imd.2020-12-08.
+
+These materials are based on work supported by the American National
+Science Foundation (www.nsf.gov) under grant numbers SES-0817701,
+SES-1154687, SES-1420973, and SES-1760058, the GESIS - Leibniz Institute
+for the Social Sciences, the University of Michigan, in-kind support of 
+participating election studies, the many organizations that sponsor
+planning meetings and conferences, and the numerous organizations that fund
+national election studies by CSES collaborators.
+
+Any opinions, findings, and conclusions, or recommendations expressed
+in these materials are those of the author(s) and do not necessarily
+reflect the views of the funding organizations.
+
+===========================================================================
+
+
+===========================================================================
+TABLE OF CONTENTS
+===========================================================================
+
+ 
+))) IMPORTANT NOTE REGARDING PHASE 3 RELEASE OF THE CSES INTEGRATED 
+    MODULE DATASET (IMD)
+
+
+))) OVERVIEW OF "CODEBOOK PART 5: PARTIES/COALITIONS - DATA BRIDGING
+                 IDENTIFIERS"
+
+
+))) HOW TO NAVIGATE THE CSES IMD CODEBOOK
+
+
+))) CSES IMD CODEBOOK - POLITY NOTES AND ELECTION STUDY NOTES
+
+
+))) MISSING CODES FOR BRIDGING IDENTIFIERS
+
+
+))) BRIDGING IDS MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS IN CSES IMD
+    BY POLITY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ALBANIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: AUSTRALIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: AUSTRIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: BELARUS
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: BELGIUM
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: BULGARIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: CANADA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: CROATIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: CZECH REP.
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: DENMARK
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ESTONIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: FINLAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: FRANCE
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: GERMANY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: G. BRITAIN
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: GREECE
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: HUNGARY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ICELAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: IRELAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ISRAEL
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ITALY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: JAPAN
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: LATVIA  
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: LITHUANIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: MEXICO
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: MONTENEGRO
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: NETHERLANDS
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: NEW ZEALAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: NORWAY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: POLAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: PORTUGAL
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: ROMANIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: RUSSIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SERBIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SLOVAKIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SLOVENIA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: S. AFRICA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SOUTH KOREA
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SPAIN
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SWEDEN
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: SWITZERLAND
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: TURKEY
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: UKRAINE
+    >>> BRIDGING IDs MARPOR CMP/ParlGov/CHES PARTIES/COALITIONS: USA
+
+
+))) BRIDGING IDs FROM PARTY FACTS PROJECT FOR PARTIES/COALITIONS IN CSES IMD
+    BY POLITY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ALBANIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ARGENTINA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: AUSTRALIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: AUSTRIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BELARUS
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BELGIUM
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BRAZIL
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BULGARIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CANADA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CHILE
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CROATIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CZECH REPUBLIC
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: DENMARK
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ESTONIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: FINLAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: FRANCE
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GERMANY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GREAT BRITAIN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GREECE
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: HONG KONG
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: HUNGARY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ICELAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: IRELAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ISRAEL
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ITALY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: JAPAN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: KENYA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: KYRGYZSTAN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: LATVIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: LITHUANIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: MEXICO
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: MONTENEGRO
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NETHERLANDS
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NEW ZEALAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NORWAY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PERU
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PHILIPPINES
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: POLAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PORTUGAL
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ROMANIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: RUSSIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SERBIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SLOVAKIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SLOVENIA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SOUTH AFRICA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SOUTH KOREA
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SPAIN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SWEDEN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SWITZERLAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: TAIWAN
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: THAILAND
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: TURKEY
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: UKRAINE
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: UNITED STATES
+    >>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: URUGUAY
+
+
+===========================================================================
+))) IMPORTANT NOTE REGARDING PHASE 3 RELEASE OF THE CSES INTEGRATED 
+    MODULE DATASET (IMD)
+===========================================================================
+
+This dataset and all accompanying documentation comprises the Phase 3 
+Release of the CSES Integrated Module Dataset (IMD). 
+
+The CSES Integrated Module Dataset is being released in a phased way. Thus,
+this release is an advanced version of the dataset, and thus lacks some of
+the checking, documentation, and inclusion of certain variables that are 
+expected with the Full Release of this dataset. 
+
+This Phase 3 Release is provided as a service to the CSES user community,
+for those analysts who find it valuable to work with preliminary versions
+of the dataset. We would appreciate being notified of any errors in the
+dataset or documentation by email to "cses@umich.edu."
+
+Users should expect future changes and improvements to the data and 
+documentation of variables. If users wish to re-use their programming code 
+on a future release of the file, the code should be written in a way that 
+is flexible and can be accommodating of these future changes.
+
+Users of the CSES Integrated Module Dataset (IMD) may wish to monitor the 
+errata for CSES IMD on the CSES website, to check for known errors which 
+may impact their analyses. To view errata for CSES IMD Phase 3, go to the 
+Data Center on the CSES website, navigate to the CSES IMD download page, 
+and click on the Errata link in the gray box to the right of the page.
+
+Users of the CSES Integrated Module Dataset (IMD) are also advised that 
+while the CSES IMD Codebook is comprehensive, users are strongly advised
+to consult Standalone Module documentation including Standalone Module 
+Codebooks, Macro Reports, Design Reports and Election Summaries.
+
+
+===========================================================================
+))) OVERVIEW OF "CODEBOOK PART 5: PARTIES/COALITIONS - DATA BRIDGING
+                 IDENTIFIERS"
+===========================================================================
+
+Part 5 of the CSES IMD Codebook details data bridging identifiers from
+other comparative projects. The data bridging identifiers are provided for
+all parties/coalitions assigned an alphabetical code in a CSES election
+study. We detail data bridging identifiers for the following studies:
+
+
+     - MARPOR/CMP
+       The Manifesto Project (MARPOR/CMP) provides the scientific community 
+       with parties’ policy positions derived from a content analysis of
+       parties’ electoral manifestos. It covers over 1000 parties from 1945
+       until today in over 50 countries on five continents. The DFG-funded
+       MARPOR/CMP project continues the work of the Manifesto Research Group
+       (MRG) and the Comparative Manifestos Project (CMP).
+ 
+ 
+     - ParlGov
+       ParlGov is a database that contains information about elections,
+       parties and cabinets. ParlGov is a data infrastructure for political
+       science and it covers all EU and most OECD democracies
+       (37 countries). The database combines approximately 1700 parties,
+       990 elections (9300 results), and 1600 cabinets (3800 parties).
+
+
+     - CHES
+       The Chapel Hill expert surveys estimate party positioning on
+       European integration, ideology and policy issues for national
+       parties in a variety of European countries. The first survey was
+       conducted in 1999, with subsequent waves in 2002, 2006, 2010, 2014,
+       and 2019. Questions on parties' general position on European
+       integration, several EU policies, general left/right, economic
+       left/right, and social left/right are common to all surveys.
+
+
+     - PARTY FACTS
+       Party Facts links datasets on political parties and provides an
+       online platform about parties and their history as recorded in
+       social science datasets.
+       Political scientists have accumulated a large amount of data on
+       political parties. With this information we can trace the dynamics
+       of party competition across countries and time. However, the many
+       existing datasets with crucial information about political parties
+       are difficult to link. Party Facts establishes an infrastructure
+       that supports political scientists in linking parties across
+       datasets.
+
+
+Data Bridging enables users to bring together information from CSES with 
+other data sources. The concept is part of CSES Data Linkage efforts. CSES
+has been a pioneer of Data Linkage with the inclusion of various 
+macro-level data originating from other sources (e.g., The World Bank, 
+the IDEA) directly in CSES data products, including in CSES IMD. These 
+macro data classify the political system's characteristics and contextual 
+conditions of a polity at the election time.  
+Data Bridging gives users the power to build on the direct data linkage 
+in CSES products by enabling users to easily link other data with CSES 
+products. CSES IMD enables users to bridge data with other prominent 
+datasets in political science by including standard identifiers at the
+polity, year, and party level used by other projects to facilitate 
+merging.
+
+CSES IMD facilitates data bridging with other datasets at the polity level
+with the following variables:
+    - IMD1006_UN       ID COMPONENT - POLITY UN ISO_3166-1 NUMERIC CODE
+    - IMD1006_UNAlpha2 ID COMPONENT - POLITY UN ISO_3166-1 ALPHABETIC
+                                      TWO LETTER CODE
+    - IMD1006_NAM      ID COMPONENT - POLITY NAME
+    - IMD1006_VDem     ID COMPONENT - V-Dem POLITY IDENTIFIER
+    
+More details can be found on all these variables in CSES IMD Codebook 
+Part 2 by searching for the variable name (e.g., "IMD1006_UN") or using
+the search term "POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER". 
+
+CSES IMD facilitates data bridging with other datasets at the regional 
+level through the following variable:  
+    - IMD1006_REG      ID COMPONENT - POLITY UN GEOGRAPHIC REGIONS NUMERIC
+                                      CODES
+More details can be found on this variable in CSES IMD Codebook Part 2
+by searching for the variable name (e.g., "IMD1006_REG") or using the
+search term "POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER". 
+
+CSES IMD facilitates data bridging with other datasets by date through 
+the following variables:  
+    - IMD1008_YEAR     ID COMPONENT - ELECTION YEAR
+    - IMD1011_M        DATE 1ST ROUND ELECTION BEGAN - MONTH
+    - IMD1011_D        DATE 1ST ROUND ELECTION BEGAN - DAY
+    - IMD1011_Y        DATE 1ST ROUND ELECTION BEGAN - YEAR
+    - IMD1011_1        DATE 1ST ROUND ELECTION BEGAN - YYYY-MM-DD
+    - IMD1011_2        DATE 1ST ROUND ELECTION BEGAN - YYYYMM
+    - IMD1012_M        DATE 2ND ROUND ELECTION BEGAN - MONTH
+    - IMD1012_D        DATE 2ND ROUND ELECTION BEGAN - DAY
+    - IMD1012_Y        DATE 2ND ROUND ELECTION BEGAN - YEAR
+    - IMD1012_1        DATE 2ND ROUND ELECTION BEGAN - YYYY-MM-DD
+    - IMD1012_2        DATE 2ND ROUND ELECTION BEGAN - YYYYMM                 
+
+More details can be found on all these variables in CSES IMD Codebook 
+Part 2 by searching for the variable name (e.g., "IMD1008_YEAR") or using
+the search term "POTENTIAL TIME BRIDGING IDENTIFIER". 
+
+CSES IMD facilitates data bridging with other datasets at the
+party/coalition level with the following variables: 
+    - IMD5100_A-I      MANIFESTO RESEARCH ON POLITICAL REPRESENTATION 
+                       (MARPOR/CMP) IDENTIFIER - PARTY A-I
+    - IMD5101_A-I      PARLIAMENTS AND GOVERNMENT DATABASE (PARLGOV) 
+                       IDENTIFIER - PARTY A-I
+    - IMD5102_A-I      CHAPEL HILL EXPERT SURVEY (CHES) IDENTIFIER -
+                       PARTY A-I
+    - IMD5103_A-I      PARTY FACTS IDENTIFIER - PARTY A-I 
+
+More details can be found on all these variables in CSES IMD Codebook 
+Part 2 by searching for the variable name (e.g., "IMD5100_A") or using
+the search term "POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER."
+Users can find the specific bridging codes for each party/coalition
+assigned an alphabetical code in CSES here in Part 5 of the CSES
+IMD Codebook (see below).
+
+In the section "BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS 
+FOR CSES IMD BY POLITY" of the Part 5 of CSES IMD Codebook, polities are 
+listed if they appear in at least one project. The following polities are 
+not represented in these projects and thus are not listed:
+ARGENTINA, BRAZIL, CHILE, HONG KONG, KENYA, KYRGYZSTAN, PERU, PHILIPPINES
+and URUGUAY. Code 9999 listed for a polity under a particular project 
+indicates that the polity is not included in the project. 
+
+
+===========================================================================
+))) HOW TO NAVIGATE THE CSES IMD CODEBOOK
+===========================================================================
+
+CSES IMD Codebook is produced in .txt format to allow for easy accessibility 
+and as such, the Codebook can be read into a variety of programs. 
+ 
+The CSES IMD Codebook can be navigated quickly in the electronic files, with
+the following commands allowing for quick searching:
+ 
+)))  = Section Header 
+
+>>>  = Sub-section Header 1
+
+<<>> = Sub-section Header 2
+
++++  = Tables
+
+VARIABLES NOTES = Notes for particular variables. 
+
+POLITY NOTES = Notes for a particular polity.  
+
+[POLITY NOTES] = Notes for a particular polity where data in CSES IMD
+deviates from published data in Standalone CSES Modules.
+
+ELECTION STUDY NOTES = Notes for a particular election study.  
+
+[ELECTION STUDY NOTES] = Notes for a particular election study where data
+in CSES IMD deviates from published data in Standalone CSES Modules.
+
+DERIVATIVE VARIABLE = Highlights a variable derived from another 
+variable or variables within the CSES.
+
+POTENTIAL POLITY LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at polity level.
+
+POTENTIAL REGIONAL LEVEL BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging at regional level.
+
+POTENTIAL TIME BRIDGING IDENTIFIER = 
+Highlights a variable that may be used for data bridging by time.
+
+POTENTIAL PARTY/COALITION LEVEL BRIDGING IDENTIFIER = Highlights a variable 
+that may be used for data bridging at party/coalition level.
+
+
+===========================================================================
+))) CSES IMD CODEBOOK - POLITY NOTES AND ELECTION STUDY NOTES
+===========================================================================
+
+A unique dimension of the CSES is the inclusion of POLITY NOTES and
+ELECTION STUDY NOTES. They are notes which are attached to each 
+variable included in the dataset and refer to case-specific 
+information regarding a particular variable. This information
+may apply to a polity consistently in the dataset (i.e., a POLITY NOTE)
+or one election study in the dataset (i.e., an ELECTION STUDY NOTE). 
+Their purpose is to provide users with more detailed information on the 
+case or explain essential deviations specific to cases from CSES 
+conventions. 
+
+They can be navigated in the Codebook by searching for "POLITY NOTES" or
+"ELECTION STUDY NOTES" in Parts 2-5 of the CSES IMD Codebook.
+
+
+===========================================================================
+))) MISSING CODES FOR BRIDGING IDENTIFIERS
+===========================================================================
+
+CSES lists party identifiers from four comparative projects: MARPOR/CMP,
+ParlGov, CHES, and Party Facts.
+
+However, data is not always available for a party appearing in CSES in some
+of these projects or because CSES assigns an alphabetical code to a party
+that is not assigned a party code in these projects.
+For example, MARPOR/CMP assigns code 62420 to Liberal Party (LIB) in Canada,
+but in CSES, this party is assigned numerical code 1240001. The same party
+does not exist in the CHES dataset and is therefore assigned
+“9999. Missing” code for the CHES bridging identifier.  
+
+When there is no bridging identifier for CSES relational data in one of
+these four datasets, it will be denoted by the value "9999" for ParlGov,
+CHES and Party Facts. For MARPOR/CMP, these missing values are denoted by
+the value “999999”.
+
+Below, we list the election studies present in CSES but where data is
+absent from four other projects by alphabetical order and by year 
+
+      - MANIFESTO PROJECT DATABASE - MARPOR/CMP
+        MARPOR/CMP party data are unavailable for the following election
+        studies included in CSES:  
+        - ARGENTINA (2015), 
+        - BRAZIL (2002, 2006, 2010, 2014), 
+        - CHILE (1999, 2005, 2009), 
+        - HONG KONG (1998, 2000, 2004, 2008, 2012)
+        - KENYA (2013),
+        - KYRGYZSTAN (2005),
+        - PERU (2000, 2001, 2006, 2011, 2016),
+        - PHILIPPINES (2004, 2010, 2016),
+        - TAIWAN (1996, 2001, 2004, 2008, 2012),
+        - THAILAND (2001, 2007, 2011),
+        - URUGUAY (2009).
+
+      - PARLIAMENTS AND GOVERNMENTS DATABASE - ParlGov 
+        ParlGov party data are unavailable for the following election
+        studies included in CSES:
+        - ALBANIA (2005),
+        - ARGENTINA (2015),
+        - BELARUS (2001, 2008),
+        - BRAZIL (2002, 2006, 2010, 2014),
+        - CHILE (1999, 2005, 2009),
+        - HONG KONG (1998, 2000, 2004, 2008, 2012),
+        - KENYA (2013),
+        - KYRGYZSTAN (2005),
+        - MEXICO (1997, 2000, 2003, 2006, 2009, 2012, 2015),
+        - MONTENEGRO (2012),
+        - PERU (2000, 2001, 2006, 2011, 2016),
+        - PHILIPPINES (2004, 2010, 2016),
+        - RUSSIA (1999, 2000, 2004),
+        - SERBIA (2012),
+        - SOUTH AFRICA (2009, 2014),
+        - SOUTH KOREA (2000, 2004, 2008, 2012),
+        - TAIWAN (1996, 2001, 2004, 2008, 2012),
+        - THAILAND (2001, 2007, 2011),
+        - UKRAINE (1998),
+        - UNITED STATES (1996, 2004, 2008, 2012),
+        - URUGUAY (2009). 
+
+      - CHAPEL HILL EXPERT SURVEYS - CHES
+        CHES party data are unavailable for the following election studies
+        included in CSES:
+        - ALBANIA (2005),
+        - ARGENTINA (2015),
+        - AUSTRALIA (1996, 2004, 2007, 2013),
+        - BELARUS (2001, 2008),
+        - BRAZIL (2002, 2006, 2010, 2014),
+        - CANADA (1997, 2004, 2008, 2011, 2015),
+        - CHILE (1999, 2005, 2009),
+        - HONG KONG (1998, 2000, 2004, 2008, 2012),
+        - ICELAND (1999, 2003, 2007, 2009, 2013),
+        - ISRAEL (1996, 2003, 2006, 2013),
+        - JAPAN (1996, 2004, 2007, 2013),
+        - KENYA (2013),
+        - KYRGYZSTAN (2005),
+        - MEXICO (1997, 2000, 2003, 2006, 2009, 2012, 2015),
+        - MONTENEGRO (2012),
+        - NEW ZEALAND (1996, 2002, 2008, 2011, 2014),
+        - PERU (2000, 2001, 2006, 2011, 2016),
+        - PHILIPPINES (2004, 2010, 2016),
+        - SERBIA (2012),
+        - RUSSIA (1999, 2000, 2004),
+        - SOUTH AFRICA (2009, 2014),
+        - SOUTH KOREA (2000, 2004, 2008, 2012),
+        - TAIWAN (1996, 2001, 2004, 2008, 2012),
+        - THAILAND (2001, 2007, 2011),
+        - UKRAINE (1998),
+        - UNITED STATES (1996, 2004, 2008, 2012),
+        - URUGUAY (2009).
+
+Users are advised that CSES and MARPOR/CMP sometimes classify coalitions 
+differently in elections and across polities. For example CSES sometimes 
+has data solely on coalitions and not the parties comprising the alliance, 
+while MARPOR/CMP may have data concerning the individual parties in the 
+coalition, or vice versa. Consequently, some parties may have multiple 
+identifiers within the MARPOR/CMP dataset across time. A non comprehensive 
+list of these deviations are noted in POLITY NOTES below.
+
+
+===========================================================================
+))) BRIDGING IDs MARPOR/ParlGov/CHES FOR PARTIES/COALITIONS FOR CSES IMD 
+    BY POLITY
+===========================================================================
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ALBANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Socialist Party (PS)                             75220 |      9999 |   9999
+Democratic Party (PD)                            75624 |      9999 |   9999
+Socialist Movement for Integration (LSI)        999999 |      9999 |   9999
+Republican Party (PR)                            75722 |      9999 |   9999
+Social Democratic Party (PSD)                    75320 |      9999 |   9999
+Christian Democratic Party (PDK)                999999 |      9999 |   9999
+Democratic Alliance Party (PAD)                  75421 |      9999 |   9999
+New Democratic Party (PDR)                      999999 |      9999 |   9999
+Agrarian Party (PAA)                             75810 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: AUSTRALIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Liberal Party (LP)                               63620 |      1411 |   9999
+National Party of Australia (NPA)                63810 |       184 |   9999
+Australian Labor Party (ALP)                     63320 |      1253 |   9999
+Australian Democrats (AD)                        63321 |       120 |   9999
+Australian Greens (AG)                           63110 |       751 |   9999
+One Nation Party (ONP)                          999999 |       386 |   9999
+Family First Party (FFP)                        999999 |       446 |   9999
+Palmer United Party (PUP)                        63410 |      2259 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: AUSTRIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Social Democratic Party of Austria (SPO)         42320 |       973 |   1301
+Austrian People's Party (OVP)                    42520 |      1013 |   1302
+Freedom Party of Austria (FPO)                   42420 |        50 |   1303
+Alliance for the Future of Austria (BZO)         42710 |      1536 |   1307
+The Greens - The Green Alternative (GRUENE)      42110 |      1429 |   1304
+Communist Party of Austria (KPO)                 42220 |       769 |   9999
+Liberal Forum (LiF)                              42421 |       955 |   1306
+The New Austria (NEOS)                           42430 |      2255 |   1306
+Pirate Party (PIRATEN)                          999999 |      9999 |   9999
+Team Stronach (TEAM STRONACH)                    42951 |      2150 |   1310
+Dinkhauser List                                 999999 |      1746 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: BELARUS
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Communist Party of Belarus                       78211 |      9999 |   9999
+Liberal Democratic Party (LDP)                  999999 |      9999 |   9999
+Republican Party of Labour and Justice          999999 |      9999 |   9999
+Agrarian Party                                   78212 |      9999 |   9999
+United Civil Party                              999999 |      9999 |   9999
+Belarusian Social-Democratic (Assembly)         999999 |      9999 |   9999
+The Party of Communists Belorusskaya            999999 |      9999 |   9999
+Belarusian Socialist Sporting Party             999999 |      9999 |   9999
+Christian Conservative Party (BPF)              999999 |      9999 |   9999
+Belarusian Social-Democratic Party (BSDPH)       78710 |      9999 |   9999
+The BNF Party                                   999999 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: BELGIUM
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+New Flemish Alliance (N-VA)                      21916 |       501 |    110
+Socialist Party (Francophone) (SP)               21322 |      1029 |    102
+Christian Democratic & Flemish (CD&V)            21521 |       723 |    109
+Flemish Liberals and Democrats (VLD)             21421 |      1110 |    107
+Socialist Party (SP)                             21321 |      1029 |    102
+Humanist Democratic Centre (CDH)                 21522 |      1192 |    108
+Flemish Block (VB)                               21914 |       993 |    112
+Confederated Ecologists (ECOLO)                  21111 |       161 |    104
+People's Union (VU)                              21913 |       290 |    110
+Liberal Reformist Party -
+Francophone Democratic Front (PRL - FDF)         21423 |       454 |    106
+Live Differently - Flemish-speaking Ecologists   21112 |      1594 |    105
+(AGALEV)
+National Front (FN)                             999999 |       171 |    115
+Christian Social Party (CSP)                     21522 |       119 |    108
+Alive (V)                                       999999 |       620 |   9999
+Reformist Movement (MR)                          21426 |       915 |    106
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: BULGARIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Citizens for European Development of Bulgaria    80510 |      1541 |   2010
+(GERB)
+Bulgarian Socialist Party (BSP) ##               80220 |       982 |   2003
+Movement for Rights and Freedoms (DPS)           80951 |      1286 |   2004
+Reformist Bloc (RB)                              80061 |      2363 |   9999
+Patriotic Front	NFSB and IMRO                    80062 |      2211 |   9999
+Bulgaria without Censorship (BBZ)                80630 |      2362 |   2015
+Attack (Ataka)                                   80710 |       535 |   2007
+Alternative for Bulgarian Revival (ABV)          80330 |      2364 |   2016
+Movement 21 (D21)                               999999 |      2379 |   9999
+National Movement for Stability and Progress     80902 |      9999 |   9999
+(NDS)
+BSP Left Bulgaria - Coalition for Bulgaria       80221 |      1160 |   2003
+(KzB | DL)
+Inner Macedonian Revolutionary Organization     999999 |      2212 |   2005
+(VMRO)
+United Democratic Forces (UDF)                   80411 |      9999 |   2002
+Movement 'Georgievden' (DG)                     999999 |      1362 |   9999
+Euroleft (BE)                                   999999 |       710 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - BULGARIA: BRIDGING ID MARPOR/CMP
+         |
+         | The Bulgarian Socialist Party (BSP) participated in the alliance
+         | "Coalition for Bulgaria" in the 2001 elections. For this contest
+         | MARPOR/CMP does not include data on the party. Instead, the 
+         | alliance is classified. MARPOR/CMP data for the alliance, of
+         | which this party was a part of for this contest, is available
+         | using the MARPOR/CMP numerical code 80221.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: CANADA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Liberal Party (LIB)                              62420 |       368 |   9999
+Conservative Party (CP)                          62623 |      1255 |   9999
+New Democratic Party (NDP)                       62320 |       296 |   9999
+Bloc Quebecois (BQ)                              62901 |       448 |   9999
+Green Party (GP)                                 62110 |      1259 |   9999
+Progressive Conservative (PC)                    62620 |       794 |   9999
+Reform Party (RPC)                               62621 |       897 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: CROATIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Croatian Democratic Union (HDZ)                  81711 |       276 |   3101
+Social Democratic Party of Croatia (SDP)         81220 |      1493 |   3102
+Croatian People's Party- Liberal Democrats (HNS) 81712 |      1384 |   3105
+Croatian Party of Pensioners (HSU)               81957 |      2134 |   9999
+Croatian Peasant Party (HSS) ##                  81810 |      1465 |   3103
+Croatian Social Liberal Party (HSLS) ##          81410 |      1102 |   3104
+Croatian Democratic Alliance of Slavonia and     81952 |      2135 |   3107
+Baranja (HDSSB)
+Croatian Party of Rights (HSP)                   81713 |      1044 |   3113
+Istrian Democratic Assembly (IDS)                81953 |      1627 |   3106
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - CROATIA: BRIDGING ID MARPOR/CMP
+         |
+         | The Croatian Peasant Party (HSS) and the Croatian Social Liberal 
+         | Party (HSLS) formed an alliance in the 2007 elections. For this 
+         | contest MARPOR/CMP does not include data on the individual 
+         | parties. Instead, the alliance is classified. MARPOR/CMP data for
+         | the alliance, of which these parties were a part of for this
+         | contest, is available using the MARPOR/CMP numerical code 81041.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: CZECH 
+                                                                 REPUBLIC
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Czech Social Democratic Party (CSSD)             82320 |       789 |   2101
+Civic Democratic Party (ODS)                     82413 |       829 |   2102
+Christian Democratic Union- Czech People's Party 82523 |      1245 |   2104
+(KDU-CSL) ##
+Communist Party of Bohemia and Moravia (KSCM)    82220 |      1173 |   2103
+Green Party (SZ)                                 82110 |       196 |   2107
+Action of Dissatisfied Citizens (ANO 2011)       82430 |      2263 |   2111
+TOP 09 (TOP 09)                                  82530 |         2 |   2109
+Civic Democratic Alliance (ODA)                  82412 |      1123 |   9999
+Czech Pirate Party (Pirati)                      82953 |      2261 |   9999
+Dawn of Direct Democracy of Tomio Okamura (Usvit)82720 |      2654 |   2112
+Public Affairs (VV)                              82952 |       336 |   2110
+Freedom Union - Democratic Union (US-DEU) ##    999999 |       688 |   2105
+Association for the Republic - Czech Republican
+Party (SPR-RSC)                                  82710 |       872 |   9999
+Party of Citizen Rights-Zemanites (SPO)         999999 |       406 |   9999
+SNK European Democrats (SNK ED)                 999999 |      1532 |   2106
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - CZECH REPUBLIC: BRIDGING ID MARPOR/CMP
+         |
+         | The Christian Democratic Union - Czech People's Party (KDU-CSL) 
+         | and the Freedom Union - Democratic Union (US-DEU) formed an
+         | alliance in the 2002 elections. For this contest MARPOR/CMP does
+         | not include data on the parties. Instead, the alliance is 
+         | classified. MARPOR/CMP data for the alliance, of which these
+         | parties were a part of for this contest, is available using the
+         | MARPOR/CMP numerical code 82524.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: DENMARK
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Social Democrats (Sd)                            13320 |      1629 |    201
+Liberal Party (V)                                13420 |      1605 |    211
+Socialist People's Party (SF)                    13230 |      1644 |    206
+United List - Red-Greens (En - O)                13229 |       306 |    213
+Danish Social Liberal Party (RV)                 13410 |       211 |    202
+Conservative People's Party (KF)                 13620 |       590 |    203
+Christian Democrats (KD)                         13520 |      1331 |   9999
+New Alliance (NA)                                13001 |       376 |   9999
+Danish People's Party (DF)                       13720 |      1418 |    215
+Centre Democrats (CD)                            13330 |      1324 |    204
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ESTONIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Estonian Reform Party (ER e)                     83430 |       113 |   2203
+Estonian Centre Party (EK)                       83411 |      1137 |   2202
+Social Democratic Party (SDE)                    83410 |      1448 |   2204
+Pro Patria and Res Publica Union (IRL)           83611 |       846 |   2201
+Estonian Greens (EER)                            83110 |      2631 |   2207
+Estonian People's Union (ER a)                   83612 |       417 |   2206
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: FINLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Center Party (KESK)                              14810 |        94 |   1403
+Social Democratic Party of Finland (SDP)         14320 |       395 |   1401
+National Coalition Party (KOK)                   14620 |      1118 |   1402
+True Finns (PS)                                  14820 |       200 |   1405
+Green League (VIHR)                             999999 |      1062 |   1408
+Left Alliance (VAS)                              14223 |      1292 |   1404
+Christian Democrats (KD)                         14520 |      1463 |   1409
+Swedish People's Party in Finland (RKP - SFP)    14901 |       585 |   1406
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: FRANCE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Union for a Popular Movement (UMP)               31626 |       658 |    609
+Socialist Party (PS)                             31320 |      1539 |    602
+Democratic Movement (MoDem)                      31624 |       509 |    613
+French Communist Party (PCF)                     31220 |       686 |    601
+Europe Ecology - The Greens (EELV)               31110 |       873 |    605
+Left Front (FDG)                                 31021 |       686 |   9999
+National Front (FN)                              31720 |       270 |    610
+Rally For The Republic (RPR)                     31625 |       138 |    609
+Workers' Struggle (LO)                          999999 |      1176 |    614
+Republican And Civic Movement (MDC)             999999 |      2143 |   9999
+Liberal Democracy (LD)                          999999 |        59 |    615
+Revolutionary Communist League (LCR)            999999 |       442 |    614
+Radical Party of the Left (RPG)                  31230 |      1492 |    603
+New Centre (NC)                                  31630 |      1058 |    621
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: GERMANY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Christian Democratic Party (CDU) ##              41521 |       808 |    301
+Christian Social Union in Bavaria (CSU) ##       41521 |      1180 |    308
+Social Democratic Party (SPD)                    41320 |       558 |    302
+Alliance 90/Greens (B90/GRUENE)                  41113 |       255 |    304
+Free Democratic Party (FDP)                      41420 |       543 |    303
+Left Party (DIE LINKE) ##                        41223 |       791 |    306
+The Republicans (REP)                           999999 |       524 |    305
+National Democratic Party Of Germany (NPD)      999999 |      1537 |    309
+Alternative for Germany (AfD)                    41953 |      2253 |    310
+Pirates Party (PIRATEN)                          41952 |       865 |    311
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - GERMANY: BRIDGING ID MARPOR/CMP
+         |
+         | MARPOR/CMP includes a joint code for the coalition Christian 
+         | Democratic Union / Christian Social Union (CDU/CSU) which is why 
+         | the CDU and CSU are assigned identical codes.
+         |
+         | MARPOR/CMP assigns several codes to the Left Party (DIE LINKE). 
+         | The code 41223 reported above is used by MARPOR/CMP since the 
+         | 2009 elections. 
+         | For the 2005 election, MARPOR/CMP classifies the party as
+         | "41222. The Left. Party of Democratic Socialism". 
+         | For the 1998 and 2002 election, MARPOR/CMP classifies the party 
+         | as "41221. Party of Democratic Socialism", the old name of the 
+         | Left Party before merging with Labor and Social Justice - 
+         | The Electoral Alternative (WASG) in 2007. 
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: GREAT 
+                                                                 BRITAIN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Conservatives (Con)                              51620 |       773 |   1101
+Labour (Lab)                                     51320 |      1556 |   1102
+Liberal Democrats (LD)                           51421 |       659 |   1104
+Scottish National Party (SNP)                    51902 |      1284 |   1105
+Green Party (GP)                                 51110 |       467 |   1107
+Plaid Cymru (PC)                                 51901 |       311 |   1106
+United Kingdom Independence Party (UKIP)         51951 |      1272 |   1108
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: GREECE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Pan-Hellenic Socialist Movement (PASOK)          34313 |      1338 |    401
+New Democracy (ND)                               34511 |        47 |    402
+Coalition of the Radical Left (SYRIZA) ##        34212 |      1592 |    403
+Communist Party of Greece (KKE)                  34210 |       614 |    404
+Ecologists - Greens Oik. Pras (OP)              999999 |      1280 |    411
+Golden Dawn (LS - XA)                            34720 |      2092 |    415
+The Independent Greeks (ANEL)                    34730 |      2091 |    412
+Democratic Left (DIMAR)                          34213 |      2093 |    414
+The River                                        34340 |      2346 |    413
+Popular Orthodox Rally (La. O. S)                34710 |      1179 |    410
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - GREECE: BRIDGING ID MARPOR/CMP
+         |
+         | MARPOR/CMP assigns two separate codes to the Coalition of the 
+         | Radical Left (SYRIZA). The code 34212 reported above is used by 
+         | MARPOR/CMP since the June 2012 elections. 
+         | For the 2009 and May 2012 elections, MARPOR/CMP assigns code  
+         | 34020 to SYRIZA. 
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: HUNGARY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Hungarian Socialist Party (MSZP)                 86220 |      1591 |   2301
+Fidesz-Hungarian Civic Party Alliance Party      86421 |       921 |   2302
+(Fidesz - MPP)
+Hungarian Justice and Life Party (MIEP)          86620 |        95 |   2305
+Hungarian Worker's Party (MMP)                  999999 |      1202 |   9999
+Hungarian Democratic Forum (MDF)                 86521 |       546 |   2303
+Alliance of Free Democrats (SZDSZ)               86422 |      1426 |   2304
+Independent Small Holders Party (FKgP)           86810 |       870 |   9999
+Alliance for Hungary - Center Party             999999 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ICELAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Independence Party (Sj)                          15620 |      1342 |   9999
+Social Democratic Alliance (Sam)                999999 |      1006 |   9999
+Progressive Party (F)                            15810 |      1455 |   9999
+Liberal Party (FF)                               15420 |      2441 |   9999
+Left-Green Movement (VG)                         15111 |       210 |   9999
+Bright Future (BF)                               15440 |      2204 |   9999
+Pirata (Pi)                                      15952 |      2205 |   9999
+Civic Movement (B)                               15430 |       587 |   9999
+Icelandic Movement (IL)                          15328 |      2115 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: IRELAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Fianna Fail (FF)                                 53620 |       280 |    701
+Fine Gael (FG)                                   53520 |      1393 |    702
+Labour (Lab)                                     53320 |       318 |    703
+Sinn Fein (SF)                                   53951 |       433 |    707
+Greens (GP)                                      53110 |      1573 |    705
+Progressive Democrats (PD)                       53420 |       651 |   9999
+United Left Alliance (ULA)                       53021 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ISRAEL
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+The Consolidation (Likud - L)                    72622 |       678 |   9999
+Israeli Labor Party (MHH)                        72323 |       244 |   9999
+Sfarad's Keepers of the Torah (Shas)             72533 |       788 |   9999
+Energy (Meretz)                                  72326 |      1419 |   9999
+United Torah Judaism (YH)                        72535 |      1303 |   9999
+There is a Future (YA)                           72440 |      2321 |   9999
+The Jewish Home (HH)                             72701 |       214 |   9999
+The Movement (Hat)                               72431 |      2320 |   9999
+United Arab List (Ra'am)                         72901 |      2311 |   9999
+The Consolidation (Likud) - Yisrael Beiteinu ## 999999 |      9999 |   9999
+National Religious Party (Mafdal)                72530 |       214 |   9999
+Change (Shinui)                                  72413 |      1850 |   9999
+Forward (Kadima)                                 72430 |      1870 |   9999
+Israel is Our Home (YB)                          72625 |      1816 |   9999
+National Union (HaLe)                            72624 |      1357 |   9999
+National Union - National Religious Party        72530 |      1357 |   9999
+(HaLe - Mafdal)
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - ISRAEL: BRIDGING ID MARPOR/CMP
+         |
+         | The Consolidation (Likud - L) and Israel is Our Home (YB) formed
+         | an alliance in the 2013 elections. For this contest MARPOR/CMP 
+         | does not include data on the alliance. Instead, individual 
+         | parties are classified. MARPOR/CMP data for these parties for 
+         | this contest is available under codes:
+         | - 72622 (Likud) 
+         | - 72625 (YB).
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ITALY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Forward Italy (Forza Italia - FI)                32610 |       596 |    815
+Democrats of the Left (DS) ##                    32220 |       809 |    802
+Union of Christian and Centre Democrats (UDC)    32530 |       226 |    814
+Communist Refoundation Party (PRC)               32212 |      1321 |    803
+Daisy - Democracy is Freedom (DL) ##             32421 |      1005 |    819
+National Alliance (AN)                           32710 |       373 |    805
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - ITALY: BRIDGING ID MARPOR/CMP
+         |
+         | The Democrats of the Left (DS) and Daisy - Democracy is 
+         | Freedom (DL) participated in the alliance "Olive Tree" in the 
+         | 2006 elections. For this contest MARPOR/CMP does not include data
+         | on the parties. Instead, the alliance is classified. MARPOR/CMP
+         | data for the alliance, of which this party was a part of for this
+         | contest, is available using the MARPOR/CMP numerical code 32329.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: JAPAN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Liberal Democratic Party (LDP)                   71620 |      1193 |   9999
+Democratic Party of Japan (DPJ)                  71624 |       439 |   9999
+New Komeito (NK)                                999999 |       837 |   9999
+Japanese Communist Party (JCP)                   71220 |      1540 |   9999
+Green Wind                                      999999 |      9999 |   9999
+Social Democratic Party (SDP)                    71320 |       940 |   9999
+Japan Restoration Party (JReP)                   71430 |      2136 |   9999
+Your Party (YP)                                 999999 |      1124 |   9999
+People's Life Party (PLP)                        71111 |      2069 |   9999
+New Frontier Party (NFP)                         71623 |      1136 |   9999
+New Party Harbinger (NPH)                        71951 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: LATVIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Harmony Centre (SC) ##                           87340 |      1100 |   2410
+Unity (V)                                        87320 |      1666 |   2412
+National Union All for Latvia For Fatherland and 87710 |      1557 |   2406
+Freedom (LNNK)
+For a Good Latvia (PLL)                          87061 |      1667 |   9999
+Union of Greens and Farmers (ZZS)                87110 |       466 |   2405
+For Human Rights in United Latvia (PCTVL)        87422 |      1520 |   2402
+Reform Party (RP)                                87620 |      1942 |   2411
+For Latvia from the Heart (NsL)                  87630 |      2365 |   2413
+Latvian Association of the Regions (LRa)         87901 |      2366 |   2414
+Made in Latvia                                  999999 |      9999 |   9999
+Latvia's First Party/Latvian Way (LPP/LC)       999999 |       662 |   2407
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - LATVIA: BRIDGING ID MARPOR/CMP
+         |
+         | MARPOR/CMP assigns two separate codes to Harmony Centre (SC). 
+         | The code 87340 reported above is used by MARPOR/CMP since the 
+         | 2014 elections. 
+         | For the 2010 and 2011 elections, MARPOR/CMP classifies the party
+         | as "87021. Concord Centre". Code 87021 refers to the electoral 
+         | coalition preceding the Harmony Centre, which consisted of
+         | four main parties: the National Harmony Party, New Centre, the
+         | Social Democratic Party, and the Socialist Party.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: LITHUANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Homeland Union-Conservatives (TS - LK)           88621 |      1045 |   2506
+Christian Democratic Party                      999999 |       493 |   9999
+Social Democratic Party (LSDP)                   88320 |      1277 |   2501
+Democratic Labor Party (LDDP)                    88220 |       519 |   9999
+Center Union (LCS)                               88420 |       887 |   2505
+Nationalist Party - "Young Lithuania" (JL)      999999 |       383 |   2513
+A. Paulauskas (Independent)                     999999 |      9999 |   9999
+V. Adamkus (Independent)                        999999 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: MEXICO
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Institutional Revolutionary Party (PRI) ##      171301 |      9999 |   9999
+National Action Party (PAN)                     171601 |      9999 |   9999
+Democratic Revolution Party (PRD) ##            171305 |      9999 |   9999
+Labor Party (PT) ##                             171306 |      9999 |   9999
+Ecological Green Party of Mexico (PVEM) ##      171101 |      9999 |   9999
+New Alliance Party (PANAL or: PNA)              171309 |      9999 |   9999
+Citizen's Movement (MC) ##                      171311 |      9999 |   9999
+Social Democratic Party (PSD)                   171310 |      9999 |   9999
+National Regeneration Movement (MORENA)         171210 |      9999 |   9999
+Possible Mexico                                 999999 |      9999 |   9999
+Social Encounter Party (PES)                    171611 |      9999 |   9999
+Authentic Party of the Mexican                  171303 |      9999 |   9999
+Revolution (PARM)                               
+Social Alliance Party (PAS)                     999999 |      9999 |   9999
+Cardenista Party (PFCRN)                        171304 |      9999 |   9999
+Alliance for Change                             171601 |      9999 |   9999    
+Alliance for Mexico                             171301 |      9999 |   9999
+Mexican Liberal Party (PLM)                     999999 |      9999 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - MEXICO: BRIDGING ID MARPOR/CMP
+         |
+         | The Institutional Revolutionary Party (PRI) and the Ecological 
+         | Green Party of Mexico (PVEM) formed an electoral alliance since 
+         | the Mexican 2003 elections. For these contests MARPOR/CMP 
+         | sometimes provides data either on the member parties, on the 
+         | alliance, or on both. MARPOR/CMP data for the alliance, of which
+         | these parties were a part of for this contest, is available using
+         | the MARPOR/CMP numerical code 171032.
+         |     
+         | The Democratic Revolution Party (PRD), the Labor Party (PT) and
+         | Convergence (now: Citizen's Movement (MC)) participated in the
+         | alliance "For the Good of All" in the 2006 elections. 
+         | For this contest MARPOR/CMP does not include data on the member
+         | parties. Instead, the alliance is classified. MARPOR/CMP data for
+         | the alliance, of which these parties were a part of for this
+         | contest, is available using the MARPOR/CMP numerical code 171033.
+         |
+         | The Democratic Revolution Party (PRD), the Labor Party (PT) and
+         | Citizen's Movement (MC) participated in the alliance "Progressive
+         | Movement" in the 2012 elections. For this contest MARPOR/CMP does
+         | include data on the member parties and the alliance. 
+         | MARPOR/CMP data for the alliance, of which these parties were a
+         | part of for this contest, is available using the MARPOR/CMP
+         | numerical code 171035.  
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: MONTENEGRO
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Socialist People's Party (SNP)                   91224 |      9999 |   9999
+Positive Montenegro (PCG)                        91330 |      9999 |   9999
+Croatian Civic Initiative (HGI)                 999999 |      9999 |   9999
+Bosniak Party (BS)                               91920 |      9999 |   9999
+Coalition "For a European Montenegro"            91020 |      9999 |   9999
+Democratic Front (DF)                            91060 |      9999 |   9999
+Albanian Coalition (AK)                         999999 |      9999 |   9999
+Serbian Unity (SS)                              999999 |      9999 |   9999
+Force for Unity (FZJ - FPB)                     999999 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: NETHERLANDS
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Christian Democratic Appeal (CDA)                22521 |       235 |   1001
+Labor Party (PvdA)                               22320 |       742 |   1002
+People's Party for Freedom and Democracy (VVD)   22420 |      1409 |   1003
+Democrats 66 (D66)                               22330 |       345 |   1004
+Green Left (GL)                                  22110 |       756 |   1005
+Socialist Party (SP)                             22220 |       357 |   1014
+Reformed Political Party (SGP)                   22952 |      1251 |   1006
+Christian Union (CU)                             22526 |      1206 |   1016
+Party for Freedom (PVV)                          22722 |      1501 |   1017
+List Pim Fortuyn (LPF)                           22720 |       456 |   1015
+Reformed Political Alliance (GPV)                22527 |       625 |   1007
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: NEW ZEALAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+National Party (NP)                              64620 |       997 |   9999
+Labour Party (Lab)                               64320 |       878 |   9999
+New Zealand First (NZF)                          64621 |       891 |   9999
+Act New Zealand (ACT)                            64420 |       617 |   9999
+Green Party (GP)                                 64110 |      1171 |   9999
+United Future New Zealand (UFNZ)                 64421 |      1313 |   9999
+Conservative Party (CP)                         999999 |      1973 |   9999
+Maori Party (MP)                                 64901 |       114 |   9999
+Alliance (ALL)                                   64321 |      1444 |   9999
+Internet MANA (IP - MANA)                        64902 |      1972 |   9999
+MANA Movement (MANA)                             64902 |      1972 |   9999
+Jim Anderton's Progressive Party (PP)            64422 |       354 |   9999
+Christian Coalition                             999999 |      9999 |   9999
+
+
+         | POLITY NOTES - NEW ZEALAND: BRIDGING IDs FROM OTHER COMPARATIVE
+         |                             PROJECTS
+         |
+         | The CSES Convention is that when a party competes in election
+         | as part of the coalition, that coalition gets a new, unique, 
+         | party code (for more details see CSES IMD Stimulus Paper).
+         | Other comparative projects handle this differently, thus
+         | MARPOR/CMP and ParlGov codes are identical for MANA Movement 
+         | (MANA) and 2016 coalition between MANA Movement and Internet 
+         | Party (IP - MANA).
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: NORWAY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Labour Party (Ap)                                12320 |       104 |   3501
+Conservative Party (H)                           12620 |      1435 |   3503
+Progress Party (FrP)                             12951 |       351 |   3502
+Socialist Left Party (SV)                        12221 |        81 |   3504
+The Greens (MDG)                                 12110 |      2254 |   3508
+Center Party (Sp)                                12810 |       702 |   3505
+Christian People's Party (KrF)                   12520 |      1538 |   3506
+Liberal Party (V)                                12420 |       647 |   3507
+Red Electoral Alliance (RV)                     999999 |      1638 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: POLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Civic Platform (PO)                              92435 |       512 |   2603
+Law and Justice (PiS)                            92436 |       528 |   2605
+Polish People's Party (PSL)                      92811 |       664 |   2606
+Solidarity Electoral Action (AWSP)               92620 |      1355 |   2608
+Labour Union (UP)                                92322 |       838 |   2602
+Freedom Union (UW)                               92434 |      1104 |   2609
+Democratic Left Alliance (SLD)                   92210 |       629 |   2601
+Movement for Reconstruction of Poland (ROP)      92621 |       148 |   9999
+League of Polish Families (LPR)                  92713 |       987 |   2607
+German Minority (MN)                             92953 |       900 |   9999
+Poland Comes First (PJN)                        999999 |      1679 |   9999
+Palikots Movement                                92440 |      1945 |   2613
+Congress of the New Right (KNP)                 999999 |      1549 |   2614
+Left and Democrats (LiD)                         92021 |       180 |   9999
+Self-Defense of the Republic Poland (SRP)        92622 |       207 |   2604
+Democratic Party (PD)                           999999 |      1104 |   2612
+Social Democracy of Poland (SDPL)               999999 |      1140 |   2611
+Coalition Of The Alliance Of The Democratic Left -
+The Union of Labor (SLD-UP)                      92212 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: PORTUGAL
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Social Democratic Party (PSD)                    35313 |      1273 |   1206
+Socialist Party (PS)                             35311 |       725 |   1205
+Democratic and Social Centre - People's Party    35520 |       251 |   1202
+(CDS-PP)
+Unitarian Democratic Coalition (CDU) ##          35229 |      1295 |   1201
+Ecologist Party "The Greens" (PEV)               35110 |      1535 |   9999
+Left Block (BE)                                  35211 |       557 |   1208
+Portuguese Communist Worker's Party (PCTP/MRPP) 999999 |       281 |   9999
+Portuguese Communist Party (PCP)                 35220 |       514 |   9999
+Portugal Ahead (PSD - CDS-PP)                    35060 |      9999 |   1206
+Democratic Republican Party (PDR)               999999 |      2597 |   9999
+Party for People, Animals and Nature (PAN)       35120 |      1781 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - PORTUGAL: BRIDGING ID MARPOR/CMP
+         |
+         | Ecologist Party "The Greens" (PEV) and the Portuguese Communist 
+         | Party (PCP) participated in the alliance "Unitarian Democratic
+         | Coalition (CDU)" in the 2009 and 2015 elections. 
+         | For these contests MARPOR/CMP does not include data on the 
+         | alliance. Instead, individual parties are classified. MARPOR/CMP
+         | data for these parties for this contest is available under codes:
+         | - 35110 (PEV)
+         | - 35220 (PCP).
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: ROMANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Romanian Party of Social Democracy (PSD) ##      93223 |      1120 |   2701
+People's Party - Dan Diaconescu (PP-DD)          93981 |      2130 |   2710
+Democratic Union of Hungarians in Romania (UDMR) 93951 |       948 |   2706
+Greater Romania Party (PRM)                      93712 |       713 |   2703
+National Liberal Party (PNL) ##                  93430 |      1015 |   2705
+National Peasant and Christian Democratic Party  93521 |       888 |   9999
+(PNT-CD)
+New Generation Party - Christian Democratic     999999 |      1332 |   9999
+(PNGCD)
+Social Liberal Union (USL)                       93031 |      9999 |   9999
+Democratic Party (PD) ##                         93221 |       419 |   2704
+Democratic Liberal Party (P-DL)                  93530 |       958 |   9999
+Romanian Democratic Convention (CDR)             93411 |       356 |   2707
+New Generation Party (PNG)                      999999 |      1332 |   9999
+Social Democratic Union                          93322 |      9999 |   9999
+Romanian Party for National Unity (PUNR)         93711 |       648 |   9999
+Romanian Humanist Party (PUR) ##                 93001 |         5 |   2702
+PSD-UNPR-PC Electoral Alliance (PSD - UNPR - PC)999999 |      9999 |   9999
+Christian-Liberal Alliance (ACL)                999999 |      2647 |   9999
+Popular Movement Party (PMP)                    999999 |      2395 |   2711
+Social Democratic Party - Conservative Party     93002 |      1120 |   9999
+(PSD - PC)
+Alliance for a Just Romania (ARD)                93061 |      2040 |   9999
+Independent (Sorin Oprescu)                     999999 |      9999 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - ROMANIA: BRIDGING ID MARPOR/CMP
+         |
+         | The Romanian Party of Social Democracy (PSD) and the Romanian
+         | Humanist Party (PUR) participated in the "National Alliance"
+         | in the 2004 elections. For this contest MARPOR/CMP does not 
+         | include data on the individual parties. Instead, the National
+         | Alliance is classified. 
+         | As MARPOR/CMP does not assign the Humanist Party a separate code,
+         | MARPOR/CMP code 93001 listed for PUR refers to the National
+         | Alliance. 
+         |
+         | The National Liberal Party (PNL) and the Democratic Party (PD)
+         | participated in the "Justice and Truth Alliance" in the 2004
+         | elections. For this contest MARPOR/CMP does not include data on 
+         | the member parties. Instead, the alliance is classified. 
+         | MARPOR/CMP data for the alliance, of which these parties were a
+         | part of for this contest, is available using the MARPOR/CMP
+         | numerical code 93041.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: RUSSIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+United Russia (ER)                               94951 |      9999 |   9999
+Communist Party of the Russian Federation (KPRF) 94221 |      9999 |   9999
+Liberal Democratic Party of Russia (LDPR)        94711 |      9999 |   9999
+Yabloko (RDPY)                                   94422 |      9999 |   9999
+Pensioners Party (RPP)                          999999 |      9999 |   9999
+Homeland People's Patriotic Union (RNPS)        999999 |      9999 |   9999
+Fatherland All Russia (OBP)                      94622 |      9999 |   9999
+Zhirinovsky Bloc                                999999 |      9999 |   9999
+Agrarian Party of Russia (APR)                   94222 |      9999 |   9999
+Rebirth of Russia Party (PVR)                   999999 |      9999 |   9999
+Union of Right Forces (SPS)                      94621 |      9999 |   9999
+Unity Inter-Regional Movement                    94620 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SERBIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Serbian Progressive Party (SNS) ##               95070 |      9999 |   9999
+Democratic Party (DS) ##                         95430 |      9999 |   9999
+Serbian Radical Party (SRS)                      95711 |      9999 |   9999
+Socialist Party of Serbia (SPS) ##               95221 |      9999 |   9999
+Democratic Party of Serbia (DSS)                 95712 |      9999 |   9999
+Liberal Democratic Party (LDP) ##                95431 |      9999 |   9999
+United Regions of Serbia (URS)                   95451 |      9999 |   9999
+Alliance of Vojvodina's Hungarians (SVM)         95902 |      9999 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - SERBIA: BRIDGING ID MARPOR/CMP
+         |
+         | The Serbian Progressive Party (SNS) participated in the alliance
+         | "Let’s get Serbia Moving" in the 2012 elections. For this contest
+         | MARPOR/CMP does not include data on the party. Instead, the 
+         | alliance is classified. As MARPOR/CMP does not employ a separate
+         | code for the Serbian Progressive Party, the MARPOR/CMP code 95070
+         | referring to the alliance is listed in the table above.
+         |
+         | The Democratic Party (DS) participated in the alliance "Choice
+         | for a Better Life" in the 2012 elections. For this contest
+         | MARPOR/CMP does not include data on the party. Instead, the 
+         | alliance is classified. MARPOR/CMP data for the alliance, of
+         | which this party was a part of for this contest, is available
+         | using the MARPOR/CMP numerical code 95041.
+         |
+         | The Socialist Party of Serbia (SPS) participated in an alliance 
+         | in the 2012 elections. For this contest MARPOR/CMP does not 
+         | include data on the party. Instead, the alliance is classified. 
+         | MARPOR/CMP data for the alliance, of which this party was a part
+         | of for this contest, is available using the MARPOR/CMP numerical
+         | code 95021.
+         |
+         | The Liberal Democratic Party (LDP) participated in the alliance 
+         | "Turnover" in the 2012 elections. For this contest MARPOR/CMP 
+         | does not include data on the party. Instead, the alliance is 
+         | classified. MARPOR/CMP data for the alliance, of which this party
+         | was a part of for this contest, is available using the MARPOR/CMP
+         | numerical code 95042.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SLOVAKIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Direction - Social Democracy (Smer)              96423 |       220 |   2803
+Freedom and Solidarity (SaS)                     96440 |      1460 |   2812
+Slovak Democratic and Christian Union -
+Democratic Party (SDKU - DS)                     96523 |       131 |   2802
+Christian Democratic Movement (KDH)              96521 |      1432 |   2805
+Slovak National Party (SNS)                      96710 |      1072 |   2809
+Bridge (MH)                                      96955 |      1620 |   2813
+Ordinary people - Independents solidarities      96620 |      1759 |   2814
+(OLaNO)
+People's Party - Movement For a
+Democratic Slovakia (LS - HZDS)                  96711 |      1142 |   2801
+Kotleba - People's Party Our Slovakia (LsNS)     96720 |       586 |   9999
+Network	(S)                                      96630 |      2624 |   2816
+We are family (SR)                               96725 |      2623 |   9999
+Party Of The Hungarian Coalition (SMK)           96952 |       559 |   2804
+Party Of The Democratic Left (SDL)               96220 |      1415 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SLOVENIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Social Democratic Party (SDS) ##                 97330 |       179 |   2902
+Social Democrats (SD) ##                         97322 |       706 |   2903
+Democratic Party of Pensioners (DeSUS)           97951 |      1587 |   2906
+Liberal Democracy of Slovenia (LDS)              97421 |      1252 |   2901
+Slovenian People's Party (SLS)                   97521 |        16 |   2904
+New Slovenia - Christian People's Party (NSi)    97522 |      1047 |   2905
+Slovenian National Party (SNS)                   97710 |       981 |   2907
+Gregor Virant's Civic List (DIGV)                97450 |      1988 |   9999
+Zoran Jankovic List - Positive Slovenia (LZJ-PS) 97340 |      1987 |   2914
+Christian Democrats (SKD)                        97520 |      1047 |   9999
+Slovenian People's Party - Youth Party of
+Slovenia (SLS - SMS) ##                         999999 |        16 |   2904
+For Real-New Politics (ZARES)                    97440 |       326 |   2910
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - SLOVENIA: BRIDGING ID MARPOR/CMP
+         |
+         | MARPOR/CMP assigns two separate codes to the Social Democratic 
+         | Party (SDS). 
+         | The code 87330 reported above is used by MARPOR/CMP since the 
+         | 2004 elections. For the 1996 elections, MARPOR/CMP classifies 
+         | the party as "97320. Social-Democratic Party of Slovenia".
+         |
+         | MARPOR/CMP assigns two separate codes to Social Democrats (SD). 
+         | The code 97322 reported above is used by MARPOR/CMP since the 
+         | 2004 elections. For the 1996 elections, MARPOR/CMP classifies
+         | the party as "97321. Associated List of Social Democrats (ZSLD)",
+         | the previous name of the party. 
+         |
+         | The Slovenian People's Party (SLS) and the Youth Party of 
+         | Slovenia (SMS) formed an alliance in the 2008 elections. For this
+         | contest MARPOR/CMP does not include data on the alliance. 
+         | Instead, individual parties are classified. MARPOR/CMP data for
+         | these parties for this contest is available under codes:
+         | - 97521 (SLS)
+         | - 97952 (SMS).
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SOUTH 
+                                                                 AFRICA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+African National Congress (ANC)                 181310 |      9999 |   9999
+Democratic Alliance (DA)                        181411 |      9999 |   9999
+Economic Freedom Fighters (EFF)                 181210 |      9999 |   9999
+Inkatha Freedom Party (IFP)                     181910 |      9999 |   9999
+National Freedom Party (NFP)                    999999 |      9999 |   9999
+United Democratic Movement (UDM)                999999 |      9999 |   9999
+Freedom Front Plus (VF Plus)                    999999 |      9999 |   9999
+Congress of the People (COPE)                   181420 |      9999 |   9999
+African Christian Democratic Party (ACDP)       999999 |      9999 |   9999
+Independent Democrats (ID)                      999999 |      9999 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SOUTH KOREA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+New Frontier Party (NFP)                        113630 |      9999 |   9999
+Liberty Forward Party (LFP)                     113651 |      9999 |   9999
+New Progressive Party (NPP)                     113321 |      9999 |   9999
+Democratic United Party (DUP)                   113440 |      9999 |   9999
+Unified Progressive Party (UPP)                 113321 |      9999 |   9999
+Democratic Liberal Party ##                     113620 |      9999 |   9999
+Pro-Park Geun-hye Alliance                      999999 |      9999 |   9999
+Millennium Democratic Party (MDP)                113430 |      9999 |   9999
+United Liberal Democrats (ULD)                  113650 |      9999 |   9999
+Democratic People's Party                       999999 |      9999 |   9999
+Democratic Labor Party (DLP)                    113320 |      9999 |   9999
+Renewal of Korea Party                          999999 |      9999 |   9999
+National Integration 21                         999999 |      9999 |   9999
+Our Party                                       113422 |      9999 |   9999
+Christian Party                                 999999 |      9999 |   9999
+New Korean Party of the Hope (NKPH)             999999 |      9999 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - SOUTH KOREA: BRIDGING ID MARPOR/CMP
+         |
+         | The Democratic Liberal Party was adopted from the CSES MODULE 1
+         | Codebook, where it received the ALPHABETICAL party code E. 
+         | It likely refers to the "Democratic Labor Party" (DLP) which 
+         | finished fifth in the 2000 South Korean Legislative elections.
+         | MARPOR/CMP includes data for the Democratic Labor Party for the
+         | 2000 election. MARPOR/CMP data for the Democratic Labor Party 
+         | for this contest is available under code 113320. 
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SPAIN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Spanish Socialist Workers' Party (PSOE)          33320 |       902 |    501
+People's Party (PP)                              33610 |       645 |    502
+Convergence and Union (CiU)                      33611 |       894 |    505
+United Left (IU)                                 33220 |       118 |    504
+Basque Nationalist Party (PNV)                   33902 |      1361 |    506
+Galician Nationalist Bloc (BNG)                  33908 |       520 |    513
+Republican Left of Catalonia (ERC)               33905 |       757 |    511
+Union, Progress and Democracy (UPyD)             33440 |       551 |    523
+Canary Coalition (CC)                            33907 |       234 |    517
+Canarian Coalition - Canarian Nationalist Party 999999 |       234 |    517
+(CC - PNC) ##
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - SPAIN: BRIDGING ID MARPOR/CMP
+         |
+         | The Canarian Coalition (CC) and the Canarian Nationalist 
+         | Party (PNC) formed an alliance in the 2008 elections. For this
+         | contest MARPOR/CMP does not include data on the alliance. 
+         | Instead, individual parties are classified. MARPOR/CMP data for
+         | the Canarian Coalition (CC) is available under code 33907.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SWEDEN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Sweden's Social Democratic Worker's Party (SAP)  11320 |       904 |   1602
+Moderate Party (M)                               11620 |       657 |   1605
+Liberal People's Party (FP)                      11420 |       892 |   1604
+Christian Democrats (KD)                         11520 |       282 |   1606
+Green Party (MP)                                 11110 |      1154 |   1607
+Centre Party (C)                                 11810 |      1461 |   1603
+Left Party (V)                                   11220 |       882 |   1601
+Sweden Democrats (SD)                            11710 |      1546 |   1610
+Feminist Party (Fi)                             999999 |      1521 |   1612
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: SWITZERLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Swiss People's Party (SVP / UDC)                 43810 |       750 |   3601
+Social Democratic Party (SP / PS)                43320 |        35 |   3602
+Christian Democratic People's Party (CVP / PDC)  43520 |       531 |   3604
+The Liberals (FDP / PLR)                         43420 |        26 |   3603
+Green Party (GPS / PES)                          43110 |       141 |   3605
+Evangelical People's Party (EVP / PEP)           43530 |       602 |   3607
+Ticino League (Lega)                             43901 |      1500 |   3610
+Liberal Party (LPS / PLS)                        43531 |       458 |   9999
+Radical Democratic Party (FDP / PLR)             43420 |        26 |   3603
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: TURKEY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Justice and Development Party (AKP)              74628 |       901 |   3401
+Republican People's Party (CHP)                  74321 |       507 |   3402
+Nationalist Action Party (MHP)                   74712 |       408 |   3403
+Peoples' Democratic Party (HDP)                  74210 |      2572 |   3407
+Felicity Party (SP)                              74717 |      1315 |   9999
+Patriotic Party (VP)                            999999 |      9999 |   9999
+People's Voice Party (HSP)                      999999 |      9999 |   9999
+Democratic Left Party (DSP)                      74324 |       329 |   9999
+Democratic Party (DP)                            74621 |      1141 |   9999
+Great Union Party (BBP)                          74626 |       240 |   9999
+Peace and Democratic Party (BDP)                 74325 |      2305 |   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: UKRAINE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Communist Party of Ukraine                       98221 |      9999 |   9999
+People's Ruks of Ukraine                         98611 |      9999 |   9999
+Socialist Party of Ukraine ##                    98321 |      9999 |   9999
+Peasants Party of Ukraine ##                     98810 |      9999 |   9999
+Party of Greens of Ukraine                       98111 |      9999 |   9999
+People's-Democratic Party                        98426 |      9999 |   9999
+Social-Democratic Party                          98427 |      9999 |   9999
+
+## = SEE POLITY NOTES
+
+         | POLITY NOTES - UKRAINE: BRIDGING ID MARPOR/CMP
+         |
+         | The Socialist Party of Ukraine and the Peasants Party of Ukraine 
+         | formed an alliance in the 1998 elections. For this contest
+         | MARPOR/CMP does not include data on the parties. Instead, the 
+         | alliance is classified. MARPOR/CMP data for the alliance, of
+         | which these parties were a part of for this contest, is available
+         | using the MARPOR/CMP numerical code 98810.
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs MARPOR CMP/ParlGov/CHES FOR PARTIES/COALITIONS: UNITED 
+                                                                 STATES
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                   MARPOR/CMP |   ParlGov |   CHES
+---------------------------------------------------------------------------
+Republican Party (GOP)                           61620 |      9999 |   9999
+Democratic Party (DEM)                           61320 |      9999 |   9999
+Reform Party (REF)                              999999 |      9999 |   9999
+
+
+===========================================================================
+))) BRIDGING IDs FROM PARTY FACTS PROJECT FOR CSES IMD BY CSES POLITY
+===========================================================================
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ALBANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Socialist Party (PS)                                                   1729
+Democratic Party (PD)                                                   190
+Socialist Movement for Integration (LSI)                               2297
+Republican Party (PR)                                                   819
+Social Democratic Party (PSD)                                           838
+Christian Democratic Party (PDK)                                       4715
+Democratic Alliance Party (PAD)                                         594
+New Democratic Party (PDR)                                             1558
+Agrarian Party (PAA)                                                    840
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ARGENTINA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Front for the Victory (FPV)                                            2530
+Let's Change (Cam)                                                     7049
+United for a New Alternative (UNA)                                     3889
+Workers' Left Front (FIT)                                              6649
+Progressives (Pro)                                                     3889
+Federal Commitment (ACF)                                               9999
+Republican Proposal (PRO)                                              1790
+Radical Civic Union (UCR)                                              1724
+Justicialist Party (PJ, Peronismo)                                      623
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: AUSTRALIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Liberal Party (LP)                                                     1998
+National Party of Australia (NPA)                                      1743
+Australian Labor Party (ALP)                                            424
+Australian Democrats (AD)                                               990
+Australian Greens (AG)                                                 1209
+One Nation Party (ONP)                                                 1162
+Family First Party (FFP)                                               1263
+Palmer United Party (PUP)                                              1996
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: AUSTRIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Social Democratic Party of Austria (SPO)                               1384
+Austrian People's Party (OVP)                                          1329
+Freedom Party of Austria (FPO)                                          463
+Alliance for the Future of Austria (BZO)                                599
+The Greens - The Green Alternative (GRUENE)                            1659
+Communist Party of Austria (KPO)                                       9999
+Liberal Forum (LiF)                                                     605
+The New Austria (NEOS)                                                 1970
+Pirate Party (PIRATEN)                                                 2591
+Team Stronach (TEAM STRONACH)                                          1971
+Dinkhauser List                                                        9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BELARUS
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Communist Party of Belarus                                             7418
+Liberal Democratic Party (LDP)                                         3646
+Agrarian Party                                                         2037
+United Civil Party                                                     2033
+The Party of Communists Belorusskaya                                   2030
+Belarusian Social-Democratic (Assembly)                                2035
+Christian Conservative Party (BPF)                                     2605
+Belarusian Social-Democratic Party - People's Assembly (BSDPH)         7406
+The BNF Party                                                          3275
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BELGIUM
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+New Flemish Alliance (N-VA)                                              36
+Socialist Party (Francophone) (SP)                                      500
+Flemish Christian People's Party (CVP)                                  604
+Flemish Liberals and Democrats (VLD)                                     49
+Socialist Party (SP)                                                   1680
+Humanist Democratic Centre (CDH)                                       2338
+Flemish Block (VB)                                                      553
+Confederated Ecologists (ECOLO)                                        1563
+People's Union (VU)                                                    1424
+Liberal Reformist Party - Francophone Democratic Front (PRL - FDF)      554
+Live Differently - Flemish-speaking Ecologists (AGALEV)                 528
+National Front (FN)                                                    9999
+Christian Social Party (CSP)                                           6688
+Alive (V)                                                              9999
+Reformist Movement (MR)                                                 789
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BRAZIL
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Workers Party (PT)                                                      356
+Brazilian Social Democratic Party (PSDB)                                225
+Party of the Brazilian Democratic Movement (PMDB)                       654
+Progressive Party (PP)                                                  781
+Brazilian Socialist Party (PSB)                                         723
+Social Democratic Party (PSD)                                          4613
+Republic Party (PR)                                                    4405
+Democrats (DEM)                                                        1536
+Brazilian Labor Party (PTB)                                             458
+Labor Democratic Party (PDT)                                           1009
+Socialism and Freedom Party (PSOL)                                      501
+Progressive Republican Party (PRP)                                     9999
+Liberal Party (PL)                                                     1823
+Brazilian Progressive Party (PPB)                                       781
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: BULGARIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Citizens for European Development of Bulgaria (GERB)                    760
+Bulgarian Socialist Party (BSP)                                         757
+Movement for Rights and Freedoms (DPS)                                  982
+Reformist Bloc (RB)                                                    3189
+Patriotic Front	NFSB and IMRO                                          5649
+Bulgaria without Censorship (BBZ)                                      3188
+Attack (Ataka)                                                         4798
+Alternative for Bulgarian Revival (ABV)                                3187
+Movement 21 (D21)                                                      9999
+National Movement for Stability and Progress (NDS)                      374
+BSP Left Bulgaria - Coalition for Bulgaria (KzB | DL)                  1665
+Inner Macedonian Revolutionary Organization (VMRO)                     6397
+United Democratic Forces (UDF)                                         1183
+Movement 'Georgievden' (DG)                                            1820
+Euroleft (BE)                                                          9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CANADA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Liberal Party (LIB)                                                    1739
+Conservative Party (CP)                                                1004
+New Democratic Party (NDP)                                              152
+Bloc Quebecois (BQ)                                                    1428
+Green Party (GP)                                                        931
+Progressive Conservative (PC)                                           232
+Reform Party (RPC)                                                     1757
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CHILE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Christian Democratic Party (PDC)                                        390
+Independent Democratic Union (UDI)                                     1599
+National Renewal (RN)                                                   928
+Socialist Party (PS)                                                      6
+Party for Democracy (PPD)                                                54
+Communist Party of Chile (PCCh)                                         162
+Radical Social-Democratic Party (PRSD)                                  437
+Peruvian Aprista Party (PAP)                                           9999
+Electoral list of Marco Enriquez-Ominamo (MEO)                         3915
+Humanist Party (PH)                                                     209
+Progressive Center-Center Union (UCCP)                                 6119
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CROATIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Croatian Democratic Union (HDZ)                                        1431
+Social Democratic Party of Croatia (SDP)                               1475
+Croatian People's Party - Liberal Democrats (HNS)                       799
+Croatian Party of Pensioners (HSU)                                     2062
+Croatian Peasant Party (HSS)                                             72
+Croatian Social Liberal Party (HSLS)                                    214
+Croatian Democratic Alliance of Slavonia and Baranja (HDSSB)           2347
+Croatian Party of Rights (HSP)                                          253
+Istrian Democratic Assembly (IDS)                                       513
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: CZECH REPUBLIC
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Czech Social Democratic Party (CSSD)                                    177
+Civic Democratic Party (ODS)                                            466
+Christian Democratic Union - Czech People's Party (KDU-CSL)             676
+Communist Party of Bohemia and Moravia (KSCM)                          1728
+Green Party (SZ)                                                       1554
+Action of Dissatisfied Citizens (ANO 2011)                             2141
+TOP 09 (TOP 09)                                                         223
+Civic Democratic Alliance (ODA)                                        1008
+Czech Pirate Party (Pirati)                                            2047
+Dawn of Direct Democracy of Tomio Okamura (Usvit)                      2049
+Public Affairs (VV)                                                    1202
+Freedom Union - Democratic Union (US-DEU)                              9999
+Association for the Republic - Czech Republican Party (SPR-RSC)        1657
+Party of Citizen Rights-Zemanites (SPO)                                1272
+SNK European Democrats (SNK ED)                                         751
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: DENMARK
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Social Democrats (Sd)                                                   379
+Liberal Party (V)                                                      1204
+Socialist People's Party (SF)                                           329
+United List - Red-Greens (En - O)                                      1527
+Danish Social Liberal Party (RV)                                       1507
+Conservative People's Party (KF)                                        536
+Christian Democrats (KD)                                                 53
+New Alliance (NA)                                                       212
+Danish People's Party (DF)                                             1022
+Centre Democrats (CD)                                                   800
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ESTONIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Estonian Reform Party (ER e)                                            821
+Estonian Centre Party (EK)                                              533
+Social Democratic Party (SDE)                                          1150
+Pro Patria and Res Publica Union (IRL)                                  685
+Estonian Greens (EER)                                                  1040
+Estonian People's Union (ER a)                                          110
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: FINLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Center Party (KESK)                                                     901
+Social Democratic Party of Finland (SDP)                               1303
+National Coalition Party (KOK)                                          495
+True Finns (PS)                                                        1689
+Green League (VIHR)                                                     479
+Left Alliance (VAS)                                                    1044
+Christian Democrats (KD)                                                703
+Swedish People's Party in Finland (RKP - SFP)                          1229
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: FRANCE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Union for a Popular Movement (UMP)                                     1595
+Socialist Party (PS)                                                   1478
+Democratic Movement (MoDem)                                             496
+French Communist Party (PCF)                                           1251
+Europe Ecology - The Greens (EELV)                                     5650
+Left Front (FDG)                                                       4363
+National Front (FN)                                                     433
+Rally For The Republic (RPR)                                            509
+Workers' Struggle (LO)                                                  617
+Republican And Civic Movement (MDC)                                    3156
+Liberal Democracy (LD)                                                 4364
+Revolutionary Communist League (LCR)                                   1506
+Radical Party of the Left (RPG)                                        9999
+New Centre (NC)                                                        9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GERMANY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Christian Democratic Party (CDU)                                       1375
+Christian Social Union in Bavaria (CSU)                                1731
+Social Democratic Party (SPD)                                           383
+Alliance 90/Greens (B90/GRUENE)                                        1816
+Free Democratic Party (FDP)                                             573
+Left Party (DIE LINKE)                                                 1545
+The Republicans (REP)                                                  9999
+National Democratic Party Of Germany (NPD)                             1723
+Alternative for Germany (AfD)                                          1976
+Pirates Party (PIRATEN)                                                1287
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GREAT BRITAIN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Conservatives (Con)                                                    1567
+Labour (Lab)                                                           1516
+Liberal Democrats (LD)                                                 1388
+Scottish National Party (SNP)                                           986
+Green Party (GP)                                                       1794
+Plaid Cymru (PC)                                                       1002
+United Kingdom Independence Party (UKIP)                                601
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: GREECE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Pan-Hellenic Socialist Movement (PASOK)                                1468
+New Democracy (ND)                                                      794
+Coalition of the Radical Left (SYRIZA)                                  301
+Communist Party of Greece (KKE)                                          48
+Ecologists - Greens (Oik. Pras // OP)                                   378
+Golden Dawn (LS - XA)                                                  1660
+The Independent Greeks (ANEL)                                          1651
+Democratic Left (DIMAR)                                                1160
+The River                                                              3118
+Popular Orthodox Rally (La. O. S)                                       965
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: HONG KONG
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Democratic Alliance for Betterment of Hong Kong (DAB)                  5620
+Civic Party (CPP)                                                      4518
+Democratic Party (DP)                                                  4519
+People Power (PP)                                                      4520
+Hong Kong Federation of Trade Unions (HKFTU)                           5621
+Labour Party (LAB)                                                     4521
+League of Social Democrats (LSD)                                       4522
+New People's Party (NPP)                                               6962
+Liberal Party (LP)                                                     4521
+Neighborhood & Workers Service Centre (NWSC)                           7080
+Hong Kong Association for Democracy and People's Livelihood (ADPL)     7081
+Frontier                                                               6999
+April Fifth Action (AFAG)                                              9999
+Citizen's Party                                                        6961
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: HUNGARY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Hungarian Socialist Party (MSZP)                                       1408
+Fidesz-Hungarian Civic Party Alliance Party (Fidesz - MPP)             1691
+Hungarian Justice and Life Party (MIEP)                                1597
+Hungarian Worker's Party (MMP)                                          859
+Alliance of Free Democrats (SZDSZ)                                      910
+Independent Small Holders Party (FKgP)                                 1294
+Alliance for Hungary - Center Party                                    3948
+Hungarian Democratic Forum (MDF)                                       1697
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ICELAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Independence Party (Sj)                                                 363
+Social Democratic Alliance (Sam)                                       1396
+Progressive Party (F)                                                   964
+Liberal Party (FF)                                                     1224
+Left-Green Movement (VG)                                                457
+Bright Future (BF)                                                     2517
+Pirata (Pi)                                                            2048
+Civic Movement (B)                                                      224
+Icelandic Movement (IL)                                                 125
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: IRELAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Fianna Fail (FF)                                                       1055
+Fine Gael (FG)                                                         1288
+Labour (Lab)                                                            562
+Sinn Fein (SF)                                                            4
+Greens (GP)                                                            1775
+Progressive Democrats (PD)                                              924
+United Left Alliance (ULA)                                             1978
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ISRAEL
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+The Consolidation (Likud - L)                                          1036
+Israeli Labor Party (MHH)                                              1436
+Sfarad's Keepers of the Torah (Shas)                                    455
+Energy (Meretz)                                                        3131
+United Torah Judaism (YH)                                              1075
+There is a Future (YA)                                                 3128
+The Jewish Home (HH)                                                   3677
+The Movement (Hat)                                                     3127
+United Arab List (Ra'am)                                               1337
+The Consolidation (Likud) - Yisrael Beiteinu (L - YB)                  3955
+National Religious Party (Mafdal)                                      1447
+Change (Shinui)                                                         557
+Forward (Kadima)                                                        484
+Israel is Our Home (YB)                                                 235
+National Union (HaLe)                                                   953
+National Union - National Religious Party (HaLe - Mafdal)              3955
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ITALY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Forward Italy (Forza Italia - FI)                                      1626
+Democrats of the Left (DS)                                              878
+Union of Christian and Centre Democrats (UDC)                          1758
+Communist Refoundation Party (PRC)                                     1404
+Daisy - Democracy is Freedom (DL)                                       279
+National Alliance (AN)                                                  813
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: JAPAN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Liberal Democratic Party (LDP)                                         1746
+Democratic Party of Japan (DPJ)                                        1804
+New Komeito (NK)                                                       1515
+Japanese Communist Party (JCP)                                          736
+Green Wind                                                             2750
+Social Democratic Party (SDP)                                             3
+Japan Restoration Party (JReP)                                         2080
+Your Party (YP)                                                        1777
+People's Life Party (PLP)                                              2078
+New Frontier Party (NFP)                                                282
+New Party Harbinger (NPH)                                              9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: KENYA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Orange Democratic Movement (ODM)                                       2360
+Wiper Democratic Movement (WDM - K)                                    2362
+Forum for Restoration of Democracy (FORD - KENYA)                      3863
+Kenya African National Union (KANU)                                    2316
+National Rainbow Coalition (NARC - K)                                  5834
+The National Alliance (TNA)                                            3867
+United Republican Party (URP)                                          3856
+United Democratic Front (UDFP)                                         3864
+Alliance Party of Kenya (APK)                                          3866
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: KYRGYZSTAN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Ar Namys                                                               5910
+Communist Party of Masaliev                                            5612
+Socialist Party                                                        3601
+Alga Kyrgyzstan                                                        6341
+Asaba (Republic National Party)                                        7410
+Free Kyrgyzstan                                                        3601
+New Kyrgyzstan                                                         3601
+Communist Party of Kyrgyzstan                                          5612
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: LATVIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Harmony Centre (SC)                                                    1056
+Unity (V)                                                               852
+National Union All for Latvia For Fatherland and Freedom (LNNK)        1789
+For a Good Latvia (PLL)                                                 393
+Union of Greens and Farmers (ZZS)                                       701
+For Human Rights in United Latvia (PCTVL)                              9999
+Reform Party (RP)                                                      1476
+For Latvia from the Heart (NsL)                                        3193
+Latvian Association of the Regions (LRa)                               3194
+Made in Latvia                                                         9999
+Latvia's First Party/Latvian Way (LPP/LC)                              9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: LITHUANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Homeland Union-Conservatives (TS - LK)                                  193
+Christian Democratic Party                                             6804
+Social Democratic Party (LSDP)                                           64
+Democratic Labor Party (LDDP)                                           546
+Center Union (LCS)                                                     1185
+Nationalist Party - "Young Lithuania" (JL)                             1026
+A. Paulauskas (Independent)                                            9999
+V. Adamkus (Independent)                                               9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: MEXICO
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Institutional Revolutionary Party (PRI)                                1474
+National Action Party (PAN)                                             696
+Democratic Revolution Party (PRD)                                       216
+Labor Party (PT)                                                       1241
+Ecological Green Party of Mexico (PVEM)                                 446
+New Alliance Party (PANAL)                                             1345
+Citizen's Movement (MC)                                                1331
+Social Democratic Party (PSD)                                           810
+National Regeneration Movement (MORENA)                                6110
+Possible Mexico                                                        2809
+Social Encounter Party (PES)                                           6113
+Authentic Party of the Mexican Revolution (PARM)                       1989
+Social Alliance Party (PAS)                                            2809
+Cardenista Party (PFCRN)                                               1984
+Alliance for Change                                                    3979
+Alliance for Mexico                                                    1988
+Mexican Liberal Party (PLM)                                            5867
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: MONTENEGRO
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Socialist People's Party (SNP)                                         3104
+Positive Montenegro (PCG)                                              4767
+Croatian Civic Initiative (HGI)                                        9999
+Bosniak Party (BS)                                                     3255
+Coalition "For a European Montenegro"                                  3163
+Democratic Front (DF)                                                  6087
+Albanian Coalition (AK)                                                9999
+Serbian Unity (SS)                                                     9999
+Force for Unity (FZJ - FPB)                                            9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NETHERLANDS
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Christian Democratic Appeal (CDA)                                      1157
+Labor Party (PvdA)                                                     1234
+People's Party for Freedom and Democracy (VVD)                          828
+Democrats 66 (D66)                                                       45
+Green Left (GL)                                                        1537
+Socialist Party (SP)                                                   1363
+Reformed Political Party (SGP)                                         1178
+Christian Union (CU)                                                   1459
+Party for Freedom (PVV)                                                 298
+List Pim Fortuyn (LPF)                                                 1528
+Reformed Political Alliance (GPV)                                      1602
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NEW ZEALAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+National Party (NP)                                                    1824
+Labour Party (Lab)                                                     1049
+New Zealand First (NZF)                                                 591
+Act New Zealand (ACT)                                                   752
+Green Party (GP)                                                       1099
+United Future New Zealand (UFNZ)                                        940
+Conservative Party (CP)                                                1014
+Maori Party (MP)                                                       1716
+Alliance (ALL)                                                          716
+Internet MANA (IP - MANA)                                              9999
+MANA Movement (MANA)                                                   9999
+Jim Anderton's Progressive Party (PP)                                   150
+Christian Coalition                                                    3988
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: NORWAY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Labour Party (Ap)                                                       448
+Conservative Party (H)                                                  503
+Progress Party (FrP)                                                    101
+Socialist Left Party (SV)                                               719
+The Greens (MDG)                                                       1963
+Center Party (Sp)                                                      1072
+Christian People's Party (KrF)                                          705
+Liberal Party (V)                                                      1173
+Red Party (R)                                                          3698
+Red Electoral Alliance (RV)                                              44
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PERU
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Popular Force (FP)                                                     4214
+Peruvians for Change (PPK)                                             6647
+Broad Front for Justice, Life and Liberty (Frente Amplio)              6646
+Alliance for Progress (APP)                                            4218
+People's Alliance                                                      3997
+Popular Action (AP)                                                     514
+Direct Democracy                                                       7002
+Possible Peru                                                          1749
+Hope Front                                                             7408
+National Restoration (RN)                                               713
+National Solidarity Alliance                                           3997
+We Are Peru (PDSP)                                                     4223
+Possible Peru (PP)                                                     1749
+Union for Peru (UPP)                                                    575
+Moralizing Independent Front (FIM)                                     4215
+Center Front (FDC)                                                      788
+Peruvian Aprista Party (PAP)                                            529
+Andean Renaissance                                                     7004
+People's Solution                                                      7003
+National Solidarity Party (PSN)                                         290
+Peru Wins (UPP)                                                         575
+Alliance for the Great Change (APGC)                                   3997
+National Unity (UN)                                                    2554
+Alliance for the Future (AF)                                            499
+Peru 2000                                                              5130
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PHILIPPINES
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Liberal Party (LP)                                                     2330
+Nationalist People's Coalition (NPC)                                   9999
+National Unity Party (NUP)                                             5169
+Nationalist Party (NP)                                                 2389
+United Nationalist Alliance (UNA)                                      5171
+Philippine Democratic Party (PDP-LABAN)                                4602
+Lakas - Christian-Muslim Democrats (LAKAS-CMD)                         9999
+Democratic Action (Aksyon)                                             7086
+People's Reform Party (PRP)                                            2887
+Force of the Philippine Masses (PMP)                                   9999
+Struggle for Democratic Philipinos (LDP)                               9999
+Democratic Action (AD)                                                 7086
+Alliance for the Common Good (AKP)                                     2887
+New Nation - Volunteers for a New Philippines (VNP)                    2887
+Rise Up Philippines (BP)                                               2887
+Jamby A.S. Madrigal (Independent)                                      2884
+Jesus N.P. Perlas (Independent)                                        2884
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: POLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Civic Platform (PO)                                                    1117
+Law and Justice (PiS)                                                  1565
+Polish People's Party (PSL)                                             602
+Solidarity Electoral Action (AWSP)                                      863
+Labour Union (UP)                                                      1104
+Freedom Union (UW)                                                     8268
+Democratic Left Alliance (SLD)                                           57
+Movement for Reconstruction of Poland (ROP)                            1712
+League of Polish Families (LPR)                                        1768
+German Minority (MN)                                                   9999
+Poland Comes First (PJN)                                                 41
+Palikots Movement                                                       731
+Congress of the New Right (KNP)                                        9999
+Left and Democrats (LiD)                                               1588
+Self-Defense of the Republic Poland (SRP)                               727
+Democratic Party (PD)                                                   919
+Social Democracy of Poland (SDPL)                                      1328
+Coalition Of The Alliance Of The Democratic Left - The Union of Labor  6183
+(SLD-UP)
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: PORTUGAL
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Social Democratic Party (PSD)                                          1359
+Socialist Party (PS)                                                    655
+Democratic and Social Centre - People's Party (CDS-PP)                 1308
+Unitarian Democratic Coalition (CDU)                                    284
+Ecologist Party "The Greens" (PEV)                                      886
+Left Block (BE)                                                        1310
+Portuguese Communist Worker's Party (PCTP/MRPP)                         857
+Portuguese Communist Party (PCP)                                        310
+Portugal Ahead (PSD - CDS-PP)                                          5939
+Democratic Republican Party (PDR)                                      4513
+Party for People, Animals and Nature (PAN)                               97
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: ROMANIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Romanian Party of Social Democracy (PSD)                                120
+People's Party - Dan Diaconescu (PP-DD)                                2474
+Democratic Union of Hungarians in Romania (UDMR)                       1105
+Greater Romania Party (PRM)                                            1305
+National Liberal Party (PNL)                                           9999
+National Peasant and Christian Democratic Party (PNT-CD)               1750
+New Generation Party - Christian Democratic (PNGCD)                     296
+Social Liberal Union (USL)                                             5941
+Democratic Party (PD)                                                  1715
+Democratic Liberal Party (P-DL)                                         660
+Romanian Democratic Convention (CDR)                                    192
+New Generation Party (PNG)                                              296
+Romanian Humanist Party (PUR)                                          1443
+Social Democratic Union                                                 120
+Romanian Party for National Unity (PUNR)                               1451
+PSD-UNPR-PC Electoral Alliance (PSD - UNPR - PC)                       4002
+Christian-Liberal Alliance (ACL)                                       4002
+Popular Movement Party (PMP)                                           3210
+Social Democratic Party - Conservative Party (PSD - PC)                6153
+Alliance for a Just Romania (ARD)                                      5940
+Independent (Sorin Oprescu)                                            2894
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: RUSSIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+United Russia (ER)                                                     2256
+Communist Party of the Russian Federation (KPRF)                       2236
+Liberal Democratic Party of Russia (LDPR)                              2245
+Yabloko (RDPY)                                                         2252
+Pensioners Party (RPP)                                                 5823
+Homeland People's Patriotic Union (RNPS)                               2246
+Fatherland All Russia (OBP)                                            2240
+Zhirinovsky Bloc                                                       2245
+Agrarian Party of Russia (APR)                                         9999
+Rebirth of Russia Party (PVR)                                          7409
+Union of Right Forces (SPS)                                            2255
+Unity Inter-Regional Movement                                          2242
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SERBIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Serbian Progressive Party (SNS)                                        3177
+Democratic Party (DS)                                                  2189
+Serbian Radical Party (SRS)                                            2175
+Socialist Party of Serbia (SPS)                                        2178
+Democratic Party of Serbia (DSS)                                       2190
+Liberal Democratic Party (LDP)                                         2196
+United Regions of Serbia (URS)                                         2181
+Alliance of Vojvodina's Hungarians (SVM)                               9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SLOVAKIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Direction - Social Democracy (Smer)                                     311
+Freedom and Solidarity (SaS)                                           1386
+Slovak Democratic and Christian Union - Democratic Party (SDKU - DS)   1617
+Christian Democratic Movement (KDH)                                      63
+Slovak National Party (SNS)                                             730
+Bridge (MH)                                                             258
+Ordinary people - Independents solidarities (OLaNO)                    2130
+People's Party - Movement For a Democratic Slovakia (LS - HZDS)         560
+Kotleba - People's Party Our Slovakia (LsNS)                            656
+Network (S)                                                            4872
+We are family (SR)                                                     4873
+Party Of The Hungarian Coalition (SMK)                                  349
+Party Of The Democratic Left (SDL)                                     1242
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SLOVENIA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Social Democratic Party (SDS)                                           472
+Social Democrats (SD)                                                  1403
+Democratic Party of Pensioners (DeSUS)                                  467
+Liberal Democracy of Slovenia (LDS)                                     975
+Slovenian People's Party (SLS)                                          764
+New Slovenia - Christian People's Party (NSi)                          1618
+Slovenian National Party (SNS)                                           96
+Gregor Virant's Civic List (DIGV)                                        98
+Zoran Jankovic List - Positive Slovenia (LZJ-PS)                       1773
+Christian Democrats (SKD)                                               644
+Slovenian People's Party - Youth Party of Slovenia (SLS - SMS)          764
+For Real-New Politics (ZARES)                                           474
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SOUTH AFRICA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+African National Congress (ANC)                                        1219
+Democratic Alliance (DA)                                               1038
+Economic Freedom Fighters (EFF)                                        4548
+Inkatha Freedom Party (IFP)                                            1630
+National Freedom Party (NFP)                                           6607
+United Democratic Movement (UDM)                                       9999
+Freedom Front Plus (VF Plus)                                           6041
+Congress of the People (COPE)                                          4546
+African Christian Democratic Party (ACDP)                              9999
+Independent Democrats (ID)                                             9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SOUTH KOREA
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+New Frontier Party (NFP)                                               2307
+Liberty Forward Party (LFP)                                            2306
+New Progressive Party (NPP)                                            4450
+Democratic United Party (DUP)                                          4464
+Unified Progressive Party (UPP)                                        2543
+Democratic Liberal Party                                               2546
+Pro-Park Geun-hye Alliance                                             4345
+Millennium Democratic Party (MDP)                                      2548
+United Liberal Democrats (ULD)                                         2545
+Democratic People's Party                                              4457
+Democratic Labor Party (DLP)                                           2546
+Renewal of Korea Party                                                 4346
+National Integration 21                                                9999
+Our Party                                                              2452
+Christian Party                                                        2759
+New Korean Party of the Hope (NKPH)                                    2760
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SPAIN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Spanish Socialist Workers' Party (PSOE)                                1338
+People's Party (PP)                                                    5750
+Convergence and Union (CiU)                                             139
+United Left (IU)                                                        247
+Basque Nationalist Party (PNV)                                         1637
+Galician Nationalist Bloc (BNG)                                        1011
+Republican Left of Catalonia (ERC)                                      848
+Union, Progress and Democracy (UPyD)                                   9999
+Canary Coalition (CC)                                                    81
+Canarian Coalition - Canarian Nationalist Party (CC - PNC)             8262
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SWEDEN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Sweden's Social Democratic Worker's Party (SAP)                         487
+Moderate Party (M)                                                      690
+Liberal People's Party (FP)                                            1274
+Christian Democrats (KD)                                                651
+Green Party (MP)                                                        456
+Centre Party (C)                                                        199
+Left Party (V)                                                          830
+Sweden Democrats (SD)                                                   409
+Feminist Party (Fi)                                                    1240
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: SWITZERLAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Swiss People's Party (SVP / UDC)                                        308
+Social Democratic Party (SP / PS)                                        29
+Christian Democratic People's Party (CVP / PDC)                        1808
+The Liberals (FDP / PLR)                                               1231
+Green Party (GPS / PES)                                                1006
+Evangelical People's Party (EVP / PEP)                                 1123
+Ticino League (Lega)                                                   1661
+Liberal Party (LPS / PLS)                                               444
+Radical Democratic Party (FDP / PLR)                                    360
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: TAIWAN
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Democratic Progressive Party (DPP)                                     1596
+Kuomintang of China (KMT)                                              1112
+People First Party (PFP)                                               3665
+New Party (NP)                                                         3666
+Taiwan Solidarity Union (TSU)                                          3664
+Non-Partisan Solidarity Union (NPSU)                                   9999
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: THAILAND
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+For Thais Party (PPT)                                                  5398
+Democrat Party (DP)                                                    2327
+Thai Pride Party (BJT)                                                 6423
+Love Thailand Party                                                    6997
+Thai Nation Development Party (CP)                                     6996
+National Development of the Motherland Party                           9999
+Peaceloving Party                                                      9999
+Motherland Party (Phak Matunhum Party)                                 2377
+Power of Choburi Party                                                 9999
+People's Power Party (PPP)                                             2376
+Royal People Party (PRP)                                               9999
+Thai Nation Party (CTP)                                                2373
+Thai Rak Thai Party (TRT)                                              5397
+New Aspiration Party                                                   4289
+Neutral Democratic Party (MCM)                                         9999
+Referendum Party                                                       2953
+National Development Party                                             4288
+Justice and Freedom Party                                              2953
+Thais United National Development Party                                2374
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: TURKEY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Justice and Development Party (AKP)                                     306
+Republican People's Party (CHP)                                        1060
+Nationalist Action Party (MHP)                                         1610
+Peoples' Democratic Party (HDP)                                        6042
+Felicity Party (SP)                                                    9999
+Patriotic Party (VP)                                                   2958
+People's Voice Party (HSP)                                             9999
+Democratic Left Party (DSP)                                            1740
+Democratic Party (DP)                                                   899
+Great Union Party (BBP)                                                9999
+Peace and Democratic Party (BDP)                                       2503
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: UKRAINE
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Communist Party of Ukraine                                             2220
+People's Ruks of Ukraine                                               2207
+Socialist Party of Ukraine                                             2211
+Peasants Party of Ukraine                                              2205
+Party of Greens of Ukraine                                             2226
+People's-Democratic Party                                              2206
+Social-Democratic Party                                                2210
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: UNITED STATES
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Republican Party (GOP)                                                  809
+Democratic Party (DEM)                                                  432
+Libertarian Party (LP)                                                 2291
+
+
+---------------------------------------------------------------------------
+>>> BRIDGING IDs PARTY FACTS FOR PARTIES/COALITIONS: URUGUAY
+---------------------------------------------------------------------------
+
+PARTY NAME (Abbreviation)                                    PARTY FACTS ID
+---------------------------------------------------------------------------
+Broad Front (FA)                                                       1658
+National Party (PN)                                                     118
+Colorado Party                                                         1419
+Independent Party (PI)                                                  518
+Popular Assembly                                                       9999
+
+
+
+//END OF FILE

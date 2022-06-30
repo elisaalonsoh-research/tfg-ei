@@ -1,0 +1,251 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:/Users/elisa/Documents/5. Research/TFG EI/log/2b_Data_cleaning_dates_29Jun2022.txt
+  log type:  text
+ opened on:  29 Jun 2022, 12:55:45
+
+.         
+.         * Load activation dates
+.         use "${raw}/activation_dates.dta", clear
+(ICE Secure Communities Activation Dates)
+
+.         
+.         // Create activation date:
+.         gen activation_date = ym(activation_year, activation_month)
+
+.         
+.         // Common format for statefip
+.         gen statefip=.
+(3,102 missing values generated)
+
+.         replace statefip=01 if ST=="AL"
+(67 real changes made)
+
+.         replace statefip=02 if ST=="AK"
+(0 real changes made)
+
+.         replace statefip=04 if ST=="AZ"
+(15 real changes made)
+
+.         replace statefip=05 if ST=="AR"
+(75 real changes made)
+
+.         replace statefip=06 if ST=="CA"
+(58 real changes made)
+
+.         replace statefip=08 if ST=="CO"
+(64 real changes made)
+
+.         replace statefip=09 if ST=="CT"
+(8 real changes made)
+
+.         replace statefip=10 if ST=="DE"
+(3 real changes made)
+
+.         replace statefip=11 if ST=="DC"
+(1 real change made)
+
+.         replace statefip=12 if ST=="FL"
+(67 real changes made)
+
+.         replace statefip=13 if ST=="GA"
+(159 real changes made)
+
+.         replace statefip=15 if ST=="HI"
+(0 real changes made)
+
+.         replace statefip=16 if ST=="ID"
+(44 real changes made)
+
+.         replace statefip=17 if ST=="IL"
+(102 real changes made)
+
+.         replace statefip=18 if ST=="IN"
+(92 real changes made)
+
+.         replace statefip=19 if ST=="IA"
+(99 real changes made)
+
+.         replace statefip=20 if ST=="KS"
+(105 real changes made)
+
+.         replace statefip=21 if ST=="KY"
+(120 real changes made)
+
+.         replace statefip=22 if ST=="LA"
+(64 real changes made)
+
+.         replace statefip=23 if ST=="ME"
+(16 real changes made)
+
+.         replace statefip=24 if ST=="MD"
+(24 real changes made)
+
+.         replace statefip=25 if ST=="MA"
+(14 real changes made)
+
+.         replace statefip=26 if ST=="MI"
+(83 real changes made)
+
+.         replace statefip=27 if ST=="MN"
+(87 real changes made)
+
+.         replace statefip=28 if ST=="MS"
+(82 real changes made)
+
+.         replace statefip=29 if ST=="MO"
+(115 real changes made)
+
+.         replace statefip=30 if ST=="MT"
+(56 real changes made)
+
+.         replace statefip=31 if ST=="NE"
+(93 real changes made)
+
+.         replace statefip=32 if ST=="NV"
+(17 real changes made)
+
+.         replace statefip=33 if ST=="NH"
+(10 real changes made)
+
+.         replace statefip=34 if ST=="NJ"
+(21 real changes made)
+
+.         replace statefip=35 if ST=="NM"
+(33 real changes made)
+
+.         replace statefip=36 if ST=="NY"
+(62 real changes made)
+
+.         replace statefip=37 if ST=="NC"
+(100 real changes made)
+
+.         replace statefip=38 if ST=="ND"
+(53 real changes made)
+
+.         replace statefip=39 if ST=="OH"
+(88 real changes made)
+
+.         replace statefip=40 if ST=="OK"
+(77 real changes made)
+
+.         replace statefip=41 if ST=="OR"
+(36 real changes made)
+
+.         replace statefip=42 if ST=="PA"
+(67 real changes made)
+
+.         replace statefip=44 if ST=="RI"
+(5 real changes made)
+
+.         replace statefip=45 if ST=="SC"
+(46 real changes made)
+
+.         replace statefip=46 if ST=="SD"
+(65 real changes made)
+
+.         replace statefip=47 if ST=="TN"
+(95 real changes made)
+
+.         replace statefip=48 if ST=="TX"
+(254 real changes made)
+
+.         replace statefip=49 if ST=="UT"
+(29 real changes made)
+
+.         replace statefip=50 if ST=="VT"
+(14 real changes made)
+
+.         replace statefip=51 if ST=="VA"
+(129 real changes made)
+
+.         replace statefip=53 if ST=="WA"
+(39 real changes made)
+
+.         replace statefip=54 if ST=="WV"
+(54 real changes made)
+
+.         replace statefip=55 if ST=="WI"
+(72 real changes made)
+
+.         replace statefip=56 if ST=="WY"
+(23 real changes made)
+
+.         
+.         drop if statefip ==.
+(0 observations deleted)
+
+.         rename ST statecode
+
+.         
+.         save "${temp}/activation_dates_clean.dta", replace
+file C:/Users/elisa/Documents/5. Research/TFG EI/data/temp/activation_dates_clean.dta saved
+
+.         
+.         
+. 
+end of do-file
+
+.   *do "${do}/2c_Data_cleaning_other.do" //
+.   
+.   *do "${do}/3_Final_dataset.do" //Done
+. 
+. *-------- FIGURES -------------------------------------------------------*
+.         * County-level implementations maps using R-file
+.         *do "${do}/map_implementation.do"
+.         
+. *-------- TABLES  -------------------------------------------------------*
+. /*
+>         use "${final}/final_voters.dta"
+> 
+>         global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
+>         global controls_county county_unauthorized county_MS county_inc
+>         global controls_state republican presidential
+>         
+>         /*
+> 
+> ** TABLE 1: Summary statistics
+> 
+>         *do "${do}/T1_summary_stats.do"
+> 
+> 
+> ** TABLE 2: Triple differences for voting and registration
+> 
+> 
+>         
+> 
+>         *do "${do}/T2_Triple_differences_voters.do"
+> 
+
+end of do-file
+
+. tab year
+variable year not found
+r(111);
+
+. tab activation_year
+
+ Year of SC |
+ Activation |
+   - ICE SC |
+      Dates |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       2008 |         14        0.45        0.45
+       2009 |         88        2.84        3.29
+       2010 |        780       25.15       28.43
+       2011 |      1,098       35.40       63.83
+       2012 |      1,016       32.75       96.58
+       2013 |        106        3.42      100.00
+------------+-----------------------------------
+      Total |      3,102      100.00
+
+. do "C:\Users\elisa\Documents\5. Research\TFG EI\code\0_Master.do"
+
+. clear all
+
+. macro drop _all
+
+. set more off, perm
+(set more preference recorded)
+
+. cap log close
