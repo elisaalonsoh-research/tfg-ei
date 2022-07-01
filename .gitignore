@@ -16,3 +16,4 @@ replication_data/White(2016)/cces_2010_common_validated.dta
 data/temp/merged_data_volunteer.dta
 data/raw/cps_volunteer.csv
 data/final/final_volunteer.dta
+data/final/final_volunteer_alsanyang.dta
