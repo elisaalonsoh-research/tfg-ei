@@ -1,8 +1,8 @@
------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2a_Data_cleaning_cps_30Jun2022.txt
   log type:  text
- opened on:  30 Jun 2022, 17:23:12
+ opened on:   1 Jul 2022, 11:42:37
 
 . 
 .         
@@ -169,76 +169,87 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
  44.         replace yearsus=. if yrimmig==0000
  45.         replace yearsus= age if native==1
  46.         
-.                         
+.         ** Recode orginial citizen_brown
+.         drop citizen
+ 47.         gen citizen = 0
+ 48.         replace citizen =1 if noncitizen==0
+ 49.         
+.         * Citizens a la brown
+.         gen citizen_brown = 0
+ 50.         replace citizen_brown = 1 if native == 1 | (naturalized==1& yearsus>10)
+ 51.                         
 .         * Mixed-status Household
 .         
 .         // Defined as different citizenship status (see Bitler and Hoynes, 2011)
 .          egen citizens_household = total(noncitizen==0), by(cpsid survey_year)
- 47.          egen noncitizens_household = total(noncitizen==1), by(cpsid survey_year)
- 48.          egen totindv_household = total(cpsid != .), by(cpsid survey_year)
- 49.          gen mixedstatus = 0
- 50.          replace mixedstatus = 1 if (totindv_household > citizens_household)
- 51.          replace mixedstatus = 0 if (totindv_household == noncitizens_household)
- 52.         
+ 52.          egen noncitizens_household = total(noncitizen==1), by(cpsid survey_year)
+ 53.          egen totindv_household = total(cpsid != .), by(cpsid survey_year)
+ 54.          gen mixedstatus = 0
+ 55.          replace mixedstatus = 1 if (totindv_household > citizens_household)
+ 56.          replace mixedstatus = 0 if (totindv_household == noncitizens_household)
+ 57.         
 .         
-.         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --> this is a proxy (less reliable)
+.         // Defined as at least one likely undocumented migrant (see Amuedo-Dorantes and Lopez) --
+> > this is a proxy (less reliable)
 .         
 .         * Dummy for likely unauthorized migrant
 .         gen likely_unauthorized = 0
- 53.         replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5 )
- 54.         
+ 58.         replace likely_unauthorized = 1 if (noncitizen==1 & hispanic==1 & lowed==1 & yearsus>5
+>  )
+ 59.         
 .         egen likely_mixedstatus = total(likely_unauthorized==1), by(cpsid survey_year)
- 55.         replace likely_mixedstatus = 1 if likely_mixedstatus > 1 
- 56.         
+ 60.         replace likely_mixedstatus = 1 if likely_mixedstatus > 1 
+ 61.         
 .         
 .         
 .         *** COUNTY AND STATE CONTROLS:
 .         
 .         // Round weight and rename s.t. it is the same in every supplement
 .         gen wr = .
- 57.         
+ 62.         
 .         if "`s'" == "voters" {
- 58.                 replace wr = round(vosuppwt)
- 59.         }
- 60.         if "`s'" == "civic" {
- 61.                 replace wr = round(cesuppwt)
- 62.         }
- 63.         if "`s'" == "volunteer"{
- 64.                 replace wr = round(vlsuppwt)
- 65.         }
- 66. 
+ 63.                 replace wr = round(vosuppwt)
+ 64.         }
+ 65.         if "`s'" == "civic" {
+ 66.                 replace wr = round(cesuppwt)
+ 67.         }
+ 68.         if "`s'" == "volunteer"{
+ 69.                 replace wr = round(vlsuppwt)
+ 70.         }
+ 71. 
 .                 
 .         * Dummy for presidential election
 .         gen presidential = 0
- 67.         replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|survey_year==2016)
- 68.         
+ 72.         replace presidential = 1 if (survey_year==2004|survey_year==2008|survey_year==2012|sur
+> vey_year==2016)
+ 73.         
 .          
 .         // County-level controls: mixedstatus (real and likely) 
 .         preserve
- 69.                 collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_unauthorized county_MS=mixedstatus county_hisp=hispanic [w=
-> wr], by(fips survey_year)
- 70.                 
+ 74.                 collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_una
+> uthorized county_MS=mixedstatus county_hisp=hispanic [w=wr], by(fips survey_year)
+ 75.                 
 .                 tempfile countychars_cps
- 71.                 save `countychars_cps'
- 72.         restore
- 73.         merge m:1 fips survey_year using `countychars_cps'
- 74.         drop _merge
- 75.         
+ 76.                 save `countychars_cps'
+ 77.         restore
+ 78.         merge m:1 fips survey_year using `countychars_cps'
+ 79.         drop _merge
+ 80.         
 .         // State-level controls: hispanic (to compare with real data)
 .                 preserve
- 76.                 collapse (mean) state_hisp=hispanic [w=wr], by(statefip survey_year)
- 77.                 
+ 81.                 collapse (mean) state_hisp=hispanic [w=wr], by(statefip survey_year)
+ 82.                 
 .                 tempfile statechars_cps
- 78.                 save `statechars_cps'
- 79.         restore
- 80.         merge m:1 statefip survey_year using `statechars_cps'
- 81.         drop _merge
- 82.         
+ 83.                 save `statechars_cps'
+ 84.         restore
+ 85.         merge m:1 statefip survey_year using `statechars_cps'
+ 86.         drop _merge
+ 87.         
 .         
 .         // Reduce dataset
 .         compress        
- 83.         save "${temp}/cps_`s'_temp.dta", replace
- 84.         
+ 88.         save "${temp}/cps_`s'_temp.dta", replace
+ 89.         
 . 
 . }
 (557,452 observations deleted)
@@ -263,6 +274,8 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
 (324,814 missing values generated)
 (4 real changes made, 4 to missing)
 (324,814 real changes made)
+(352,698 real changes made)
+(349,363 real changes made)
 (62,214 real changes made)
 (12,011 real changes made)
 (11,089 real changes made)
@@ -303,6 +316,8 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000005.tmp saved
   variable immigrant was float now byte
   variable native was float now byte
   variable yearsus was float now byte
+  variable citizen was float now byte
+  variable citizen_brown was float now byte
   variable citizens_household was float now byte
   variable noncitizens_household was float now byte
   variable totindv_household was float now byte
@@ -311,7 +326,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000005.tmp saved
   variable likely_mixedstatus was float now byte
   variable wr was float now int
   variable presidential was float now byte
-  (28,177,270 bytes saved)
+  (30,493,210 bytes saved)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters_temp.dta saved
 (466,404 observations deleted)
 (21,480 real changes made, 21,480 to missing)
@@ -335,6 +350,8 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters_temp.dta
 (276,369 missing values generated)
 (3 real changes made, 3 to missing)
 (276,369 real changes made)
+(301,226 real changes made)
+(297,854 real changes made)
 (51,926 real changes made)
 (9,415 real changes made)
 (9,658 real changes made)
@@ -378,6 +395,8 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000009.tmp saved
   variable immigrant was float now byte
   variable native was float now byte
   variable yearsus was float now byte
+  variable citizen was float now byte
+  variable citizen_brown was float now byte
   variable citizens_household was float now byte
   variable noncitizens_household was float now byte
   variable totindv_household was float now byte
@@ -385,7 +404,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000009.tmp saved
   variable likely_unauthorized was float now byte
   variable likely_mixedstatus was float now byte
   variable presidential was float now byte
-  (23,323,997 bytes saved)
+  (25,295,039 bytes saved)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_civic_temp.dta saved
 (1,025,752 observations deleted)
 (63,536 real changes made, 63,536 to missing)
@@ -409,6 +428,8 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_civic_temp.dta 
 (601,279 missing values generated)
 (9 real changes made, 9 to missing)
 (601,279 real changes made)
+(652,885 real changes made)
+(646,129 real changes made)
 (112,103 real changes made)
 (21,818 real changes made)
 (20,853 real changes made)
@@ -449,6 +470,8 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_00000d.tmp saved
   variable immigrant was float now byte
   variable native was float now byte
   variable yearsus was float now byte
+  variable citizen was float now byte
+  variable citizen_brown was float now byte
   variable citizens_household was float now byte
   variable noncitizens_household was float now byte
   variable totindv_household was float now byte
@@ -457,7 +480,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_00000d.tmp saved
   variable likely_mixedstatus was float now byte
   variable wr was float now int
   variable presidential was float now byte
-  (52,042,795 bytes saved)
+  (56,320,285 bytes saved)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer_temp.dta saved
 
 . 
@@ -538,31 +561,12 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer.dta s
 . 
 end of do-file
 
-.         *do "${do}/2b_Data_cleaning_dates.do" //
-.         *do "${do}/2c_Data_cleaning_other.do" //
-.    
-.         global controls_indv mixedstatus likely_mixed naturalized mexican age female married below50k lowed 
+. corr citizen citizen_brown
+(obs=712,915)
 
-.     global controls_county county_LMS county_MS county_inc county_hisp
+             |  citizen citiz~wn
+-------------+------------------
+     citizen |   1.0000
+citizen_br~n |   0.9432   1.0000
 
-.     global controls_state republican presidential
 
-.       
-.         do "${do}/3_Final_dataset.do" //Done
-
-. /***********************************************************************
-> 1c FINAL DATASET
-> AUTHOR: Elisa Alonso Herrero 
-> DATE: 15/05/2022
-> DESCRIPTION: This script takes merges each of the CPS Supplements data
->                                 with the activation dates per county, and the institutinal
->                                 data for our control variables
-> OUTPUT: 
->         
-> ***********************************************************************/
-. 
-. clear
-
-. set more off
-
-. cap log close

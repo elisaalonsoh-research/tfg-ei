@@ -48,7 +48,7 @@ cap log close
 
 	*do "${do}/1_Rawdata_to_dta.do" // Done
   
-	*do "${do}/2a_Data_cleaning_cps.do" // 
+	do "${do}/2a_Data_cleaning_cps.do" // 
 	*do "${do}/2b_Data_cleaning_dates.do" //
 	*do "${do}/2c_Data_cleaning_other.do" //
    
@@ -57,7 +57,7 @@ cap log close
     global controls_state republican presidential
 	
 	      
-	*do "${do}/3_Final_dataset.do" //Done
+	do "${do}/3_Final_dataset.do" //Done
 
 *-------- FIGURES -------------------------------------------------------*
 	// County-level timing of implementation map

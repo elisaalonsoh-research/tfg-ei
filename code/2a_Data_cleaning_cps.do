@@ -189,6 +189,9 @@ foreach s of local supplements {
 	replace yearsus=. if yrimmig==0000
 	replace yearsus= age if native==1
 	
+	* Citizens a la brown
+	gen citizen_brown = 0
+	replace citizen_brown = 1 if native == 1 | (naturalized==1& yearsus>10)
 			
 	* Mixed-status Household
 	

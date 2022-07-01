@@ -333,3 +333,21 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_cv
 . 
 end of do-file
 
+. do "C:\Users\Windows\AppData\Local\Temp\STD2fb0_000000.tmp"
+
+. /***********************************************************************
+> 1b DATA CLEANING
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script cleans the CPS dataset to create our dependent 
+>                                 variables, individual and county-level controls, and
+>                                 standardize names.
+> OUTPUT: "${temp}/cps_`s'.dta
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
+
+. cap log close
