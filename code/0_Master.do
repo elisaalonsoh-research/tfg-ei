@@ -48,15 +48,16 @@ cap log close
 
 	*do "${do}/1_Rawdata_to_dta.do" // Done
   
-	do "${do}/2a_Data_cleaning_cps.do" // 
-	do "${do}/2b_Data_cleaning_dates.do" //
-	do "${do}/2c_Data_cleaning_other.do" //
+	*do "${do}/2a_Data_cleaning_cps.do" // 
+	*do "${do}/2b_Data_cleaning_dates.do" //
+	*do "${do}/2c_Data_cleaning_other.do" //
    
-	global controls_indv likely_mixed naturalized mexican age female single below50k lowed 
-    global controls_county county_unauthorized county_LMS county_MS county_inc county_hisp
+	global controls_indv mixedstatus likely_mixed naturalized mexican age female married below50k lowed 
+    global controls_county county_MS county_LMS county_inc county_hisp
     global controls_state republican presidential
-      
-	 do "${do}/3_Final_dataset.do" //Done
+	
+	      
+	*do "${do}/3_Final_dataset.do" //Done
 
 *-------- FIGURES -------------------------------------------------------*
 	// County-level timing of implementation map
@@ -64,9 +65,11 @@ cap log close
 	
 *-------- TABLES  -------------------------------------------------------*
 
+	
 ** TABLE 1: Summary statistics
 
 	*do "${do}/T1_summary_stats.do"
+	*do "${do}/T2_summary_stats_breakdown.do"
 
 
 ** TABLE 2: Triple differences for voting and registration

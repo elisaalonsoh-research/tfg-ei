@@ -125,19 +125,19 @@ foreach s of local supplements {
 	gen female= sex-1
 	drop sex
 	
-	* Dummy for single
-	gen single = 0
-	replace single = 1 if marst==6
-	replace single = . if marst==9
+	* Dummy for married
+	gen married = 0
+	replace married = 1 if marst==1 | marst==2
+	replace married = . if marst==9
 	
 	* Dummy for education: high school or less, more than high school
 	gen lowed = 0
-	replace lowed = 1 if (educ <= 73)
-	replace lowed = . if (educ==000|educ==001|educ==999)
+	replace lowed = 1 if (educ <= 073)
+	replace lowed = . if (educ==001|educ==999)
 	
 	gen highed = 0
-	replace highed = 1 if educ >73
-	replace highed = . if (educ==000|educ==001|educ==999)
+	replace highed = 1 if educ > 073
+	replace highed = . if (educ==001|educ==999)
 	
 	
 	// Race and ethnicity
@@ -266,25 +266,31 @@ foreach s of local supplements {
 *------- Cleaning for CPS Voters and Registered ---------------------------*
 	use "${temp}/cps_voters_temp.dta", clear 
 		
+	* Dummy for voting
+	* The universe for VOTE_CAT (voted in CPS) is eligible voters (+18, citizens)
+	rename voted vote_cat
+	gen voted = 0
+	replace voted = 1 if vote_cat==02
+	replace voted = . if inrange(vote_cat,96,99)
+	drop vote_cat
 	
 	* Dummy for registering to vote:
 	* The universe for VOREG compromises only those persons who did not vote !!
 	* Not in universe: code 99 (I will later restrict to citizens 18+)
 	* My dummy variable = individuals who registered (vote and no vote)
 	
+	
 	gen registered = 0
-	replace registered = 1 if voreg==02 | voreg == 99
-	replace registered = . if inrange(voreg,96,98)
+	replace registered = . if inrange(voreg,96,99)
+	replace registered = 1 if voreg==02 | voted==1	
 	drop voreg
 	
-	* Dummy for voting
-	* The universe for VOTE_CAT (voted in CPS) is eligible voters
-	rename voted vote_cat
-	gen voted = 0
-	replace voted = 0 if vote_cat==02
-	replace voted = . if inrange(vote_cat,96,99)
-	drop vote_cat
+	* Dummy for voted if registered:
+	gen voted_reg = .
+	replace voted_reg = 0 if registered==1 & voted == 0
+	replace voted_reg = 1 if registered==1 & voted ==1
 	
+		
 	
 	save "${temp}/cps_voters.dta", replace
 

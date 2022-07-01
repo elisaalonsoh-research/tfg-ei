@@ -132,31 +132,61 @@ foreach s of local supplement {
 	* Particular to one dataset
 	cap label variable registered "Registered" // CPS voters
 	cap label variable voted "Voted"           // CPS voters
+	cap label variable voted_reg "Voted (If registered)" //CPS voters
 	
 	* Present in all
 	label variable hispanic "Hispanic"
 	label variable black "Black"
-	label variable likely_mixedstatus "Mixed-Status Household"
+	label variable mixedstatus "Mixed Status-Household"
+	label variable likely_mixedstatus "Likely Mixed-Status Household"
 	label variable naturalized "Naturalized"
 	label variable mexican "Mexican"
 	label variable age "Age"
 	label variable female "Gender (female)"	
-	label variable single "Single"
+	label variable married "Married"
 	label variable lowed "Completed High School"
 	label variable highed "Completed more than High School"
 	label variable below50k "Income below 50k"
-	label variable county_MS "Share of Mixed-Status Households by County"
+	label variable county_LMS "Share of Likely Mixed-Status Households by County"
 	label variable county_unauthorized "Share of Likely Unauthorized by County"
+	label variable county_hisp "Share of Hispanic by County"
+	label variable county_MS "Share of Mixed-Status Households by County"
 	label variable county_inc "Family Income by County"
 	label variable republican "State had a Republican Governor"
 	label variable presidential "Presidential Election Year"
 	
 	
 	*** SAMPLE RESTRICTION: universe of possible voters (citizens and 18>=)
-	drop if noncitizen==1
-	drop if age<18
+	drop if survey_year>2015
 	
 	save "${final}/final_`s'.dta", replace
+
+	* CVAP: citizen voting age population (elegible voters)
+	preserve
+		drop if noncitizen==1
+		drop if age<18
+		save "${final}/final_`s'_cvap.dta", replace
+	restore
+	
+	** Geographical restriction:
+	
+	// Alsan-Yang (2018): exclude border counties and states that were reluctanct (MA 25, NY 36, and IL 17)	
+	
+	* Border Counties: YUMA COUNTY, SAN DIEGO COUNTY, IMPERIAL COUNTY, SANTA CRUZ COUNTY, PIMA COUNTY, COCHISE COUNTY, HIDALGO COUNTY, DONA ANA COUNTY, EL PASO COUNTY, WEBB COUNTY"
+	
+	local border_counties 04027 06073 06025 04023 04019 04003 35023 35013 08041 48479
+		
+	preserve
+		drop if inlist(statefip,17,25,36)
+		drop if inlist(fips,`border_counties')
+		save "${final}/final_`s'_alsanyang.dta", replace
+		
+		drop if noncitizen==1
+		drop if age<18
+		save "${final}/final_`s'_cvap_alsanyang.dta", replace
+	restore
+	
+	// White (2016): focus only on 2010 elections  
 	
 	
 	}

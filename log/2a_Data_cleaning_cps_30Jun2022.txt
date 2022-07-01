@@ -1,8 +1,8 @@
------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/2a_Data_cleaning_cps_30Jun2022.txt
   log type:  text
- opened on:  30 Jun 2022, 12:18:15
+ opened on:  30 Jun 2022, 17:23:12
 
 . 
 .         
@@ -105,19 +105,19 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
 .         gen female= sex-1
  13.         drop sex
  14.         
-.         * Dummy for single
-.         gen single = 0
- 15.         replace single = 1 if marst==6
- 16.         replace single = . if marst==9
+.         * Dummy for married
+.         gen married = 0
+ 15.         replace married = 1 if marst==1 | marst==2
+ 16.         replace married = . if marst==9
  17.         
 .         * Dummy for education: high school or less, more than high school
 .         gen lowed = 0
- 18.         replace lowed = 1 if (educ <= 73)
- 19.         replace lowed = . if (educ==000|educ==001|educ==999)
+ 18.         replace lowed = 1 if (educ <= 073)
+ 19.         replace lowed = . if (educ==001|educ==999)
  20.         
 .         gen highed = 0
- 21.         replace highed = 1 if educ >73
- 22.         replace highed = . if (educ==000|educ==001|educ==999)
+ 21.         replace highed = 1 if educ > 073
+ 22.         replace highed = . if (educ==001|educ==999)
  23.         
 .         
 .         // Race and ethnicity
@@ -215,8 +215,8 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
 .          
 .         // County-level controls: mixedstatus (real and likely) 
 .         preserve
- 69.                 collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_unauthorized county_MS=mixedstatus county_hisp=
-> hispanic [w=wr], by(fips survey_year)
+ 69.                 collapse (mean) county_LMS=likely_mixedstatus county_unauthorized = likely_unauthorized county_MS=mixedstatus county_hisp=hispanic [w=
+> wr], by(fips survey_year)
  70.                 
 .                 tempfile countychars_cps
  71.                 save `countychars_cps'
@@ -244,7 +244,7 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/county_income.dta s
 (557,452 observations deleted)
 (31,425 real changes made, 31,425 to missing)
 (163,593 real changes made)
-(96,004 real changes made)
+(157,994 real changes made)
 (76,574 real changes made, 76,574 to missing)
 (212,403 real changes made)
 (76,574 real changes made, 76,574 to missing)
@@ -289,7 +289,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000005.tmp saved
   variable survey_date was float now int
   variable below50k was float now byte
   variable female was float now byte
-  variable single was float now byte
+  variable married was float now byte
   variable lowed was float now byte
   variable highed was float now byte
   variable white was float now byte
@@ -316,7 +316,7 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters_temp.dta
 (466,404 observations deleted)
 (21,480 real changes made, 21,480 to missing)
 (140,305 real changes made)
-(83,000 real changes made)
+(133,968 real changes made)
 (64,181 real changes made, 64,181 to missing)
 (178,522 real changes made)
 (64,181 real changes made, 64,181 to missing)
@@ -364,7 +364,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_000009.tmp saved
   variable survey_date was float now int
   variable below50k was float now byte
   variable female was float now byte
-  variable single was float now byte
+  variable married was float now byte
   variable lowed was float now byte
   variable highed was float now byte
   variable white was float now byte
@@ -390,7 +390,7 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_civic_temp.dta 
 (1,025,752 observations deleted)
 (63,536 real changes made, 63,536 to missing)
 (298,531 real changes made)
-(177,426 real changes made)
+(290,914 real changes made)
 (141,842 real changes made, 141,842 to missing)
 (395,000 real changes made)
 (141,842 real changes made, 141,842 to missing)
@@ -435,7 +435,7 @@ file C:\Users\Windows\AppData\Local\Temp\ST_2fb0_00000d.tmp saved
   variable survey_date was float now int
   variable below50k was float now byte
   variable female was float now byte
-  variable single was float now byte
+  variable married was float now byte
   variable lowed was float now byte
   variable highed was float now byte
   variable white was float now byte
@@ -467,31 +467,14 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer_temp.
 .         use "${temp}/cps_voters_temp.dta", clear 
 
 .                 
-.         
-.         * Dummy for registering to vote:
-.         * The universe for VOREG compromises only those persons who did not vote !!
-.         * Not in universe: code 99 (I will later restrict to citizens 18+)
-.         * My dummy variable = individuals who registered (vote and no vote)
-.         
-.         gen registered = 0
-
-.         replace registered = 1 if voreg==02 | voreg == 99
-(304,379 real changes made)
-
-.         replace registered = . if inrange(voreg,96,98)
-(39,241 real changes made, 39,241 to missing)
-
-.         drop voreg
-
-.         
 .         * Dummy for voting
-.         * The universe for VOTE_CAT (voted in CPS) is eligible voters
+.         * The universe for VOTE_CAT (voted in CPS) is eligible voters (+18, citizens)
 .         rename voted vote_cat
 
 .         gen voted = 0
 
-.         replace voted = 0 if vote_cat==02
-(0 real changes made)
+.         replace voted = 1 if vote_cat==02
+(147,235 real changes made)
 
 .         replace voted = . if inrange(vote_cat,96,99)
 (161,679 real changes made, 161,679 to missing)
@@ -499,6 +482,35 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer_temp.
 .         drop vote_cat
 
 .         
+.         * Dummy for registering to vote:
+.         * The universe for VOREG compromises only those persons who did not vote !!
+.         * Not in universe: code 99 (I will later restrict to citizens 18+)
+.         * My dummy variable = individuals who registered (vote and no vote)
+.         
+.         
+.         gen registered = 0
+
+.         replace registered = . if inrange(voreg,96,99)
+(310,408 real changes made, 310,408 to missing)
+
+.         replace registered = 1 if voreg==02 | voted==1  
+(180,447 real changes made)
+
+.         drop voreg
+
+.         
+.         * Dummy for voted if registered:
+.         gen voted_reg = .
+(385,990 missing values generated)
+
+.         replace voted_reg = 0 if registered==1 & voted == 0
+(31,573 real changes made)
+
+.         replace voted_reg = 1 if registered==1 & voted ==1
+(147,235 real changes made)
+
+.         
+.                 
 .         
 .         save "${temp}/cps_voters.dta", replace
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_voters.dta saved
@@ -526,13 +538,31 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/cps_volunteer.dta s
 . 
 end of do-file
 
-. do "C:\Users\Windows\AppData\Local\Temp\STD2fb0_000000.tmp"
+.         *do "${do}/2b_Data_cleaning_dates.do" //
+.         *do "${do}/2c_Data_cleaning_other.do" //
+.    
+.         global controls_indv mixedstatus likely_mixed naturalized mexican age female married below50k lowed 
 
-. clear all
+.     global controls_county county_LMS county_MS county_inc county_hisp
 
-. macro drop _all
+.     global controls_state republican presidential
 
-. set more off, perm
-(set more preference recorded)
+.       
+.         do "${do}/3_Final_dataset.do" //Done
+
+. /***********************************************************************
+> 1c FINAL DATASET
+> AUTHOR: Elisa Alonso Herrero 
+> DATE: 15/05/2022
+> DESCRIPTION: This script takes merges each of the CPS Supplements data
+>                                 with the activation dates per county, and the institutinal
+>                                 data for our control variables
+> OUTPUT: 
+>         
+> ***********************************************************************/
+. 
+. clear
+
+. set more off
 
 . cap log close

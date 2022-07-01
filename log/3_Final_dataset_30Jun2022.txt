@@ -1,8 +1,8 @@
------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  C:/Users/Windows/Documents/5. Research/TFG EI/log/3_Final_dataset_30Jun2022.txt
   log type:  text
- opened on:  30 Jun 2022, 12:21:04
+ opened on:   1 Jul 2022, 09:53:02
 
 . 
 . 
@@ -61,7 +61,8 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/controls_state.dta 
 .         * Create Post Activation Dummy
 .         gen post_activation = 0
  10.         replace post_activation = 1 if (survey_date > activation_date)
- 11.         replace post_activation = (survey_month - activation_month)/12 if (survey_year == activation_year & survey_date > activation_date)
+ 11.         replace post_activation = (survey_month - activation_month)/12 if (survey_year == acti
+> vation_year & survey_date > activation_date)
  12.         
 .         tempfile main_vars_`s'
  13.         save `main_vars_`s''
@@ -219,46 +220,115 @@ file C:/Users/Windows/Documents/5. Research/TFG EI/data/temp/merged_data_volunte
 .         * Particular to one dataset
 .         cap label variable registered "Registered" // CPS voters
   7.         cap label variable voted "Voted"           // CPS voters
-  8.         
+  8.         cap label variable voted_reg "Voted (If registered)" //CPS voters
+  9.         
 .         * Present in all
 .         label variable hispanic "Hispanic"
-  9.         label variable black "Black"
- 10.         label variable likely_mixedstatus "Mixed-Status Household"
- 11.         label variable naturalized "Naturalized"
- 12.         label variable mexican "Mexican"
- 13.         label variable age "Age"
- 14.         label variable female "Gender (female)" 
- 15.         label variable single "Single"
- 16.         label variable lowed "Completed High School"
- 17.         label variable highed "Completed more than High School"
- 18.         label variable below50k "Income below 50k"
- 19.         label variable county_MS "Share of Mixed-Status Households by County"
- 20.         label variable county_unauthorized "Share of Likely Unauthorized by County"
- 21.         label variable county_inc "Family Income by County"
- 22.         label variable republican "State had a Republican Governor"
- 23.         label variable presidential "Presidential Election Year"
- 24.         
+ 10.         label variable black "Black"
+ 11.         label variable mixedstatus "Mixed Status-Household"
+ 12.         label variable likely_mixedstatus "Likely Mixed-Status Household"
+ 13.         label variable naturalized "Naturalized"
+ 14.         label variable mexican "Mexican"
+ 15.         label variable age "Age"
+ 16.         label variable female "Gender (female)" 
+ 17.         label variable married "Married"
+ 18.         label variable lowed "Completed High School"
+ 19.         label variable highed "Completed more than High School"
+ 20.         label variable below50k "Income below 50k"
+ 21.         label variable county_LMS "Share of Likely Mixed-Status Households by County"
+ 22.         label variable county_unauthorized "Share of Likely Unauthorized by County"
+ 23.         label variable county_hisp "Share of Hispanic by County"
+ 24.         label variable county_MS "Share of Mixed-Status Households by County"
+ 25.         label variable county_inc "Family Income by County"
+ 26.         label variable republican "State had a Republican Governor"
+ 27.         label variable presidential "Presidential Election Year"
+ 28.         
 .         
 .         *** SAMPLE RESTRICTION: universe of possible voters (citizens and 18>=)
-.         drop if noncitizen==1
- 25.         drop if age<18
- 26.         
+.         drop if survey_year>2015
+ 29.         
 .         save "${final}/final_`s'.dta", replace
- 27.         
+ 30. 
+.         * CVAP: citizen voting age population (elegible voters)
+.         preserve
+ 31.                 drop if noncitizen==1
+ 32.                 drop if age<18
+ 33.                 save "${final}/final_`s'_cvap.dta", replace
+ 34.         restore
+ 35.         
+.         ** Geographical restriction:
+.         
+.         // Alsan-Yang (2018): exclude border counties and states that were reluctanct (MA 25, NY 
+> 36, and IL 17) 
+.         
+.         * Border Counties: YUMA COUNTY, SAN DIEGO COUNTY, IMPERIAL COUNTY, SANTA CRUZ COUNTY, PIM
+> A COUNTY, COCHISE COUNTY, HIDALGO COUNTY, DONA ANA COUNTY, EL PASO COUNTY, WEBB COUNTY"
+.         
+.         local border_counties 04027 06073 06025 04023 04019 04003 35023 35013 08041 48479
+ 36.                 
+.         preserve
+ 37.                 drop if inlist(statefip,17,25,36)
+ 38.                 drop if inlist(fips,`border_counties')
+ 39.                 save "${final}/final_`s'_alsanyang.dta", replace
+ 40.                 
+.                 drop if noncitizen==1
+ 41.                 drop if age<18
+ 42.                 save "${final}/final_`s'_cvap_alsanyang.dta", replace
+ 43.         restore
+ 44.         
+.         // White (2016): focus only on 2010 elections  
+.         
 .         
 .         }
 fips: all characters numeric; replaced as long
-(32,372 observations deleted)
-(86,464 observations deleted)
+(52,098 observations deleted)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters.dta saved
+(27,940 observations deleted)
+(75,372 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters_cvap.dta not foun
+> d)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters_cvap.dta saved
+(30,171 observations deleted)
+(0 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters_alsanyang.dta saved
+(24,619 observations deleted)
+(68,701 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters_cvap_alsanyang.dt
+> a not found)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_voters_cvap_alsanyang.dta saved
 fips: all characters numeric; replaced as long
-(26,513 observations deleted)
-(72,874 observations deleted)
+(50,986 observations deleted)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic.dta saved
+(22,254 observations deleted)
+(62,045 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic_cvap.dta not found
+> )
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic_cvap.dta saved
+(24,250 observations deleted)
+(0 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic_alsanyang.dta saved
+(19,517 observations deleted)
+(56,681 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic_cvap_alsanyang.dta
+>  not found)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_civic_cvap_alsanyang.dta saved
 fips: all characters numeric; replaced as long
-(58,323 observations deleted)
-(160,494 observations deleted)
+(50,986 observations deleted)
 file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer.dta saved
+(54,064 observations deleted)
+(149,665 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_cvap.dta not f
+> ound)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_cvap.dta saved
+(61,452 observations deleted)
+(0 observations deleted)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_alsanyang.dta saved
+(47,545 observations deleted)
+(136,122 observations deleted)
+(note: file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_cvap_alsanyang
+> .dta not found)
+file C:/Users/Windows/Documents/5. Research/TFG EI/data/final/final_volunteer_cvap_alsanyang.dta sa
+> ved
 
 . 
 end of do-file
